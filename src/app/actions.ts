@@ -35,6 +35,7 @@ import { xmlSitemapGenerator, type XmlSitemapGeneratorInput, type XmlSitemapGene
 import { urlRewritingTool, type UrlRewritingToolInput, type UrlRewritingToolOutput } from '@/ai/flows/url-rewriting-tool';
 import { adsenseCalculator, type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/adsense-calculator';
 import { openGraphGenerator, type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/open-graph-generator';
+import { metaTagsAnalyzer, type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
 
 
 export async function generateMetaTagsAction(
@@ -456,5 +457,17 @@ export async function openGraphGeneratorAction(
   } catch (error) {
     console.error('Error generating Open Graph tags:', error);
     return { success: false, error: 'Failed to generate Open Graph tags. Please try again later.' };
+  }
+}
+
+export async function metaTagsAnalyzerAction(
+  input: MetaTagsAnalyzerInput
+): Promise<{ success: true, data: MetaTagsAnalyzerOutput } | { success: false, error: string }> {
+  try {
+    const result = await metaTagsAnalyzer(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error analyzing meta tags:', error);
+    return { success: false, error: 'Failed to analyze meta tags. Please try again later.' };
   }
 }

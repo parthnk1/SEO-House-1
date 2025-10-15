@@ -37,6 +37,7 @@ import UrlRewritingTool from '@/components/UrlRewritingTool';
 import UrlEncoderDecoder from '@/components/UrlEncoderDecoder';
 import AdsenseCalculator from '@/components/AdsenseCalculator';
 import OpenGraphGenerator from '@/components/OpenGraphGenerator';
+import MetaTagsAnalyzer from '@/components/MetaTagsAnalyzer';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -139,6 +140,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <AdsenseCalculator />;
       case 'open-graph-generator':
         return <OpenGraphGenerator />;
+      case 'meta-tags-analyzer':
+        return <MetaTagsAnalyzer />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
