@@ -28,6 +28,7 @@ import WebsiteLinkAnalyzerTool from '@/components/WebsiteLinkAnalyzerTool';
 import BrokenBacklinkChecker from '@/components/BrokenBacklinkChecker';
 import ValuableBacklinkChecker from '@/components/ValuableBacklinkChecker';
 import BacklinksCompetitors from '@/components/BacklinksCompetitors';
+import AnchorTextDistribution from '@/components/AnchorTextDistribution';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -112,6 +113,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <ValuableBacklinkChecker />;
       case 'backlinks-competitors':
         return <BacklinksCompetitors />;
+      case 'anchor-text-distribution':
+        return <AnchorTextDistribution />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

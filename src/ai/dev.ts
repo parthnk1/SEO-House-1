@@ -28,3 +28,4 @@ import '@/ai/flows/website-link-analyzer-tool.ts';
 import '@/ai/flows/broken-backlink-checker.ts';
 import '@/ai/flows/valuable-backlink-checker.ts';
 import '@/ai/flows/backlinks-competitors.ts';
+import '@/ai/flows/anchor-text-distribution.ts';

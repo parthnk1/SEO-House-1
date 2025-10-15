@@ -27,6 +27,7 @@ import { websiteLinkAnalyzerTool, type WebsiteLinkAnalyzerToolInput, type Websit
 import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } from '@/ai/flows/broken-backlink-checker';
 import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai/flows/valuable-backlink-checker';
 import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCompetitorsOutput } from '@/ai/flows/backlinks-competitors';
+import { anchorTextDistribution, type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
 
 
 export async function generateMetaTagsAction(
@@ -352,5 +353,17 @@ export async function backlinksCompetitorsAction(
   } catch (error) {
     console.error('Error analyzing competitor backlinks:', error);
     return { success: false, error: 'Failed to analyze competitor backlinks. Please try again later.' };
+  }
+}
+
+export async function anchorTextDistributionAction(
+  input: AnchorTextDistributionInput
+): Promise<{ success: true, data: AnchorTextDistributionOutput } | { success: false, error: string }> {
+  try {
+    const result = await anchorTextDistribution(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error analyzing anchor text distribution:', error);
+    return { success: false, error: 'Failed to analyze anchor text. Please try again later.' };
   }
 }
