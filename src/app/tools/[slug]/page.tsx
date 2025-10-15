@@ -41,6 +41,7 @@ import MetaTagsAnalyzer from '@/components/MetaTagsAnalyzer';
 import WhatIsMyScreenResolution from '@/components/WhatIsMyScreenResolution';
 import OpenGraphChecker from '@/components/OpenGraphChecker';
 import QrCodeGenerator from '@/components/QrCodeGenerator';
+import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -151,6 +152,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <OpenGraphChecker />;
       case 'qr-code-generator':
         return <QrCodeGenerator />;
+      case 'htaccess-redirect-generator':
+        return <HtaccessRedirectGenerator />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
