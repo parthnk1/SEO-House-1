@@ -39,6 +39,21 @@ import AdsenseCalculator from '@/components/AdsenseCalculator';
 import OpenGraphGenerator from '@/components/OpenGraphGenerator';
 import MetaTagsAnalyzer from '@/components/MetaTagsAnalyzer';
 import WhatIsMyScreenResolution from '@/components/WhatIsMyScreenResolution';
+import OpenGraphChecker from '@/components/OpenGraphChecker';
+import QrCodeGenerator from '@/components/QrCodeGenerator';
+import GetHttpHeaders from '@/components/GetHttpHeaders';
+import ReverseIpLookup from '@/components/ReverseIpLookup';
+import CheckServerStatus from '@/components/CheckServerStatus';
+import CodeToTextRatioChecker from '@/components/CodeToTextRatioChecker';
+import AlexaRankComparison from '@/components/AlexaRankComparison';
+import PageComparison from '@/components/PageComparison';
+import SpiderSimulator from '@/components/SpiderSimulator';
+import WhoisLookup from '@/components/WhoisLookup';
+import GoogleCacheChecker from '@/components/GoogleCacheChecker';
+import DomainAgeChecker from '@/components/DomainAgeChecker';
+import DomainAuthorityChecker from '@/components/DomainAuthorityChecker';
+import DomainIpLookup from '@/components/DomainIpLookup';
+import EssayChecker from '@/components/EssayChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -149,8 +164,6 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <OpenGraphChecker />;
       case 'qr-code-generator':
         return <QrCodeGenerator />;
-      case 'htaccess-redirect-generator':
-        return <HtaccessRedirectGenerator />;
       case 'get-http-headers':
         return <GetHttpHeaders />;
       case 'reverse-ip-lookup':
