@@ -31,6 +31,7 @@ import BacklinksCompetitors from '@/components/BacklinksCompetitors';
 import AnchorTextDistribution from '@/components/AnchorTextDistribution';
 import PageSpeedTest from '@/components/PageSpeedTest';
 import WebsitePageSizeChecker from '@/components/WebsitePageSizeChecker';
+import WebsitePageSnooper from '@/components/WebsitePageSnooper';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -121,6 +122,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <PageSpeedTest />;
       case 'website-page-size-checker':
         return <WebsitePageSizeChecker />;
+      case 'website-page-snooper':
+        return <WebsitePageSnooper />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

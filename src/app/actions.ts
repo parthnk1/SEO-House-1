@@ -16,7 +16,7 @@ import { liveKeywordAnalyzer, type LiveKeywordAnalyzerInput, type LiveKeywordAna
 import { keywordOverview, type KeywordOverviewInput, type KeywordOverviewOutput } from '@/ai/flows/keyword-overview';
 import { keywordDifficultyChecker, type KeywordDifficultyCheckerInput, type KeywordDifficultyCheckerOutput } from '@/ai/flows/keyword-difficulty-checker';
 import { paidKeywordFinder, type PaidKeywordFinderInput, type PaidKeywordFinderOutput } from '@/ai/flows/paid-keyword-finder';
-import { websiteLinkCountChecker, type WebsiteLinkCountCheckerInput, type WebsiteLinkCountCheckerOutput } from '@/ai/flows/website-link-count-checker';
+import { websiteLinkCountChecker, type WebsiteLinkCountCheckerInput, type WebsiteLinkCountCheckerOutput } from '@/aiflows/website-link-count-checker';
 import { websiteBrokenLinkChecker, type WebsiteBrokenLinkCheckerInput, type WebsiteBrokenLinkCheckerOutput } from '@/ai/flows/website-broken-link-checker';
 import { linkPriceCalculator, type LinkPriceCalculatorInput, type LinkPriceCalculatorOutput } from '@/ai/flows/link-price-calculator';
 import { reciprocalLinkChecker, type ReciprocalLinkCheckerInput, type ReciprocalLinkCheckerOutput } from '@/ai/flows/reciprocal-link-checker';
@@ -30,6 +30,7 @@ import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCom
 import { anchorTextDistribution, type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
 import { pageSpeedTest, type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/page-speed-test';
 import { websitePageSizeChecker, type WebsitePageSizeCheckerInput, type WebsitePageSizeCheckerOutput } from '@/ai/flows/website-page-size-checker';
+import { websitePageSnooper, type WebsitePageSnooperInput, type WebsitePageSnooperOutput } from '@/ai/flows/website-page-snooper';
 
 
 export async function generateMetaTagsAction(
@@ -391,5 +392,17 @@ export async function websitePageSizeCheckerAction(
   } catch (error) {
     console.error('Error checking page size:', error);
     return { success: false, error: 'Failed to check page size. Please try again later.' };
+  }
+}
+
+export async function websitePageSnooperAction(
+  input: WebsitePageSnooperInput
+): Promise<{ success: true, data: WebsitePageSnooperOutput } | { success: false, error: string }> {
+  try {
+    const result = await websitePageSnooper(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error snooping on page:', error);
+    return { success: false, error: 'Failed to snoop on page. Please try again later.' };
   }
 }

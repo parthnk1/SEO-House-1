@@ -33,3 +33,4 @@ import '@/ai/flows/backlinks-competitors.ts';
 import '@/ai/flows/anchor-text-distribution.ts';
 import '@/ai/flows/page-speed-test.ts';
 import '@/ai/flows/website-page-size-checker.ts';
+import '@/ai/flows/website-page-snooper.ts';
