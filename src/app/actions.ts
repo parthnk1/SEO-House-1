@@ -38,6 +38,7 @@ import { openGraphGenerator, type OpenGraphGeneratorInput, type OpenGraphGenerat
 import { metaTagsAnalyzer, type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
 import { openGraphChecker, type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
 import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
+import { reverseIpLookup, type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
 
 
 export async function generateMetaTagsAction(
@@ -495,5 +496,17 @@ export async function getHttpHeadersAction(
   } catch (error) {
     console.error('Error getting HTTP headers:', error);
     return { success: false, error: 'Failed to get HTTP headers. Please try again later.' };
+  }
+}
+
+export async function reverseIpLookupAction(
+  input: ReverseIpLookupInput
+): Promise<{ success: true, data: ReverseIpLookupOutput } | { success: false, error: string }> {
+  try {
+    const result = await reverseIpLookup(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error performing reverse IP lookup:', error);
+    return { success: false, error: 'Failed to perform reverse IP lookup. Please try again later.' };
   }
 }

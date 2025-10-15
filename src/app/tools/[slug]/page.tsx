@@ -44,6 +44,7 @@ import QrCodeGenerator from '@/components/QrCodeGenerator';
 import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
 import GetHttpHeaders from '@/components/GetHttpHeaders';
 import LinkTracker from '@/components/LinkTracker';
+import ReverseIpLookup from '@/components/ReverseIpLookup';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -160,6 +161,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <GetHttpHeaders />;
       case 'link-tracker':
         return <LinkTracker />;
+      case 'reverse-ip-lookup':
+        return <ReverseIpLookup />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
