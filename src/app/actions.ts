@@ -48,6 +48,7 @@ import { whoisLookup, type WhoisLookupInput, type WhoisLookupOutput } from '@/ai
 import { googleCacheChecker, type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
 import { domainAgeChecker, type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from '@/ai/flows/domain-age-checker';
 import { domainAuthorityChecker, type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from '@/ai/flows/domain-authority-checker';
+import { domainIpLookup, type DomainIpLookupInput, type DomainIpLookupOutput } from '@/ai/flows/domain-ip-lookup';
 
 
 export async function generateMetaTagsAction(
@@ -625,5 +626,17 @@ export async function domainAuthorityCheckerAction(
   } catch (error) {
     console.error('Error checking domain authority:', error);
     return { success: false, error: 'Failed to check domain authority. Please try again later.' };
+  }
+}
+
+export async function domainIpLookupAction(
+  input: DomainIpLookupInput
+): Promise<{ success: true, data: DomainIpLookupOutput } | { success: false, error: string }> {
+  try {
+    const result = await domainIpLookup(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error looking up domain IP:', error);
+    return { success: false, error: 'Failed to look up domain IP. Please try again later.' };
   }
 }

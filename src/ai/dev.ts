@@ -48,3 +48,4 @@ import '@/ai/flows/whois-lookup.ts';
 import '@/ai/flows/google-cache-checker.ts';
 import '@/ai/flows/domain-age-checker.ts';
 import '@/ai/flows/domain-authority-checker.ts';
+import '@/ai/flows/domain-ip-lookup.ts';
