@@ -23,6 +23,7 @@ import LinkPriceCalculator from '@/components/LinkPriceCalculator';
 import ReciprocalLinkChecker from '@/components/ReciprocalLinkChecker';
 import WebsiteSeoScoreChecker from '@/components/WebsiteSeoScoreChecker';
 import GooglePagerankChecker from '@/components/GooglePagerankChecker';
+import OnlinePingWebsiteTool from '@/components/OnlinePingWebsiteTool';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -97,6 +98,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <WebsiteSeoScoreChecker />;
       case 'google-pagerank-checker':
         return <GooglePagerankChecker />;
+      case 'online-ping-website-tool':
+        return <OnlinePingWebsiteTool />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

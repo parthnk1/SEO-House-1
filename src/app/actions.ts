@@ -22,6 +22,7 @@ import { linkPriceCalculator, type LinkPriceCalculatorInput, type LinkPriceCalcu
 import { reciprocalLinkChecker, type ReciprocalLinkCheckerInput, type ReciprocalLinkCheckerOutput } from '@/ai/flows/reciprocal-link-checker';
 import { websiteSeoScoreChecker, type WebsiteSeoScoreCheckerInput, type WebsiteSeoScoreCheckerOutput } from '@/ai/flows/website-seo-score-checker';
 import { googlePagerankChecker, type GooglePagerankCheckerInput, type GooglePagerankCheckerOutput } from '@/ai/flows/google-pagerank-checker';
+import { onlinePingWebsiteTool, type OnlinePingWebsiteToolInput, type OnlinePingWebsiteToolOutput } from '@/ai/flows/online-ping-website-tool';
 
 
 export async function generateMetaTagsAction(
@@ -187,7 +188,8 @@ export async function keywordOverviewAction(
     try {
         const result = await keywordOverview(input);
         return { success: true, data: result };
-    } catch (error) {
+    } catch (error)
+    {
         console.error('Error getting keyword overview:', error);
         return { success: false, error: 'Failed to get keyword overview. Please try again later.' };
     }
@@ -286,5 +288,17 @@ export async function googlePagerankCheckerAction(
     } catch (error) {
         console.error('Error checking PageRank:', error);
         return { success: false, error: 'Failed to check PageRank. Please try again later.' };
+    }
+}
+
+export async function onlinePingWebsiteToolAction(
+    input: OnlinePingWebsiteToolInput
+): Promise<{ success: true, data: OnlinePingWebsiteToolOutput } | { success: false, error: string }> {
+    try {
+        const result = await onlinePingWebsiteTool(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error pinging website:', error);
+        return { success: false, error: 'Failed to ping website. Please try again later.' };
     }
 }
