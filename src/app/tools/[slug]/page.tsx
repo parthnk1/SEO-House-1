@@ -45,6 +45,7 @@ import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
 import GetHttpHeaders from '@/components/GetHttpHeaders';
 import LinkTracker from '@/components/LinkTracker';
 import ReverseIpLookup from '@/components/ReverseIpLookup';
+import CheckServerStatus from '@/components/CheckServerStatus';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -163,6 +164,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <LinkTracker />;
       case 'reverse-ip-lookup':
         return <ReverseIpLookup />;
+      case 'check-server-status':
+        return <CheckServerStatus />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

@@ -39,6 +39,7 @@ import { metaTagsAnalyzer, type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutp
 import { openGraphChecker, type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
 import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
 import { reverseIpLookup, type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
+import { checkServerStatus, type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
 
 
 export async function generateMetaTagsAction(
@@ -508,5 +509,17 @@ export async function reverseIpLookupAction(
   } catch (error) {
     console.error('Error performing reverse IP lookup:', error);
     return { success: false, error: 'Failed to perform reverse IP lookup. Please try again later.' };
+  }
+}
+
+export async function checkServerStatusAction(
+  input: CheckServerStatusInput
+): Promise<{ success: true, data: CheckServerStatusOutput } | { success: false, error: string }> {
+  try {
+    const result = await checkServerStatus(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking server status:', error);
+    return { success: false, error: 'Failed to check server status. Please try again later.' };
   }
 }
