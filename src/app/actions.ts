@@ -8,6 +8,7 @@ import { keywordResearch, type KeywordResearchInput, type KeywordResearchOutput 
 import { checkKeywordCompetition, type CheckKeywordCompetitionInput, type CheckKeywordCompetitionOutput } from '@/ai/flows/check-keyword-competition';
 import { findRelatedKeywords, type FindRelatedKeywordsInput, type FindRelatedKeywordsOutput } from '@/ai/flows/find-related-keywords';
 import { getLongTailKeywordSuggestions, type GetLongTailKeywordSuggestionsInput, type GetLongTailKeywordSuggestionsOutput } from '@/ai/flows/get-long-tail-keyword-suggestions';
+import { getKeywordRichDomains, type GetKeywordRichDomainsInput, type GetKeywordRichDomainsOutput } from '@/ai/flows/get-keyword-rich-domains';
 
 
 export async function generateMetaTagsAction(
@@ -104,5 +105,17 @@ export async function getLongTailKeywordSuggestionsAction(
   } catch (error) {
     console.error('Error getting long-tail keyword suggestions:', error);
     return { success: false, error: 'Failed to get long-tail keyword suggestions. Please try again later.' };
+  }
+}
+
+export async function getKeywordRichDomainsAction(
+  input: GetKeywordRichDomainsInput
+): Promise<{ success: true, data: GetKeywordRichDomainsOutput } | { success: false, error: string }> {
+  try {
+    const result = await getKeywordRichDomains(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error getting keyword rich domains:', error);
+    return { success: false, error: 'Failed to get keyword rich domains. Please try again later.' };
   }
 }

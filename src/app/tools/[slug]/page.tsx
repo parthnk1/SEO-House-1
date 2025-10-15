@@ -8,6 +8,7 @@ import KeywordResearchTool from '@/components/KeywordResearchTool';
 import KeywordCompetitionTool from '@/components/KeywordCompetitionTool';
 import RelatedKeywordsFinder from '@/components/RelatedKeywordsFinder';
 import LongTailKeywordSuggestionTool from '@/components/LongTailKeywordSuggestionTool';
+import KeywordRichDomainsSuggestionsTool from '@/components/KeywordRichDomainsSuggestionsTool';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 type ToolPageProps = {
@@ -55,6 +56,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <RelatedKeywordsFinder />;
       case 'long-tail-keyword-suggestion-tool':
         return <LongTailKeywordSuggestionTool />;
+      case 'keywords-rich-domains-suggestions-tool':
+        return <KeywordRichDomainsSuggestionsTool />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
