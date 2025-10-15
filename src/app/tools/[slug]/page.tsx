@@ -52,6 +52,7 @@ import SpiderSimulator from '@/components/SpiderSimulator';
 import WhoisLookup from '@/components/WhoisLookup';
 import GoogleCacheChecker from '@/components/GoogleCacheChecker';
 import DomainAgeChecker from '@/components/DomainAgeChecker';
+import DomainAuthorityChecker from '@/components/DomainAuthorityChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -184,6 +185,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <GoogleCacheChecker />;
       case 'domain-age-checker':
         return <DomainAgeChecker />;
+      case 'domain-authority-checker':
+        return <DomainAuthorityChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

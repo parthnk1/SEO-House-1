@@ -47,6 +47,7 @@ import { spiderSimulator, type SpiderSimulatorInput, type SpiderSimulatorOutput 
 import { whoisLookup, type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/whois-lookup';
 import { googleCacheChecker, type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
 import { domainAgeChecker, type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from '@/ai/flows/domain-age-checker';
+import { domainAuthorityChecker, type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from '@/ai/flows/domain-authority-checker';
 
 
 export async function generateMetaTagsAction(
@@ -612,5 +613,17 @@ export async function domainAgeCheckerAction(
   } catch (error) {
     console.error('Error checking domain age:', error);
     return { success: false, error: 'Failed to check domain age. Please try again later.' };
+  }
+}
+
+export async function domainAuthorityCheckerAction(
+  input: DomainAuthorityCheckerInput
+): Promise<{ success: true, data: DomainAuthorityCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await domainAuthorityChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking domain authority:', error);
+    return { success: false, error: 'Failed to check domain authority. Please try again later.' };
   }
 }
