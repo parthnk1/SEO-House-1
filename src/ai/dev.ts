@@ -42,3 +42,4 @@ import '@/ai/flows/reverse-ip-lookup.ts';
 import '@/ai/flows/check-server-status.ts';
 import '@/ai/flows/code-to-text-ratio-checker.ts';
 import '@/ai/flows/alexa-rank-comparison.ts';
+import '@/ai/flows/page-comparison.ts';

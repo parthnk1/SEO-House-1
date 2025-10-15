@@ -42,6 +42,7 @@ import { reverseIpLookup, type ReverseIpLookupInput, type ReverseIpLookupOutput 
 import { checkServerStatus, type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker, type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';
 import { alexaRankComparison, type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/alexa-rank-comparison';
+import { pageComparison, type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/page-comparison';
 
 
 export async function generateMetaTagsAction(
@@ -549,3 +550,15 @@ export async function alexaRankComparisonAction(
     return { success: false, error: 'Failed to compare Alexa ranks. Please try again later.' };
   }
 }
+
+export async function pageComparisonAction(
+    input: PageComparisonInput
+  ): Promise<{ success: true, data: PageComparisonOutput } | { success: false, error: string }> {
+    try {
+      const result = await pageComparison(input);
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('Error comparing pages:', error);
+      return { success: false, error: 'Failed to compare pages. Please try again later.' };
+    }
+  }

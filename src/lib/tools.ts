@@ -151,6 +151,7 @@ const websiteManagementTools: Tool[] = [
 ];
 
 const websiteTrackingTools: Tool[] = [
+    { name: 'Link Tracker', slug: 'link-tracker', description: 'Create short URLs and track the number of clicks.', category: 'Website Tracking Tools', icon: Link },
     { name: 'Reverse IP Lookup', slug: 'reverse-ip-lookup', description: 'Find domains hosted on the same IP address.', category: 'Website Tracking Tools', icon: Locate },
     { name: 'Check Server Status', slug: 'check-server-status', description: 'Check the status of your web server.', category: 'Website Tracking Tools', icon: Server },
     { name: 'Class C IP Checker', slug: 'class-c-ip-checker', description: 'Check the Class C IP of a domain.', category: 'Website Tracking Tools', icon: Network },
