@@ -17,6 +17,7 @@ import LiveKeywordAnalyzer from '@/components/LiveKeywordAnalyzer';
 import KeywordOverviewTool from '@/components/KeywordOverviewTool';
 import KeywordDifficultyChecker from '@/components/KeywordDifficultyChecker';
 import PaidKeywordFinder from '@/components/PaidKeywordFinder';
+import WebsiteLinkCountChecker from '@/components/WebsiteLinkCountChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -79,6 +80,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <KeywordDifficultyChecker />;
       case 'paid-keyword-finder':
         return <PaidKeywordFinder />;
+      case 'website-link-count-checker':
+        return <WebsiteLinkCountChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

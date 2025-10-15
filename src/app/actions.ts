@@ -16,6 +16,7 @@ import { liveKeywordAnalyzer, type LiveKeywordAnalyzerInput, type LiveKeywordAna
 import { keywordOverview, type KeywordOverviewInput, type KeywordOverviewOutput } from '@/ai/flows/keyword-overview';
 import { keywordDifficultyChecker, type KeywordDifficultyCheckerInput, type KeywordDifficultyCheckerOutput } from '@/ai/flows/keyword-difficulty-checker';
 import { paidKeywordFinder, type PaidKeywordFinderInput, type PaidKeywordFinderOutput } from '@/ai/flows/paid-keyword-finder';
+import { websiteLinkCountChecker, type WebsiteLinkCountCheckerInput, type WebsiteLinkCountCheckerOutput } from '@/ai/flows/website-link-count-checker';
 
 
 export async function generateMetaTagsAction(
@@ -208,5 +209,17 @@ export async function paidKeywordFinderAction(
   } catch (error) {
     console.error('Error finding paid keywords:', error);
     return { success: false, error: 'Failed to find paid keywords. Please try again later.' };
+  }
+}
+
+export async function websiteLinkCountCheckerAction(
+  input: WebsiteLinkCountCheckerInput
+): Promise<{ success: true, data: WebsiteLinkCountCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await websiteLinkCountChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking link count:', error);
+    return { success: false, error: 'Failed to check link count. Please try again later.' };
   }
 }
