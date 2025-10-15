@@ -29,6 +29,7 @@ import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type Valuab
 import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCompetitorsOutput } from '@/ai/flows/backlinks-competitors';
 import { anchorTextDistribution, type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
 import { pageSpeedTest, type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/page-speed-test';
+import { websitePageSizeChecker, type WebsitePageSizeCheckerInput, type WebsitePageSizeCheckerOutput } from '@/ai/flows/website-page-size-checker';
 
 
 export async function generateMetaTagsAction(
@@ -378,5 +379,17 @@ export async function pageSpeedTestAction(
   } catch (error) {
     console.error('Error testing page speed:', error);
     return { success: false, error: 'Failed to test page speed. Please try again later.' };
+  }
+}
+
+export async function websitePageSizeCheckerAction(
+  input: WebsitePageSizeCheckerInput
+): Promise<{ success: true, data: WebsitePageSizeCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await websitePageSizeChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking page size:', error);
+    return { success: false, error: 'Failed to check page size. Please try again later.' };
   }
 }
