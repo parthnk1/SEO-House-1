@@ -44,6 +44,7 @@ import { codeToTextRatioChecker, type CodeToTextRatioCheckerInput, type CodeToTe
 import { alexaRankComparison, type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/alexa-rank-comparison';
 import { pageComparison, type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/page-comparison';
 import { spiderSimulator, type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/spider-simulator';
+import { whoisLookup, type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/whois-lookup';
 
 
 export async function generateMetaTagsAction(
@@ -573,5 +574,17 @@ export async function spiderSimulatorAction(
   } catch (error) {
     console.error('Error running spider simulator:', error);
     return { success: false, error: 'Failed to run spider simulator. Please try again later.' };
+  }
+}
+
+export async function whoisLookupAction(
+  input: WhoisLookupInput
+): Promise<{ success: true, data: WhoisLookupOutput } | { success: false, error: string }> {
+  try {
+    const result = await whoisLookup(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error performing WHOIS lookup:', error);
+    return { success: false, error: 'Failed to perform WHOIS lookup. Please try again later.' };
   }
 }

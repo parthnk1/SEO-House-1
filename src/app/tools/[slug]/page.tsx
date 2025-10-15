@@ -49,6 +49,7 @@ import CodeToTextRatioChecker from '@/components/CodeToTextRatioChecker';
 import AlexaRankComparison from '@/components/AlexaRankComparison';
 import PageComparison from '@/components/PageComparison';
 import SpiderSimulator from '@/components/SpiderSimulator';
+import WhoisLookup from '@/components/WhoisLookup';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -175,6 +176,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <PageComparison />;
       case 'spider-simulator':
         return <SpiderSimulator />;
+      case 'whois-lookup':
+        return <WhoisLookup />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
