@@ -50,3 +50,4 @@ import '@/ai/flows/domain-age-checker.ts';
 import '@/ai/flows/domain-authority-checker.ts';
 import '@/ai/flows/domain-ip-lookup.ts';
 import '@/ai/flows/essay-checker.ts';
+import '@/ai/flows/link-tracker.ts';

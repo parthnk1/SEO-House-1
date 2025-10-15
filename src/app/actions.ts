@@ -50,6 +50,7 @@ import { domainAgeChecker, type DomainAgeCheckerInput, type DomainAgeCheckerOutp
 import { domainAuthorityChecker, type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from '@/ai/flows/domain-authority-checker';
 import { domainIpLookup, type DomainIpLookupInput, type DomainIpLookupOutput } from '@/ai/flows/domain-ip-lookup';
 import { essayChecker, type EssayCheckerInput, type EssayCheckerOutput } from '@/ai/flows/essay-checker';
+import { createTrackedLink, type CreateTrackedLinkInput, type TrackedLink } from '@/ai/flows/link-tracker';
 
 
 export async function generateMetaTagsAction(
@@ -652,4 +653,17 @@ export async function essayCheckerAction(
     console.error('Error checking essay:', error);
     return { success: false, error: 'Failed to check essay. Please try again later.' };
   }
+}
+
+
+export async function createTrackedLinkAction(
+    input: CreateTrackedLinkInput
+  ): Promise<{ success: true, data: TrackedLink } | { success: false, error: string }> {
+    try {
+      const result = await createTrackedLink(input);
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('Error creating tracked link:', error);
+      return { success: false, error: 'Failed to create tracked link. Please try again later.' };
+    }
 }

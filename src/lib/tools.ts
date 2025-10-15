@@ -130,6 +130,7 @@ const backlinkTools: Tool[] = [
     { name: 'Valuable Backlink Checker', slug: 'valuable-backlink-checker', description: 'Identify the most valuable backlinks to your site.', category: 'BackLink Tools', icon: Gem },
     { name: 'Backlinks Competitors', slug: 'backlinks-competitors', description: 'Analyze the backlink profiles of your competitors.', category: 'BackLink Tools', icon: Swords },
     { name: 'Anchor Text Distribution', slug: 'anchor-text-distribution', description: 'Check the distribution of anchor texts for your links.', category: 'BackLink Tools', icon: Anchor },
+    { name: 'Link Tracker', slug: 'link-tracker', description: 'Track your backlink campaigns.', category: 'BackLink Tools', icon: Locate },
 ];
 
 const websiteManagementTools: Tool[] = [
