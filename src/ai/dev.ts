@@ -21,3 +21,4 @@ import '@/ai/flows/website-link-count-checker.ts';
 import '@/ai/flows/website-broken-link-checker.ts';
 import '@/ai/flows/link-price-calculator.ts';
 import '@/ai/flows/reciprocal-link-checker.ts';
+import '@/ai/flows/website-seo-score-checker.ts';

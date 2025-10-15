@@ -20,6 +20,7 @@ import { websiteLinkCountChecker, type WebsiteLinkCountCheckerInput, type Websit
 import { websiteBrokenLinkChecker, type WebsiteBrokenLinkCheckerInput, type WebsiteBrokenLinkCheckerOutput } from '@/ai/flows/website-broken-link-checker';
 import { linkPriceCalculator, type LinkPriceCalculatorInput, type LinkPriceCalculatorOutput } from '@/ai/flows/link-price-calculator';
 import { reciprocalLinkChecker, type ReciprocalLinkCheckerInput, type ReciprocalLinkCheckerOutput } from '@/ai/flows/reciprocal-link-checker';
+import { websiteSeoScoreChecker, type WebsiteSeoScoreCheckerInput, type WebsiteSeoScoreCheckerOutput } from '@/ai/flows/website-seo-score-checker';
 
 
 export async function generateMetaTagsAction(
@@ -261,4 +262,16 @@ export async function reciprocalLinkCheckerAction(
     console.error('Error checking reciprocal links:', error);
     return { success: false, error: 'Failed to check reciprocal links. Please try again later.' };
   }
+}
+
+export async function websiteSeoScoreCheckerAction(
+    input: WebsiteSeoScoreCheckerInput
+): Promise<{ success: true, data: WebsiteSeoScoreCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await websiteSeoScoreChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking SEO score:', error);
+        return { success: false, error: 'Failed to check SEO score. Please try again later.' };
+    }
 }
