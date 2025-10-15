@@ -41,6 +41,7 @@ import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } f
 import { reverseIpLookup, type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
 import { checkServerStatus, type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker, type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';
+import { alexaRankComparison, type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/alexa-rank-comparison';
 
 
 export async function generateMetaTagsAction(
@@ -534,5 +535,17 @@ export async function codeToTextRatioCheckerAction(
   } catch (error) {
     console.error('Error checking code to text ratio:', error);
     return { success: false, error: 'Failed to check code to text ratio. Please try again later.' };
+  }
+}
+
+export async function alexaRankComparisonAction(
+  input: AlexaRankComparisonInput
+): Promise<{ success: true, data: AlexaRankComparisonOutput } | { success: false, error: string }> {
+  try {
+    const result = await alexaRankComparison(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error comparing Alexa ranks:', error);
+    return { success: false, error: 'Failed to compare Alexa ranks. Please try again later.' };
   }
 }

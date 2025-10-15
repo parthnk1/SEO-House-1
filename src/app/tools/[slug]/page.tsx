@@ -46,6 +46,7 @@ import GetHttpHeaders from '@/components/GetHttpHeaders';
 import ReverseIpLookup from '@/components/ReverseIpLookup';
 import CheckServerStatus from '@/components/CheckServerStatus';
 import CodeToTextRatioChecker from '@/components/CodeToTextRatioChecker';
+import AlexaRankComparison from '@/components/AlexaRankComparison';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -166,6 +167,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <CheckServerStatus />;
       case 'code-to-text-ratio-checker':
         return <CodeToTextRatioChecker />;
+      case 'alexa-rank-comparison':
+        return <AlexaRankComparison />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
