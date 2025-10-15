@@ -40,6 +40,7 @@ import { openGraphChecker, type OpenGraphCheckerInput, type OpenGraphCheckerOutp
 import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
 import { reverseIpLookup, type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
 import { checkServerStatus, type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
+import { codeToTextRatioChecker, type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';
 
 
 export async function generateMetaTagsAction(
@@ -521,5 +522,17 @@ export async function checkServerStatusAction(
   } catch (error) {
     console.error('Error checking server status:', error);
     return { success: false, error: 'Failed to check server status. Please try again later.' };
+  }
+}
+
+export async function codeToTextRatioCheckerAction(
+  input: CodeToTextRatioCheckerInput
+): Promise<{ success: true, data: CodeToTextRatioCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await codeToTextRatioChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking code to text ratio:', error);
+    return { success: false, error: 'Failed to check code to text ratio. Please try again later.' };
   }
 }

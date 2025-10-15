@@ -40,3 +40,4 @@ import '@/ai/flows/open-graph-checker.ts';
 import '@/ai/flows/get-http-headers.ts';
 import '@/ai/flows/reverse-ip-lookup.ts';
 import '@/ai/flows/check-server-status.ts';
+import '@/ai/flows/code-to-text-ratio-checker.ts';
