@@ -6,7 +6,7 @@
  * It takes a URL and returns a simplified view of the page, including text content and links.
  *
  * @exports `spiderSimulator` - An async function that takes a URL and returns a promise
- *  resolving to a `SpiderSimulatorOutput` object.
+ * resolving to a `SpiderSimulatorOutput` object.
  * @exports `SpiderSimulatorInput` - The input type for the `spiderSimulator` function.
  * @exports `SpiderSimulatorOutput` - The output type for the `spiderSimulator` function.
  */
