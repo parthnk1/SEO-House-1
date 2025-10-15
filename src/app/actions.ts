@@ -32,6 +32,7 @@ import { pageSpeedTest, type PageSpeedTestInput, type PageSpeedTestOutput } from
 import { websitePageSizeChecker, type WebsitePageSizeCheckerInput, type WebsitePageSizeCheckerOutput } from '@/ai/flows/website-page-size-checker';
 import { websitePageSnooper, type WebsitePageSnooperInput, type WebsitePageSnooperOutput } from '@/ai/flows/website-page-snooper';
 import { xmlSitemapGenerator, type XmlSitemapGeneratorInput, type XmlSitemapGeneratorOutput } from '@/ai/flows/xml-sitemap-generator';
+import { urlRewritingTool, type UrlRewritingToolInput, type UrlRewritingToolOutput } from '@/ai/flows/url-rewriting-tool';
 
 
 export async function generateMetaTagsAction(
@@ -417,5 +418,17 @@ export async function xmlSitemapGeneratorAction(
   } catch (error) {
     console.error('Error generating sitemap:', error);
     return { success: false, error: 'Failed to generate sitemap. Please try again later.' };
+  }
+}
+
+export async function urlRewritingToolAction(
+  input: UrlRewritingToolInput
+): Promise<{ success: true, data: UrlRewritingToolOutput } | { success: false, error: string }> {
+  try {
+    const result = await urlRewritingTool(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error rewriting URL:', error);
+    return { success: false, error: 'Failed to rewrite URL. Please try again later.' };
   }
 }

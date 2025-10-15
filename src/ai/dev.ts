@@ -35,3 +35,4 @@ import '@/ai/flows/page-speed-test.ts';
 import '@/ai/flows/website-page-size-checker.ts';
 import '@/ai/flows/website-page-snooper.ts';
 import '@/ai/flows/xml-sitemap-generator.ts';
+import '@/ai/flows/url-rewriting-tool.ts';

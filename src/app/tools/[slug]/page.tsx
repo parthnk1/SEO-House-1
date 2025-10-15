@@ -33,6 +33,7 @@ import PageSpeedTest from '@/components/PageSpeedTest';
 import WebsitePageSizeChecker from '@/components/WebsitePageSizeChecker';
 import WebsitePageSnooper from '@/components/WebsitePageSnooper';
 import XmlSitemapGenerator from '@/components/XmlSitemapGenerator';
+import UrlRewritingTool from '@/components/UrlRewritingTool';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -127,6 +128,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <WebsitePageSnooper />;
       case 'xml-sitemap-generator':
         return <XmlSitemapGenerator />;
+      case 'url-rewriting-tool':
+        return <UrlRewritingTool />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
