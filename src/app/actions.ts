@@ -30,13 +30,14 @@ import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCom
 import { anchorTextDistribution, type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
 import { pageSpeedTest, type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/page-speed-test';
 import { websitePageSizeChecker, type WebsitePageSizeCheckerInput, type WebsitePageSizeCheckerOutput } from '@/ai/flows/website-page-size-checker';
-import { websitePageSnooper, type WebsitePageSnooperInput, type WebsitePageSnooperOutput } from '@/ai/flows/website-page-snooper';
+import { websitePageSnooper, type WebsitePageSnooperOutput, type WebsitePageSnooperInput } from '@/ai/flows/website-page-snooper';
 import { xmlSitemapGenerator, type XmlSitemapGeneratorInput, type XmlSitemapGeneratorOutput } from '@/ai/flows/xml-sitemap-generator';
 import { urlRewritingTool, type UrlRewritingToolInput, type UrlRewritingToolOutput } from '@/ai/flows/url-rewriting-tool';
 import { adsenseCalculator, type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/adsense-calculator';
 import { openGraphGenerator, type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/open-graph-generator';
 import { metaTagsAnalyzer, type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
 import { openGraphChecker, type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
+import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
 
 
 export async function generateMetaTagsAction(
@@ -482,5 +483,17 @@ export async function openGraphCheckerAction(
   } catch (error) {
     console.error('Error checking Open Graph tags:', error);
     return { success: false, error: 'Failed to check Open Graph tags. Please try again later.' };
+  }
+}
+
+export async function getHttpHeadersAction(
+  input: GetHttpHeadersInput
+): Promise<{ success: true, data: GetHttpHeadersOutput } | { success: false, error: string }> {
+  try {
+    const result = await getHttpHeaders(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error getting HTTP headers:', error);
+    return { success: false, error: 'Failed to get HTTP headers. Please try again later.' };
   }
 }

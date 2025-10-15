@@ -42,6 +42,7 @@ import WhatIsMyScreenResolution from '@/components/WhatIsMyScreenResolution';
 import OpenGraphChecker from '@/components/OpenGraphChecker';
 import QrCodeGenerator from '@/components/QrCodeGenerator';
 import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
+import GetHttpHeaders from '@/components/GetHttpHeaders';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -154,6 +155,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <QrCodeGenerator />;
       case 'htaccess-redirect-generator':
         return <HtaccessRedirectGenerator />;
+      case 'get-http-headers':
+        return <GetHttpHeaders />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
