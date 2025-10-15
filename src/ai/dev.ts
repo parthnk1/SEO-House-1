@@ -36,3 +36,4 @@ import '@/ai/flows/website-page-size-checker.ts';
 import '@/ai/flows/website-page-snooper.ts';
 import '@/ai/flows/xml-sitemap-generator.ts';
 import '@/ai/flows/url-rewriting-tool.ts';
+import '@/ai/flows/adsense-calculator.ts';

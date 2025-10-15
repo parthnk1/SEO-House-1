@@ -33,6 +33,7 @@ import { websitePageSizeChecker, type WebsitePageSizeCheckerInput, type WebsiteP
 import { websitePageSnooper, type WebsitePageSnooperInput, type WebsitePageSnooperOutput } from '@/ai/flows/website-page-snooper';
 import { xmlSitemapGenerator, type XmlSitemapGeneratorInput, type XmlSitemapGeneratorOutput } from '@/ai/flows/xml-sitemap-generator';
 import { urlRewritingTool, type UrlRewritingToolInput, type UrlRewritingToolOutput } from '@/ai/flows/url-rewriting-tool';
+import { adsenseCalculator, type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/adsense-calculator';
 
 
 export async function generateMetaTagsAction(
@@ -430,5 +431,17 @@ export async function urlRewritingToolAction(
   } catch (error) {
     console.error('Error rewriting URL:', error);
     return { success: false, error: 'Failed to rewrite URL. Please try again later.' };
+  }
+}
+
+export async function adsenseCalculatorAction(
+  input: AdsenseCalculatorInput
+): Promise<{ success: true, data: AdsenseCalculatorOutput } | { success: false, error: string }> {
+  try {
+    const result = await adsenseCalculator(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error calculating AdSense earnings:', error);
+    return { success: false, error: 'Failed to calculate earnings. Please try again later.' };
   }
 }
