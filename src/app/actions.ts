@@ -24,8 +24,8 @@ import { websiteSeoScoreChecker, type WebsiteSeoScoreCheckerInput, type WebsiteS
 import { googlePagerankChecker, type GooglePagerankCheckerInput, type GooglePagerankCheckerOutput } from '@/ai/flows/google-pagerank-checker';
 import { onlinePingWebsiteTool, type OnlinePingWebsiteToolInput, type OnlinePingWebsiteToolOutput } from '@/ai/flows/online-ping-website-tool';
 import { websiteLinkAnalyzerTool, type WebsiteLinkAnalyzerToolInput, type WebsiteLinkAnalyzerToolOutput } from '@/ai/flows/website-link-analyzer-tool';
-import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } from '@/ai/flows/broken-backlink-checker';
-import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai/flows/valuable-backlink-checker';
+import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } from '@/ai-flows/broken-backlink-checker';
+import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai-flows/valuable-backlink-checker';
 import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCompetitorsOutput } from '@/ai/flows/backlinks-competitors';
 import { anchorTextDistribution, type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
 import { pageSpeedTest, type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/page-speed-test';
@@ -37,7 +37,7 @@ import { adsenseCalculator, type AdsenseCalculatorInput, type AdsenseCalculatorO
 import { openGraphGenerator, type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/open-graph-generator';
 import { metaTagsAnalyzer, type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
 import { openGraphChecker, type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
-import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
+import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai-flows/get-http-headers';
 import { reverseIpLookup, type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
 import { checkServerStatus, type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker, type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';
@@ -46,6 +46,7 @@ import { pageComparison, type PageComparisonInput, type PageComparisonOutput } f
 import { spiderSimulator, type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/spider-simulator';
 import { whoisLookup, type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/whois-lookup';
 import { googleCacheChecker, type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
+import { domainAgeChecker, type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from '@/ai/flows/domain-age-checker';
 
 
 export async function generateMetaTagsAction(
@@ -599,5 +600,17 @@ export async function googleCacheCheckerAction(
   } catch (error) {
     console.error('Error checking Google cache:', error);
     return { success: false, error: 'Failed to check Google cache. Please try again later.' };
+  }
+}
+
+export async function domainAgeCheckerAction(
+  input: DomainAgeCheckerInput
+): Promise<{ success: true, data: DomainAgeCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await domainAgeChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking domain age:', error);
+    return { success: false, error: 'Failed to check domain age. Please try again later.' };
   }
 }
