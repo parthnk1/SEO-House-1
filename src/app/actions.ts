@@ -28,6 +28,7 @@ import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBack
 import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai/flows/valuable-backlink-checker';
 import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCompetitorsOutput } from '@/ai/flows/backlinks-competitors';
 import { anchorTextDistribution, type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
+import { pageSpeedTest, type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/page-speed-test';
 
 
 export async function generateMetaTagsAction(
@@ -365,5 +366,17 @@ export async function anchorTextDistributionAction(
   } catch (error) {
     console.error('Error analyzing anchor text distribution:', error);
     return { success: false, error: 'Failed to analyze anchor text. Please try again later.' };
+  }
+}
+
+export async function pageSpeedTestAction(
+  input: PageSpeedTestInput
+): Promise<{ success: true, data: PageSpeedTestOutput } | { success: false, error: string }> {
+  try {
+    const result = await pageSpeedTest(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error testing page speed:', error);
+    return { success: false, error: 'Failed to test page speed. Please try again later.' };
   }
 }
