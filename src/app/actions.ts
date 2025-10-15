@@ -34,6 +34,7 @@ import { websitePageSnooper, type WebsitePageSnooperInput, type WebsitePageSnoop
 import { xmlSitemapGenerator, type XmlSitemapGeneratorInput, type XmlSitemapGeneratorOutput } from '@/ai/flows/xml-sitemap-generator';
 import { urlRewritingTool, type UrlRewritingToolInput, type UrlRewritingToolOutput } from '@/ai/flows/url-rewriting-tool';
 import { adsenseCalculator, type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/adsense-calculator';
+import { openGraphGenerator, type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/open-graph-generator';
 
 
 export async function generateMetaTagsAction(
@@ -443,5 +444,17 @@ export async function adsenseCalculatorAction(
   } catch (error) {
     console.error('Error calculating AdSense earnings:', error);
     return { success: false, error: 'Failed to calculate earnings. Please try again later.' };
+  }
+}
+
+export async function openGraphGeneratorAction(
+  input: OpenGraphGeneratorInput
+): Promise<{ success: true, data: OpenGraphGeneratorOutput } | { success: false, error: string }> {
+  try {
+    const result = await openGraphGenerator(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error generating Open Graph tags:', error);
+    return { success: false, error: 'Failed to generate Open Graph tags. Please try again later.' };
   }
 }

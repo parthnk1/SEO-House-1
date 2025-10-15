@@ -36,6 +36,7 @@ import XmlSitemapGenerator from '@/components/XmlSitemapGenerator';
 import UrlRewritingTool from '@/components/UrlRewritingTool';
 import UrlEncoderDecoder from '@/components/UrlEncoderDecoder';
 import AdsenseCalculator from '@/components/AdsenseCalculator';
+import OpenGraphGenerator from '@/components/OpenGraphGenerator';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -136,6 +137,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <UrlEncoderDecoder />;
       case 'adsense-calculator':
         return <AdsenseCalculator />;
+      case 'open-graph-generator':
+        return <OpenGraphGenerator />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
