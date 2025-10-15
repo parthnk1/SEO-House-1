@@ -5,6 +5,7 @@ import KeywordPositionChecker from '@/components/KeywordPositionChecker';
 import KeywordDensityChecker from '@/components/KeywordDensityChecker';
 import KeywordSuggestionsTool from '@/components/KeywordSuggestionsTool';
 import KeywordResearchTool from '@/components/KeywordResearchTool';
+import KeywordCompetitionTool from '@/components/KeywordCompetitionTool';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 type ToolPageProps = {
@@ -46,6 +47,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <KeywordSuggestionsTool />;
       case 'keyword-research-tool':
         return <KeywordResearchTool />;
+      case 'keyword-competition-tool':
+        return <KeywordCompetitionTool />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
