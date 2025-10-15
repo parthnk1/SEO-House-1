@@ -7,20 +7,20 @@ import { getKeywordSuggestions, type GetKeywordSuggestionsInput, type GetKeyword
 
 export async function generateMetaTagsAction(
   input: GenerateMetaTagsInput
-): Promise<{ success: true; data: GenerateMetaTagsOutput } | { success: false; error: string }> {
+): Promise<{ success: true; data: GenerateMetaTagsOutput } | { success: false, error: string }> {
   try {
     const result = await generateMetaTags(input);
     return { success: true, data: result };
   } catch (error) {
     console.error('Error generating meta tags:', error);
     // This provides a generic error to the client for security.
-    return { success: false; error: 'Failed to generate meta tags. Please check the URL and try again.' };
+    return { success: false, error: 'Failed to generate meta tags. Please check the URL and try again.' };
   }
 }
 
 export async function checkKeywordPositionAction(
   input: CheckKeywordPositionInput
-): Promise<{ success: true; data: CheckKeywordPositionOutput } | { success: false; error: string }> {
+): Promise<{ success: true; data: CheckKeywordPositionOutput } | { success: false, error: string }> {
   try {
     // In a real application, you would have logic here to scrape search results or use an API.
     // For now, we'll use the mock flow.
@@ -34,7 +34,7 @@ export async function checkKeywordPositionAction(
 
 export async function checkKeywordDensityAction(
   input: CheckKeywordDensityInput
-): Promise<{ success: true; data: CheckKeywordDensityOutput } | { successs: false; error: string }> {
+): Promise<{ success: true; data: CheckKeywordDensityOutput } | { success: false, error: string }> {
   try {
     const result = await checkKeywordDensity(input);
     return { success: true, data: result };
@@ -47,7 +47,7 @@ export async function checkKeywordDensityAction(
 
 export async function getKeywordSuggestionsAction(
   input: GetKeywordSuggestionsInput
-): Promise<{ success: true; data: GetKeywordSuggestionsOutput } | { success: false; error: string }> {
+): Promise<{ success: true; data: GetKeywordSuggestionsOutput } | { success: false, error: string }> {
   try {
     const result = await getKeywordSuggestions(input);
     return { success: true, data: result };
