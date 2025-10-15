@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import MetaTagGenerator from '@/components/MetaTagGenerator';
 import KeywordPositionChecker from '@/components/KeywordPositionChecker';
 import KeywordDensityChecker from '@/components/KeywordDensityChecker';
+import KeywordSuggestionsTool from '@/components/KeywordSuggestionsTool';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 type ToolPageProps = {
@@ -40,6 +41,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <KeywordPositionChecker />;
       case 'keywords-density-checker':
         return <KeywordDensityChecker />;
+      case 'keywords-suggestions-tool':
+        return <KeywordSuggestionsTool />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
