@@ -13,3 +13,4 @@ import '@/ai/flows/get-keyword-rich-domains.ts';
 import '@/ai/flows/backlink-checker.ts';
 import '@/ai/flows/backlink-maker.ts';
 import '@/ai/flows/seo-keyword-competition-analysis.ts';
+import '@/ai/flows/live-keyword-analyzer.ts';

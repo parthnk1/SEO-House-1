@@ -12,6 +12,7 @@ import { getKeywordRichDomains, type GetKeywordRichDomainsInput, type GetKeyword
 import { backlinkChecker, type BacklinkCheckerInput, type BacklinkCheckerOutput } from '@/ai/flows/backlink-checker';
 import { backlinkMaker, type BacklinkMakerInput, type BacklinkMakerOutput } from '@/ai/flows/backlink-maker';
 import { seoKeywordCompetitionAnalysis, type SeoKeywordCompetitionAnalysisInput, type SeoKeywordCompetitionAnalysisOutput } from '@/ai/flows/seo-keyword-competition-analysis';
+import { liveKeywordAnalyzer, type LiveKeywordAnalyzerInput, type LiveKeywordAnalyzerOutput } from '@/ai/flows/live-keyword-analyzer';
 
 
 export async function generateMetaTagsAction(
@@ -156,5 +157,17 @@ export async function seoKeywordCompetitionAnalysisAction(
     } catch (error) {
       console.error('Error performing SEO keyword competition analysis:', error);
       return { success: false, error: 'Failed to perform SEO keyword competition analysis. Please try again later.' };
+    }
+}
+
+export async function liveKeywordAnalyzerAction(
+    input: LiveKeywordAnalyzerInput
+  ): Promise<{ success: true, data: LiveKeywordAnalyzerOutput } | { success: false, error: string }> {
+    try {
+      const result = await liveKeywordAnalyzer(input);
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('Error analyzing keywords:', error);
+      return { success: false, error: 'Failed to analyze keywords. Please try again later.' };
     }
 }

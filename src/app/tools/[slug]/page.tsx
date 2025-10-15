@@ -13,6 +13,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/ca
 import BacklinkChecker from '@/components/BacklinkChecker';
 import BacklinkMaker from '@/components/BacklinkMaker';
 import SeoKeywordCompetitionAnalysis from '@/components/SeoKeywordCompetitionAnalysis';
+import LiveKeywordAnalyzer from '@/components/LiveKeywordAnalyzer';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -67,6 +68,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <BacklinkMaker />;
       case 'seo-keyword-competition-analysis':
         return <SeoKeywordCompetitionAnalysis />;
+      case 'live-keyword-analyzer':
+        return <LiveKeywordAnalyzer />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
