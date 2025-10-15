@@ -49,6 +49,7 @@ import { googleCacheChecker, type GoogleCacheCheckerInput, type GoogleCacheCheck
 import { domainAgeChecker, type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from '@/ai/flows/domain-age-checker';
 import { domainAuthorityChecker, type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from '@/ai/flows/domain-authority-checker';
 import { domainIpLookup, type DomainIpLookupInput, type DomainIpLookupOutput } from '@/ai/flows/domain-ip-lookup';
+import { essayChecker, type EssayCheckerInput, type EssayCheckerOutput } from '@/ai/flows/essay-checker';
 
 
 export async function generateMetaTagsAction(
@@ -638,5 +639,17 @@ export async function domainIpLookupAction(
   } catch (error) {
     console.error('Error looking up domain IP:', error);
     return { success: false, error: 'Failed to look up domain IP. Please try again later.' };
+  }
+}
+
+export async function essayCheckerAction(
+  input: EssayCheckerInput
+): Promise<{ success: true, data: EssayCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await essayChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking essay:', error);
+    return { success: false, error: 'Failed to check essay. Please try again later.' };
   }
 }
