@@ -18,6 +18,7 @@ export default function UrlEncoderDecoder() {
     try {
       const encoded = encodeURIComponent(inputText);
       setEncodedText(encoded);
+      setDecodedText('');
     } catch (e) {
       toast({
         variant: "destructive",
@@ -31,6 +32,7 @@ export default function UrlEncoderDecoder() {
     try {
       const decoded = decodeURIComponent(inputText);
       setDecodedText(decoded);
+      setEncodedText('');
     } catch (e) {
       toast({
         variant: "destructive",
@@ -115,5 +117,3 @@ export default function UrlEncoderDecoder() {
     </Card>
   );
 }
-
-    
