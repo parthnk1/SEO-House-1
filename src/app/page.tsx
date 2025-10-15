@@ -8,7 +8,6 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { toolCategories, ToolCategory } from '@/lib/tools';
 import { ArrowRight, Code, FileText, ImageIcon, Search as SearchIcon, Video } from 'lucide-react';
 import Image from 'next/image';
-import { heroImage } from '@/lib/placeholder-images';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -58,16 +57,6 @@ export default function Home() {
               <Video className="w-6 h-6" />
             </div>
           </div>
-        </div>
-        <div className="mt-12 relative w-full max-w-2xl mx-auto">
-            <Image
-              src={heroImage.imageUrl}
-              alt={heroImage.description}
-              width={600}
-              height={400}
-              className="rounded-lg shadow-2xl"
-              data-ai-hint={heroImage.imageHint}
-            />
         </div>
       </section>
 
