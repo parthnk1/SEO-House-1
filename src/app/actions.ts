@@ -7,6 +7,7 @@ import { getKeywordSuggestions, type GetKeywordSuggestionsInput, type GetKeyword
 import { keywordResearch, type KeywordResearchInput, type KeywordResearchOutput } from '@/ai/flows/keyword-research';
 import { checkKeywordCompetition, type CheckKeywordCompetitionInput, type CheckKeywordCompetitionOutput } from '@/ai/flows/check-keyword-competition';
 import { findRelatedKeywords, type FindRelatedKeywordsInput, type FindRelatedKeywordsOutput } from '@/ai/flows/find-related-keywords';
+import { getLongTailKeywordSuggestions, type GetLongTailKeywordSuggestionsInput, type GetLongTailKeywordSuggestionsOutput } from '@/ai/flows/get-long-tail-keyword-suggestions';
 
 
 export async function generateMetaTagsAction(
@@ -91,5 +92,17 @@ export async function findRelatedKeywordsAction(
   } catch (error) {
     console.error('Error finding related keywords:', error);
     return { success: false, error: 'Failed to find related keywords. Please try again later.' };
+  }
+}
+
+export async function getLongTailKeywordSuggestionsAction(
+  input: GetLongTailKeywordSuggestionsInput
+): Promise<{ success: true, data: GetLongTailKeywordSuggestionsOutput } | { success: false, error: string }> {
+  try {
+    const result = await getLongTailKeywordSuggestions(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error getting long-tail keyword suggestions:', error);
+    return { success: false, error: 'Failed to get long-tail keyword suggestions. Please try again later.' };
   }
 }

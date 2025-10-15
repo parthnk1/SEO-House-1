@@ -8,3 +8,4 @@ import '@/ai/flows/get-keyword-suggestions.ts';
 import '@/ai/flows/keyword-research.ts';
 import '@/ai/flows/check-keyword-competition.ts';
 import '@/ai/flows/find-related-keywords.ts';
+import '@/ai/flows/get-long-tail-keyword-suggestions.ts';
