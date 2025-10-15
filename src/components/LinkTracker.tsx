@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -21,8 +22,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { useAuth, useCollection, useFirestore } from '@/firebase';
-import { addDoc, collection, serverTimestamp, doc, deleteDoc, runTransaction } from 'firebase/firestore';
+import { useFirestore, useUser, useCollection } from '@/firebase';
+import { addDoc, collection, serverTimestamp, doc, deleteDoc, query, where } from 'firebase/firestore';
 import { formatDistanceToNow } from 'date-fns';
 
 const formSchema = z.object({
@@ -35,11 +36,12 @@ type FormData = z.infer<typeof formSchema>;
 export default function LinkTracker() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, login } = useUser();
   const firestore = useFirestore();
 
-  const linksCollection = user && firestore ? collection(firestore, 'users', user.uid, 'trackedLinks') : null;
-  const { data: links, loading: linksLoading } = useCollection(linksCollection);
+  const linksCollectionRef = firestore ? collection(firestore, 'trackedLinks') : null;
+  const userLinksQuery = user && linksCollectionRef ? query(linksCollectionRef, where("userId", "==", user.uid)) : null;
+  const { data: links, loading: linksLoading } = useCollection(userLinksQuery);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -50,14 +52,14 @@ export default function LinkTracker() {
   });
 
   const onSubmit = async (values: FormData) => {
-    if (!user || !firestore) {
+    if (!user || !linksCollectionRef) {
         toast({ variant: "destructive", title: "You must be logged in to create a link."});
         return;
     }
     setIsLoading(true);
 
     try {
-        await addDoc(linksCollection, {
+        await addDoc(linksCollectionRef, {
             ...values,
             clicks: 0,
             createdAt: serverTimestamp(),
@@ -75,7 +77,7 @@ export default function LinkTracker() {
   const deleteLink = async (linkId: string) => {
     if (!user || !firestore) return;
     try {
-      await deleteDoc(doc(firestore, 'users', user.uid, 'trackedLinks', linkId));
+      await deleteDoc(doc(firestore, 'trackedLinks', linkId));
       toast({ title: "Link deleted successfully" });
     } catch (error: any) {
         toast({ variant: "destructive", title: "Error deleting link", description: error.message });
@@ -91,12 +93,12 @@ export default function LinkTracker() {
   if (!user) {
     return (
         <Card className="shadow-lg bg-background">
-            <CardHeader>
+            <CardHeader className="items-center text-center">
                 <CardTitle>Link Tracker</CardTitle>
-                <CardDescription>You need to be logged in to track links.</CardDescription>
+                <CardDescription>Log in to create and track your links.</CardDescription>
             </CardHeader>
-            <CardContent>
-                <p>Please sign in to use this feature.</p>
+            <CardContent className="flex justify-center">
+                <Button onClick={login}>Login with Google</Button>
             </CardContent>
         </Card>
     )

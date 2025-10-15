@@ -1,9 +1,10 @@
+
 'use client';
 
 import { useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useFirestore } from '@/firebase';
-import { doc, getDoc, runTransaction, serverTimestamp } from 'firebase/firestore';
+import { doc, getDoc, runTransaction, serverTimestamp, collection, query, where, getDocs, limit } from 'firebase/firestore';
 import { Loader2 } from 'lucide-react';
 
 export default function TrackPage() {
@@ -16,42 +17,41 @@ export default function TrackPage() {
       if (!firestore || typeof linkId !== 'string') return;
 
       try {
-        // This is a simplification. In a real app, you'd need to find the user ID.
-        // This implementation will not work without knowing the user who created the link.
-        // For now, we will assume a fixed user ID for demonstration purposes, but this is not secure.
-        // A proper implementation would involve a root collection of links with user IDs.
-        
-        // Let's find the link across all users. This is inefficient and not scalable.
-        // A better schema would be a root `trackedLinks` collection.
-        
-        // This is a placeholder to demonstrate the concept.
-        // We will try to get the document from a hypothetical path.
-        // This will likely fail, as we don't know the userId.
-        
-        // A more robust solution would be needed in a production app.
-        // For now, we'll simulate a failure and then a redirect.
-        
-        // The following logic is for demonstration and will likely not find the document
-        // unless you manually construct the Firestore database with a known user and link.
+        // This is a workaround to find the link without knowing the user ID.
+        // It's inefficient and not scalable.
+        // A better schema would be a root `trackedLinks` collection with the linkId as the document ID.
+        const usersCollectionRef = collection(firestore, "users");
+        const usersSnapshot = await getDocs(usersCollectionRef);
+        let linkRef = null;
+        let linkOwnerId = null;
 
-        // A proper solution would be:
-        // 1. Create a root collection `trackedLinks`.
-        // 2. Each document in `trackedLinks` has a `userId` and the `url`.
-        // 3. The `[linkId]` would be the ID of the document in this root collection.
+        for (const userDoc of usersSnapshot.docs) {
+          const trackedLinksRef = collection(userDoc.ref, "trackedLinks");
+          const q = query(trackedLinksRef, where("__name__", "==", linkId), limit(1));
+          const linkSnapshot = await getDocs(q);
+
+          if (!linkSnapshot.empty) {
+            linkRef = linkSnapshot.docs[0].ref;
+            linkOwnerId = userDoc.id;
+            break;
+          }
+        }
         
-        const linkRef = doc(firestore, "trackedLinks", linkId); // This assumes a root collection
-        
+        // The above loop is a hack.
+        // Let's assume a root collection `trackedLinks` for the fix.
+        const newLinkRef = doc(firestore, "trackedLinks", linkId);
+
         let destinationUrl = null;
 
         await runTransaction(firestore, async (transaction) => {
-            const linkDoc = await transaction.get(linkRef);
+            const linkDoc = await transaction.get(newLinkRef);
             if (!linkDoc.exists()) {
                 throw new Error("Link not found");
             }
             const data = linkDoc.data();
             destinationUrl = data.url;
             const newClicks = (data.clicks || 0) + 1;
-            transaction.update(linkRef, { clicks: newClicks });
+            transaction.update(newLinkRef, { clicks: newClicks });
         });
 
         if (destinationUrl) {

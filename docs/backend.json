@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "TrackedLink": {
@@ -35,11 +36,11 @@
     "providers": ["google.com", "password"]
   },
   "firestore": {
-    "/users/{userId}/trackedLinks/{linkId}": {
+    "/trackedLinks/{linkId}": {
       "schema": {
         "$ref": "#/entities/TrackedLink"
       },
-      "description": "Stores the links that are being tracked by a user."
+      "description": "Stores all tracked links for all users."
     }
   }
 }
