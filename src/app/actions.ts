@@ -18,6 +18,7 @@ import { keywordDifficultyChecker, type KeywordDifficultyCheckerInput, type Keyw
 import { paidKeywordFinder, type PaidKeywordFinderInput, type PaidKeywordFinderOutput } from '@/ai/flows/paid-keyword-finder';
 import { websiteLinkCountChecker, type WebsiteLinkCountCheckerInput, type WebsiteLinkCountCheckerOutput } from '@/ai/flows/website-link-count-checker';
 import { websiteBrokenLinkChecker, type WebsiteBrokenLinkCheckerInput, type WebsiteBrokenLinkCheckerOutput } from '@/ai/flows/website-broken-link-checker';
+import { linkPriceCalculator, type LinkPriceCalculatorInput, type LinkPriceCalculatorOutput } from '@/ai/flows/link-price-calculator';
 
 
 export async function generateMetaTagsAction(
@@ -235,4 +236,16 @@ export async function websiteBrokenLinkCheckerAction(
         console.error('Error checking broken links:', error);
         return { success: false, error: 'Failed to check broken links. Please try again later.' };
     }
+}
+
+export async function linkPriceCalculatorAction(
+  input: LinkPriceCalculatorInput
+): Promise<{ success: true, data: LinkPriceCalculatorOutput } | { success: false, error: string }> {
+  try {
+    const result = await linkPriceCalculator(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error calculating link price:', error);
+    return { success: false, error: 'Failed to calculate link price. Please try again later.' };
+  }
 }
