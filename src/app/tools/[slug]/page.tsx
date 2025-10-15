@@ -34,6 +34,7 @@ import WebsitePageSizeChecker from '@/components/WebsitePageSizeChecker';
 import WebsitePageSnooper from '@/components/WebsitePageSnooper';
 import XmlSitemapGenerator from '@/components/XmlSitemapGenerator';
 import UrlRewritingTool from '@/components/UrlRewritingTool';
+import UrlEncoderDecoder from '@/components/UrlEncoderDecoder';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -130,6 +131,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <XmlSitemapGenerator />;
       case 'url-rewriting-tool':
         return <UrlRewritingTool />;
+      case 'url-encoder-decoder':
+        return <UrlEncoderDecoder />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
@@ -164,3 +167,5 @@ export async function generateStaticParams() {
     slug: tool.slug,
   }));
 }
+
+    

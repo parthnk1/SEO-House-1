@@ -233,3 +233,5 @@ export const toolCategories: ToolCategory[] = [
     { name: 'Domains Tools', description: 'Find out domain age, authority, DNS records, or expired domains.', tools: domainsTools },
     { name: 'Meta Tags Tools', description: 'Create new meta tags or analyze existing ones for an in-depth analysis.', tools: metaTagsTools },
 ];
+
+    
