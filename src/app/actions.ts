@@ -15,6 +15,7 @@ import { seoKeywordCompetitionAnalysis, type SeoKeywordCompetitionAnalysisInput,
 import { liveKeywordAnalyzer, type LiveKeywordAnalyzerInput, type LiveKeywordAnalyzerOutput } from '@/ai/flows/live-keyword-analyzer';
 import { keywordOverview, type KeywordOverviewInput, type KeywordOverviewOutput } from '@/ai/flows/keyword-overview';
 import { keywordDifficultyChecker, type KeywordDifficultyCheckerInput, type KeywordDifficultyCheckerOutput } from '@/ai/flows/keyword-difficulty-checker';
+import { paidKeywordFinder, type PaidKeywordFinderInput, type PaidKeywordFinderOutput } from '@/ai/flows/paid-keyword-finder';
 
 
 export async function generateMetaTagsAction(
@@ -196,4 +197,16 @@ export async function keywordDifficultyCheckerAction(
         console.error('Error getting keyword difficulty:', error);
         return { success: false, error: 'Failed to get keyword difficulty. Please try again later.' };
     }
+}
+
+export async function paidKeywordFinderAction(
+  input: PaidKeywordFinderInput
+): Promise<{ success: true, data: PaidKeywordFinderOutput } | { success: false, error: string }> {
+  try {
+    const result = await paidKeywordFinder(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error finding paid keywords:', error);
+    return { success: false, error: 'Failed to find paid keywords. Please try again later.' };
+  }
 }

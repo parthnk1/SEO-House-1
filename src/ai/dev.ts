@@ -16,3 +16,4 @@ import '@/ai/flows/seo-keyword-competition-analysis.ts';
 import '@/ai/flows/live-keyword-analyzer.ts';
 import '@/ai/flows/keyword-overview.ts';
 import '@/ai/flows/keyword-difficulty-checker.ts';
+import '@/ai/flows/paid-keyword-finder.ts';
