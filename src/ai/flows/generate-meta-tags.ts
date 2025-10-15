@@ -33,23 +33,46 @@ export async function generateMetaTags(input: GenerateMetaTagsInput): Promise<Ge
   return generateMetaTagsFlow(input);
 }
 
+
+const fetchUrlContentTool = ai.defineTool(
+    {
+      name: 'fetchUrlContent',
+      description: 'Fetches the text content of a given URL. This only returns the text, not the HTML.',
+      inputSchema: z.object({ url: z.string().url() }),
+      outputSchema: z.object({ content: z.string() }),
+    },
+    async ({ url }) => {
+      // In a real app, you would fetch and parse the URL.
+      // For demonstration, we are returning mock content.
+      return {
+        content: `
+          Welcome to SEO Powerhouse, your one-stop shop for the best free SEO tools. 
+          We offer a suite of tools including keyword research, backlink analysis, and rank tracking. 
+          Our mission is to make search engine optimization accessible to everyone, from beginners to experts. 
+          Improve your website's visibility and climb the search rankings with our powerful, easy-to-use utilities.
+        `,
+      };
+    }
+  );
+
 // Define the prompt
 const generateMetaTagsPrompt = ai.definePrompt({
   name: 'generateMetaTagsPrompt',
   input: {schema: GenerateMetaTagsInputSchema},
   output: {schema: GenerateMetaTagsOutputSchema},
-  prompt: `You are an SEO expert. Generate meta tags for the website at the following URL: {{{url}}}.
+  tools: [fetchUrlContentTool],
+  prompt: `You are an SEO expert. Your task is to generate optimized meta tags for a given website URL.
 
-Analyze the website content and suggest a title, description, and keywords that are relevant and would improve the website's search engine ranking.  The keywords should be a comma separated list.
+1.  Use the \`fetchUrlContent\` tool to get the content of the page at the provided URL.
+2.  Analyze the content to understand the page's topic, purpose, and main keywords.
+3.  Based on your analysis, create a compelling and concise meta title.
+4.  Write an engaging meta description that accurately summarizes the page and encourages clicks.
+5.  Suggest a list of relevant, comma-separated keywords.
 
-Title:
-{{output.title}}
+Return the results in the specified format.
 
-Description:
-{{output.description}}
-
-Keywords:
-{{output.keywords}}`,
+URL: {{{url}}}
+`,
 });
 
 // Define the flow
