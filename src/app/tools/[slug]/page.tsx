@@ -43,7 +43,6 @@ import OpenGraphChecker from '@/components/OpenGraphChecker';
 import QrCodeGenerator from '@/components/QrCodeGenerator';
 import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
 import GetHttpHeaders from '@/components/GetHttpHeaders';
-import LinkTracker from '@/components/LinkTracker';
 import ReverseIpLookup from '@/components/ReverseIpLookup';
 import CheckServerStatus from '@/components/CheckServerStatus';
 
@@ -160,8 +159,6 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <HtaccessRedirectGenerator />;
       case 'get-http-headers':
         return <GetHttpHeaders />;
-      case 'link-tracker':
-        return <LinkTracker />;
       case 'reverse-ip-lookup':
         return <ReverseIpLookup />;
       case 'check-server-status':
@@ -200,5 +197,3 @@ export async function generateStaticParams() {
     slug: tool.slug,
   }));
 }
-
-    

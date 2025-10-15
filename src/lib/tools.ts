@@ -151,7 +151,6 @@ const websiteManagementTools: Tool[] = [
 ];
 
 const websiteTrackingTools: Tool[] = [
-    { name: 'Link Tracker', slug: 'link-tracker', description: 'Track the performance of your links.', category: 'Website Tracking Tools', icon: Link },
     { name: 'Reverse IP Lookup', slug: 'reverse-ip-lookup', description: 'Find domains hosted on the same IP address.', category: 'Website Tracking Tools', icon: Locate },
     { name: 'Check Server Status', slug: 'check-server-status', description: 'Check the status of your web server.', category: 'Website Tracking Tools', icon: Server },
     { name: 'Class C IP Checker', slug: 'class-c-ip-checker', description: 'Check the Class C IP of a domain.', category: 'Website Tracking Tools', icon: Network },
@@ -209,5 +208,3 @@ export const toolCategories: ToolCategory[] = [
     { name: 'Domains Tools', description: 'Find out domain age, authority, DNS records, or expired domains.', tools: domainsTools },
     { name: 'Meta Tags Tools', description: 'Create new meta tags or analyze existing ones for an in-depth analysis.', tools: metaTagsTools },
 ];
-
-    
