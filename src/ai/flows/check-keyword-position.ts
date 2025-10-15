@@ -79,7 +79,7 @@ export async function checkKeywordPosition(input: CheckKeywordPositionInput): Pr
 const checkKeywordPositionPrompt = ai.definePrompt({
     name: 'checkKeywordPositionPrompt',
     input: { schema: CheckKeywordPositionInputSchema },
-    output: { schema: CheckKeyword-position-output-schema },
+    output: { schema: CheckKeywordPositionOutputSchema },
     tools: [searchTool],
     prompt: `You are an SEO assistant. A user wants to know the search engine ranking for their website URL for a specific keyword.
     
