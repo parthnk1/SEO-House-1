@@ -56,6 +56,7 @@ import DomainIpLookup from '@/components/DomainIpLookup';
 import EssayChecker from '@/components/EssayChecker';
 import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
 import LinkTracker from '@/components/LinkTracker';
+import ClassCIpChecker from '@/components/ClassCIpChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -196,6 +197,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <HtaccessRedirectGenerator />;
       case 'link-tracker':
         return <LinkTracker />;
+      case 'class-c-ip-checker':
+        return <ClassCIpChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

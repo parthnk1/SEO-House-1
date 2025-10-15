@@ -51,6 +51,7 @@ import { domainAuthorityChecker, type DomainAuthorityCheckerInput, type DomainAu
 import { domainIpLookup, type DomainIpLookupInput, type DomainIpLookupOutput } from '@/ai/flows/domain-ip-lookup';
 import { essayChecker, type EssayCheckerInput, type EssayCheckerOutput } from '@/ai/flows/essay-checker';
 import { createTrackedLink, type CreateTrackedLinkInput, type TrackedLink } from '@/ai/flows/link-tracker';
+import { classCIpChecker, type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from '@/ai/flows/class-c-ip-checker';
 
 
 export async function generateMetaTagsAction(
@@ -666,4 +667,16 @@ export async function createTrackedLinkAction(
       console.error('Error creating tracked link:', error);
       return { success: false, error: 'Failed to create tracked link. Please try again later.' };
     }
+}
+
+export async function classCIpCheckerAction(
+  input: ClassCIpCheckerInput
+): Promise<{ success: true, data: ClassCIpCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await classCIpChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking Class C IP:', error);
+    return { success: false, error: 'Failed to check Class C IP. Please try again later.' };
+  }
 }
