@@ -19,6 +19,7 @@ import { paidKeywordFinder, type PaidKeywordFinderInput, type PaidKeywordFinderO
 import { websiteLinkCountChecker, type WebsiteLinkCountCheckerInput, type WebsiteLinkCountCheckerOutput } from '@/ai/flows/website-link-count-checker';
 import { websiteBrokenLinkChecker, type WebsiteBrokenLinkCheckerInput, type WebsiteBrokenLinkCheckerOutput } from '@/ai/flows/website-broken-link-checker';
 import { linkPriceCalculator, type LinkPriceCalculatorInput, type LinkPriceCalculatorOutput } from '@/ai/flows/link-price-calculator';
+import { reciprocalLinkChecker, type ReciprocalLinkCheckerInput, type ReciprocalLinkCheckerOutput } from '@/ai/flows/reciprocal-link-checker';
 
 
 export async function generateMetaTagsAction(
@@ -247,5 +248,17 @@ export async function linkPriceCalculatorAction(
   } catch (error) {
     console.error('Error calculating link price:', error);
     return { success: false, error: 'Failed to calculate link price. Please try again later.' };
+  }
+}
+
+export async function reciprocalLinkCheckerAction(
+  input: ReciprocalLinkCheckerInput
+): Promise<{ success: true, data: ReciprocalLinkCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await reciprocalLinkChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking reciprocal links:', error);
+    return { success: false, error: 'Failed to check reciprocal links. Please try again later.' };
   }
 }
