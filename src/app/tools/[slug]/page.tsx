@@ -12,6 +12,7 @@ import KeywordRichDomainsSuggestionsTool from '@/components/KeywordRichDomainsSu
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import BacklinkChecker from '@/components/BacklinkChecker';
 import BacklinkMaker from '@/components/BacklinkMaker';
+import SeoKeywordCompetitionAnalysis from '@/components/SeoKeywordCompetitionAnalysis';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -64,6 +65,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <BacklinkChecker />;
       case 'backlink-maker':
         return <BacklinkMaker />;
+      case 'seo-keyword-competition-analysis':
+        return <SeoKeywordCompetitionAnalysis />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
