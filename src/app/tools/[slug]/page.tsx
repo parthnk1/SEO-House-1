@@ -39,6 +39,7 @@ import AdsenseCalculator from '@/components/AdsenseCalculator';
 import OpenGraphGenerator from '@/components/OpenGraphGenerator';
 import MetaTagsAnalyzer from '@/components/MetaTagsAnalyzer';
 import WhatIsMyScreenResolution from '@/components/WhatIsMyScreenResolution';
+import OpenGraphChecker from '@/components/OpenGraphChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -145,6 +146,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <MetaTagsAnalyzer />;
       case 'what-is-my-screen-resolution':
         return <WhatIsMyScreenResolution />;
+      case 'open-graph-checker':
+        return <OpenGraphChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

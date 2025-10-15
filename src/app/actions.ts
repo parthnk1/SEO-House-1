@@ -36,6 +36,7 @@ import { urlRewritingTool, type UrlRewritingToolInput, type UrlRewritingToolOutp
 import { adsenseCalculator, type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/adsense-calculator';
 import { openGraphGenerator, type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/open-graph-generator';
 import { metaTagsAnalyzer, type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
+import { openGraphChecker, type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
 
 
 export async function generateMetaTagsAction(
@@ -469,5 +470,17 @@ export async function metaTagsAnalyzerAction(
   } catch (error) {
     console.error('Error analyzing meta tags:', error);
     return { success: false, error: 'Failed to analyze meta tags. Please try again later.' };
+  }
+}
+
+export async function openGraphCheckerAction(
+  input: OpenGraphCheckerInput
+): Promise<{ success: true, data: OpenGraphCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await openGraphChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking Open Graph tags:', error);
+    return { success: false, error: 'Failed to check Open Graph tags. Please try again later.' };
   }
 }

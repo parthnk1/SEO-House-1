@@ -39,3 +39,4 @@ import '@/ai/flows/url-rewriting-tool.ts';
 import '@/ai/flows/adsense-calculator.ts';
 import '@/ai/flows/open-graph-generator.ts';
 import '@/ai/flows/meta-tags-analyzer.ts';
+import '@/ai/flows/open-graph-checker.ts';
