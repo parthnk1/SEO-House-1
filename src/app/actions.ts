@@ -25,6 +25,7 @@ import { googlePagerankChecker, type GooglePagerankCheckerInput, type GooglePage
 import { onlinePingWebsiteTool, type OnlinePingWebsiteToolInput, type OnlinePingWebsiteToolOutput } from '@/ai/flows/online-ping-website-tool';
 import { websiteLinkAnalyzerTool, type WebsiteLinkAnalyzerToolInput, type WebsiteLinkAnalyzerToolOutput } from '@/ai/flows/website-link-analyzer-tool';
 import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } from '@/ai/flows/broken-backlink-checker';
+import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai/flows/valuable-backlink-checker';
 
 
 export async function generateMetaTagsAction(
@@ -328,3 +329,15 @@ export async function brokenBacklinkCheckerAction(
     return { success: false, error: 'Failed to check broken backlinks. Please try again later.' };
   }
 }
+
+export async function valuableBacklinkCheckerAction(
+    input: ValuableBacklinkCheckerInput
+  ): Promise<{ success: true, data: ValuableBacklinkCheckerOutput } | { success: false, error: string }> {
+    try {
+      const result = await valuableBacklinkChecker(input);
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('Error checking valuable backlinks:', error);
+      return { success: false, error: 'Failed to check valuable backlinks. Please try again later.' };
+    }
+  }
