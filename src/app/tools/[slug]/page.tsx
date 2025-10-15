@@ -27,6 +27,7 @@ import OnlinePingWebsiteTool from '@/components/OnlinePingWebsiteTool';
 import WebsiteLinkAnalyzerTool from '@/components/WebsiteLinkAnalyzerTool';
 import BrokenBacklinkChecker from '@/components/BrokenBacklinkChecker';
 import ValuableBacklinkChecker from '@/components/ValuableBacklinkChecker';
+import BacklinksCompetitors from '@/components/BacklinksCompetitors';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -109,6 +110,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <BrokenBacklinkChecker />;
       case 'valuable-backlink-checker':
         return <ValuableBacklinkChecker />;
+      case 'backlinks-competitors':
+        return <BacklinksCompetitors />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

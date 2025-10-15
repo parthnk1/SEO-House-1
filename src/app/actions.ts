@@ -26,6 +26,7 @@ import { onlinePingWebsiteTool, type OnlinePingWebsiteToolInput, type OnlinePing
 import { websiteLinkAnalyzerTool, type WebsiteLinkAnalyzerToolInput, type WebsiteLinkAnalyzerToolOutput } from '@/ai/flows/website-link-analyzer-tool';
 import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } from '@/ai/flows/broken-backlink-checker';
 import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai/flows/valuable-backlink-checker';
+import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCompetitorsOutput } from '@/ai/flows/backlinks-competitors';
 
 
 export async function generateMetaTagsAction(
@@ -341,3 +342,15 @@ export async function valuableBacklinkCheckerAction(
       return { success: false, error: 'Failed to check valuable backlinks. Please try again later.' };
     }
   }
+
+export async function backlinksCompetitorsAction(
+  input: BacklinksCompetitorsInput
+): Promise<{ success: true, data: BacklinksCompetitorsOutput } | { success: false, error: string }> {
+  try {
+    const result = await backlinksCompetitors(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error analyzing competitor backlinks:', error);
+    return { success: false, error: 'Failed to analyze competitor backlinks. Please try again later.' };
+  }
+}
