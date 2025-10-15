@@ -23,6 +23,7 @@ import { reciprocalLinkChecker, type ReciprocalLinkCheckerInput, type Reciprocal
 import { websiteSeoScoreChecker, type WebsiteSeoScoreCheckerInput, type WebsiteSeoScoreCheckerOutput } from '@/ai/flows/website-seo-score-checker';
 import { googlePagerankChecker, type GooglePagerankCheckerInput, type GooglePagerankCheckerOutput } from '@/ai/flows/google-pagerank-checker';
 import { onlinePingWebsiteTool, type OnlinePingWebsiteToolInput, type OnlinePingWebsiteToolOutput } from '@/ai/flows/online-ping-website-tool';
+import { websiteLinkAnalyzerTool, type WebsiteLinkAnalyzerToolInput, type WebsiteLinkAnalyzerToolOutput } from '@/ai/flows/website-link-analyzer-tool';
 
 
 export async function generateMetaTagsAction(
@@ -300,5 +301,17 @@ export async function onlinePingWebsiteToolAction(
     } catch (error) {
         console.error('Error pinging website:', error);
         return { success: false, error: 'Failed to ping website. Please try again later.' };
+    }
+}
+
+export async function websiteLinkAnalyzerToolAction(
+    input: WebsiteLinkAnalyzerToolInput
+): Promise<{ success: true, data: WebsiteLinkAnalyzerToolOutput } | { success: false, error: string }> {
+    try {
+        const result = await websiteLinkAnalyzerTool(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error analyzing links:', error);
+        return { success: false, error: 'Failed to analyze links. Please try again later.' };
     }
 }
