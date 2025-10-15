@@ -9,6 +9,7 @@ import { checkKeywordCompetition, type CheckKeywordCompetitionInput, type CheckK
 import { findRelatedKeywords, type FindRelatedKeywordsInput, type FindRelatedKeywordsOutput } from '@/ai/flows/find-related-keywords';
 import { getLongTailKeywordSuggestions, type GetLongTailKeywordSuggestionsInput, type GetLongTailKeywordSuggestionsOutput } from '@/ai/flows/get-long-tail-keyword-suggestions';
 import { getKeywordRichDomains, type GetKeywordRichDomainsInput, type GetKeywordRichDomainsOutput } from '@/ai/flows/get-keyword-rich-domains';
+import { backlinkChecker, type BacklinkCheckerInput, type BacklinkCheckerOutput } from '@/ai/flows/backlink-checker';
 
 
 export async function generateMetaTagsAction(
@@ -117,5 +118,17 @@ export async function getKeywordRichDomainsAction(
   } catch (error) {
     console.error('Error getting keyword rich domains:', error);
     return { success: false, error: 'Failed to get keyword rich domains. Please try again later.' };
+  }
+}
+
+export async function backlinkCheckerAction(
+  input: BacklinkCheckerInput
+): Promise<{ success: true, data: BacklinkCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await backlinkChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking backlinks:', error);
+    return { success: false, error: 'Failed to check backlinks. Please try again later.' };
   }
 }
