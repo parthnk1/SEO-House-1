@@ -82,7 +82,7 @@ export default function Home() {
           filteredCategories.map((category, index) => (
             <section
               key={category.name}
-              className={cn('py-16', index % 2 === 0 ? 'bg-background' : 'bg-card')}
+              className={cn('py-16 border-b border-border')}
             >
               <div className="container mx-auto px-4">
                 <div className="mb-8">
@@ -91,7 +91,7 @@ export default function Home() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {category.tools.map(tool => (
-                    <Card key={tool.slug} className={cn("flex flex-col group transition-all duration-300 hover:shadow-lg hover:-translate-y-1", index % 2 === 0 ? 'bg-card' : 'bg-background')}>
+                    <Card key={tool.slug} className={cn("flex flex-col group transition-all duration-300 hover:shadow-lg hover:-translate-y-1", 'bg-card')}>
                       <CardHeader className="flex-row items-center gap-4">
                           <div className="p-3 bg-primary/10 rounded-lg">
                             <tool.icon className="w-6 h-6 text-primary" />
