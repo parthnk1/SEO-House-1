@@ -10,6 +10,7 @@ import { findRelatedKeywords, type FindRelatedKeywordsInput, type FindRelatedKey
 import { getLongTailKeywordSuggestions, type GetLongTailKeywordSuggestionsInput, type GetLongTailKeywordSuggestionsOutput } from '@/ai/flows/get-long-tail-keyword-suggestions';
 import { getKeywordRichDomains, type GetKeywordRichDomainsInput, type GetKeywordRichDomainsOutput } from '@/ai/flows/get-keyword-rich-domains';
 import { backlinkChecker, type BacklinkCheckerInput, type BacklinkCheckerOutput } from '@/ai/flows/backlink-checker';
+import { backlinkMaker, type BacklinkMakerInput, type BacklinkMakerOutput } from '@/ai/flows/backlink-maker';
 
 
 export async function generateMetaTagsAction(
@@ -130,5 +131,17 @@ export async function backlinkCheckerAction(
   } catch (error) {
     console.error('Error checking backlinks:', error);
     return { success: false, error: 'Failed to check backlinks. Please try again later.' };
+  }
+}
+
+export async function backlinkMakerAction(
+  input: BacklinkMakerInput
+): Promise<{ success: true, data: BacklinkMakerOutput } | { success: false, error: string }> {
+  try {
+    const result = await backlinkMaker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error making backlinks:', error);
+    return { success: false, error: 'Failed to make backlinks. Please try again later.' };
   }
 }

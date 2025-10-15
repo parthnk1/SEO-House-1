@@ -11,6 +11,7 @@ import LongTailKeywordSuggestionTool from '@/components/LongTailKeywordSuggestio
 import KeywordRichDomainsSuggestionsTool from '@/components/KeywordRichDomainsSuggestionsTool';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import BacklinkChecker from '@/components/BacklinkChecker';
+import BacklinkMaker from '@/components/BacklinkMaker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -61,6 +62,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <KeywordRichDomainsSuggestionsTool />;
       case 'backlink-checker':
         return <BacklinkChecker />;
+      case 'backlink-maker':
+        return <BacklinkMaker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
