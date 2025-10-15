@@ -8,12 +8,13 @@ import { keywordResearch, type KeywordResearchInput, type KeywordResearchOutput 
 import { checkKeywordCompetition, type CheckKeywordCompetitionInput, type CheckKeywordCompetitionOutput } from '@/ai/flows/check-keyword-competition';
 import { findRelatedKeywords, type FindRelatedKeywordsInput, type FindRelatedKeywordsOutput } from '@/ai/flows/find-related-keywords';
 import { getLongTailKeywordSuggestions, type GetLongTailKeywordSuggestionsInput, type GetLongTailKeywordSuggestionsOutput } from '@/ai/flows/get-long-tail-keyword-suggestions';
-import { getKeywordRichDomains, type GetKeywordRichDomainsInput, type GetKeywordRichDomainsOutput } from '@/ai/flows/get-keyword-rich-domains';
+import { getKeywordRichDomains, type GetKeywordRichDomainsInput, type GetKeywordRichDomainsOutput } from '@/aiflows/get-keyword-rich-domains';
 import { backlinkChecker, type BacklinkCheckerInput, type BacklinkCheckerOutput } from '@/ai/flows/backlink-checker';
 import { backlinkMaker, type BacklinkMakerInput, type BacklinkMakerOutput } from '@/ai/flows/backlink-maker';
 import { seoKeywordCompetitionAnalysis, type SeoKeywordCompetitionAnalysisInput, type SeoKeywordCompetitionAnalysisOutput } from '@/ai/flows/seo-keyword-competition-analysis';
 import { liveKeywordAnalyzer, type LiveKeywordAnalyzerInput, type LiveKeywordAnalyzerOutput } from '@/ai/flows/live-keyword-analyzer';
 import { keywordOverview, type KeywordOverviewInput, type KeywordOverviewOutput } from '@/ai/flows/keyword-overview';
+import { keywordDifficultyChecker, type KeywordDifficultyCheckerInput, type KeywordDifficultyCheckerOutput } from '@/ai/flows/keyword-difficulty-checker';
 
 
 export async function generateMetaTagsAction(
@@ -182,5 +183,17 @@ export async function keywordOverviewAction(
     } catch (error) {
         console.error('Error getting keyword overview:', error);
         return { success: false, error: 'Failed to get keyword overview. Please try again later.' };
+    }
+}
+
+export async function keywordDifficultyCheckerAction(
+    input: KeywordDifficultyCheckerInput
+    ): Promise<{ success: true, data: KeywordDifficultyCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await keywordDifficultyChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error getting keyword difficulty:', error);
+        return { success: false, error: 'Failed to get keyword difficulty. Please try again later.' };
     }
 }
