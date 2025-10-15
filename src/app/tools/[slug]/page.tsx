@@ -43,6 +43,7 @@ import OpenGraphChecker from '@/components/OpenGraphChecker';
 import QrCodeGenerator from '@/components/QrCodeGenerator';
 import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
 import GetHttpHeaders from '@/components/GetHttpHeaders';
+import LinkTracker from '@/components/LinkTracker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -157,6 +158,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <HtaccessRedirectGenerator />;
       case 'get-http-headers':
         return <GetHttpHeaders />;
+      case 'link-tracker':
+        return <LinkTracker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

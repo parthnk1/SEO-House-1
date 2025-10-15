@@ -3,6 +3,7 @@ import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
   title: 'SEO Powerhouse',
@@ -23,10 +24,12 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
-        <Toaster />
+        <FirebaseClientProvider>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+          <Toaster />
+        </FirebaseClientProvider>
       </body>
     </html>
   );

@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "TrackedLink": {
+      "title": "Tracked Link",
+      "description": "Represents a URL that is being tracked for clicks.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "A user-defined name for the link."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The destination URL."
+        },
+        "clicks": {
+          "type": "number",
+          "description": "The number of times the link has been clicked."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the link was created."
+        },
+        "userId": {
+            "type": "string",
+            "description": "The ID of the user who created the link."
+        }
+      },
+      "required": ["name", "url", "clicks", "createdAt", "userId"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com", "password"]
+  },
+  "firestore": {
+    "/users/{userId}/trackedLinks/{linkId}": {
+      "schema": {
+        "$ref": "#/entities/TrackedLink"
+      },
+      "description": "Stores the links that are being tracked by a user."
+    }
+  }
+}
