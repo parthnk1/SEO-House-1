@@ -6,6 +6,7 @@ import { checkKeywordDensity, type CheckKeywordDensityInput, type CheckKeywordDe
 import { getKeywordSuggestions, type GetKeywordSuggestionsInput, type GetKeywordSuggestionsOutput } from '@/ai/flows/get-keyword-suggestions';
 import { keywordResearch, type KeywordResearchInput, type KeywordResearchOutput } from '@/ai/flows/keyword-research';
 import { checkKeywordCompetition, type CheckKeywordCompetitionInput, type CheckKeywordCompetitionOutput } from '@/ai/flows/check-keyword-competition';
+import { findRelatedKeywords, type FindRelatedKeywordsInput, type FindRelatedKeywordsOutput } from '@/ai/flows/find-related-keywords';
 
 
 export async function generateMetaTagsAction(
@@ -34,7 +35,7 @@ export async function checkKeywordPositionAction(
 
 export async function checkKeywordDensityAction(
   input: CheckKeywordDensityInput
-): Promise<{ success: true, data: CheckKeywordDensityOutput } | { success_false, error: string }> {
+): Promise<{ success: true, data: CheckKeywordDensityOutput } | { success: false, error: string }> {
   try {
     const result = await checkKeywordDensity(input);
     return { success: true, data: result };
@@ -79,4 +80,16 @@ export async function checkKeywordCompetitionAction(
         console.error('Error checking keyword competition:', error);
         return { success: false, error: 'Failed to check keyword competition. Please try again later.' };
     }
+}
+
+export async function findRelatedKeywordsAction(
+  input: FindRelatedKeywordsInput
+): Promise<{ success: true, data: FindRelatedKeywordsOutput } | { success: false, error: string }> {
+  try {
+    const result = await findRelatedKeywords(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error finding related keywords:', error);
+    return { success: false, error: 'Failed to find related keywords. Please try again later.' };
+  }
 }
