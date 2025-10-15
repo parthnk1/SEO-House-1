@@ -43,6 +43,7 @@ import { checkServerStatus, type CheckServerStatusInput, type CheckServerStatusO
 import { codeToTextRatioChecker, type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';
 import { alexaRankComparison, type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/alexa-rank-comparison';
 import { pageComparison, type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/page-comparison';
+import { spiderSimulator, type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/spider-simulator';
 
 
 export async function generateMetaTagsAction(
@@ -562,3 +563,15 @@ export async function pageComparisonAction(
       return { success: false, error: 'Failed to compare pages. Please try again later.' };
     }
   }
+
+export async function spiderSimulatorAction(
+  input: SpiderSimulatorInput
+): Promise<{ success: true, data: SpiderSimulatorOutput } | { success: false, error: string }> {
+  try {
+    const result = await spiderSimulator(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error running spider simulator:', error);
+    return { success: false, error: 'Failed to run spider simulator. Please try again later.' };
+  }
+}

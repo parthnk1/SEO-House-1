@@ -48,6 +48,7 @@ import CheckServerStatus from '@/components/CheckServerStatus';
 import CodeToTextRatioChecker from '@/components/CodeToTextRatioChecker';
 import AlexaRankComparison from '@/components/AlexaRankComparison';
 import PageComparison from '@/components/PageComparison';
+import SpiderSimulator from '@/components/SpiderSimulator';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -172,6 +173,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <AlexaRankComparison />;
       case 'page-comparison':
         return <PageComparison />;
+      case 'spider-simulator':
+        return <SpiderSimulator />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
