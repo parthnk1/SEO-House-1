@@ -206,6 +206,10 @@ const contentTools: Tool[] = [
     { name: 'Essay Checker', slug: 'essay-checker', description: 'Check your essay for grammar, spelling, and style.', category: 'Content Tools', icon: FileCheck },
 ];
 
+const otherTools: Tool[] = [
+  { name: 'Password Generator', slug: 'password-generator', description: 'Generate secure, random passwords.', category: 'Other Tools', icon: KeyRound },
+]
+
 export const toolCategories: ToolCategory[] = [
     { name: 'Keywords Tools', description: 'Powerful and efficient keyword tools for thorough research and analysis.', tools: keywordsTools },
     { name: 'Backlink Tools', description: 'A set of backlink analysis tools to give you a comprehensive inside view of your link profile.', tools: backlinkTools },
@@ -214,4 +218,5 @@ export const toolCategories: ToolCategory[] = [
     { name: 'Domains Tools', description: 'Find out domain age, authority, DNS records, or expired domains.', tools: domainsTools },
     { name: 'Meta Tags Tools', description: 'Create new meta tags or analyze existing ones for an in-depth analysis.', tools: metaTagsTools },
     { name: 'Content Tools', description: 'Tools for creating, analyzing, and optimizing your content.', tools: contentTools },
+    { name: 'Other Tools', description: 'Miscellaneous tools and utilities.', tools: otherTools },
 ];
