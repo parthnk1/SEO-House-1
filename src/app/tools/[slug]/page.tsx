@@ -22,6 +22,7 @@ import WebsiteBrokenLinkChecker from '@/components/WebsiteBrokenLinkChecker';
 import LinkPriceCalculator from '@/components/LinkPriceCalculator';
 import ReciprocalLinkChecker from '@/components/ReciprocalLinkChecker';
 import WebsiteSeoScoreChecker from '@/components/WebsiteSeoScoreChecker';
+import GooglePagerankChecker from '@/components/GooglePagerankChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -94,6 +95,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <ReciprocalLinkChecker />;
       case 'website-seo-score-checker':
         return <WebsiteSeoScoreChecker />;
+      case 'google-pagerank-checker':
+        return <GooglePagerankChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

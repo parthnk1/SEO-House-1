@@ -21,6 +21,7 @@ import { websiteBrokenLinkChecker, type WebsiteBrokenLinkCheckerInput, type Webs
 import { linkPriceCalculator, type LinkPriceCalculatorInput, type LinkPriceCalculatorOutput } from '@/ai/flows/link-price-calculator';
 import { reciprocalLinkChecker, type ReciprocalLinkCheckerInput, type ReciprocalLinkCheckerOutput } from '@/ai/flows/reciprocal-link-checker';
 import { websiteSeoScoreChecker, type WebsiteSeoScoreCheckerInput, type WebsiteSeoScoreCheckerOutput } from '@/ai/flows/website-seo-score-checker';
+import { googlePagerankChecker, type GooglePagerankCheckerInput, type GooglePagerankCheckerOutput } from '@/ai/flows/google-pagerank-checker';
 
 
 export async function generateMetaTagsAction(
@@ -273,5 +274,17 @@ export async function websiteSeoScoreCheckerAction(
     } catch (error) {
         console.error('Error checking SEO score:', error);
         return { success: false, error: 'Failed to check SEO score. Please try again later.' };
+    }
+}
+
+export async function googlePagerankCheckerAction(
+    input: GooglePagerankCheckerInput
+): Promise<{ success: true, data: GooglePagerankCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await googlePagerankChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking PageRank:', error);
+        return { success: false, error: 'Failed to check PageRank. Please try again later.' };
     }
 }
