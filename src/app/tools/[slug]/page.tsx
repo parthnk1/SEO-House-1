@@ -1,6 +1,7 @@
 import { toolCategories } from '@/lib/tools';
 import { notFound } from 'next/navigation';
 import MetaTagGenerator from '@/components/MetaTagGenerator';
+import KeywordPositionChecker from '@/components/KeywordPositionChecker';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 type ToolPageProps = {
@@ -34,6 +35,8 @@ export default function ToolPage({ params }: ToolPageProps) {
     switch (tool.slug) {
       case 'meta-tag-generator':
         return <MetaTagGenerator />;
+      case 'keyword-position':
+        return <KeywordPositionChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
