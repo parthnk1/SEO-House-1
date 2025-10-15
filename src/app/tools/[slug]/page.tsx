@@ -14,6 +14,7 @@ import BacklinkChecker from '@/components/BacklinkChecker';
 import BacklinkMaker from '@/components/BacklinkMaker';
 import SeoKeywordCompetitionAnalysis from '@/components/SeoKeywordCompetitionAnalysis';
 import LiveKeywordAnalyzer from '@/components/LiveKeywordAnalyzer';
+import KeywordOverviewTool from '@/components/KeywordOverviewTool';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -70,6 +71,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <SeoKeywordCompetitionAnalysis />;
       case 'live-keyword-analyzer':
         return <LiveKeywordAnalyzer />;
+      case 'keyword-overview-tool':
+        return <KeywordOverviewTool />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

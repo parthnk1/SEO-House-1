@@ -14,3 +14,4 @@ import '@/ai/flows/backlink-checker.ts';
 import '@/ai/flows/backlink-maker.ts';
 import '@/ai/flows/seo-keyword-competition-analysis.ts';
 import '@/ai/flows/live-keyword-analyzer.ts';
+import '@/ai/flows/keyword-overview.ts';

@@ -13,6 +13,7 @@ import { backlinkChecker, type BacklinkCheckerInput, type BacklinkCheckerOutput 
 import { backlinkMaker, type BacklinkMakerInput, type BacklinkMakerOutput } from '@/ai/flows/backlink-maker';
 import { seoKeywordCompetitionAnalysis, type SeoKeywordCompetitionAnalysisInput, type SeoKeywordCompetitionAnalysisOutput } from '@/ai/flows/seo-keyword-competition-analysis';
 import { liveKeywordAnalyzer, type LiveKeywordAnalyzerInput, type LiveKeywordAnalyzerOutput } from '@/ai/flows/live-keyword-analyzer';
+import { keywordOverview, type KeywordOverviewInput, type KeywordOverviewOutput } from '@/ai/flows/keyword-overview';
 
 
 export async function generateMetaTagsAction(
@@ -169,5 +170,17 @@ export async function liveKeywordAnalyzerAction(
     } catch (error) {
       console.error('Error analyzing keywords:', error);
       return { success: false, error: 'Failed to analyze keywords. Please try again later.' };
+    }
+}
+
+export async function keywordOverviewAction(
+    input: KeywordOverviewInput
+    ): Promise<{ success: true, data: KeywordOverviewOutput } | { success: false, error: string }> {
+    try {
+        const result = await keywordOverview(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error getting keyword overview:', error);
+        return { success: false, error: 'Failed to get keyword overview. Please try again later.' };
     }
 }
