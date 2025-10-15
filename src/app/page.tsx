@@ -8,6 +8,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { toolCategories, ToolCategory } from '@/lib/tools';
 import { ArrowRight, Code, FileText, ImageIcon, Search as SearchIcon, Video } from 'lucide-react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,9 +37,9 @@ export default function Home() {
   }, [searchQuery]);
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
+    <div>
       {/* Hero Section */}
-      <section className="text-center py-12 md:py-20">
+      <section className="text-center py-12 md:py-20 container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold font-headline text-primary tracking-tighter">
             Free SEO Tools, All in One Place
@@ -61,7 +62,7 @@ export default function Home() {
       </section>
 
       {/* Search Bar */}
-      <section className="my-12" id="tools">
+      <section className="my-12 container mx-auto px-4" id="tools">
         <div className="relative max-w-2xl mx-auto">
           <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <Input
@@ -76,41 +77,46 @@ export default function Home() {
       </section>
 
       {/* Tool Sections */}
-      <div className="space-y-16">
+      <div className="space-y-4">
         {filteredCategories.length > 0 ? (
-          filteredCategories.map(category => (
-            <section key={category.name}>
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold font-headline">{category.name}</h2>
-                <p className="text-muted-foreground mt-2">{category.description}</p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {category.tools.map(tool => (
-                  <Card key={tool.slug} className="flex flex-col group transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                    <CardHeader className="flex-row items-center gap-4">
-                        <div className="p-3 bg-accent/10 rounded-lg">
-                           <tool.icon className="w-6 h-6 text-accent" />
-                        </div>
-                        <CardTitle className="text-lg">{tool.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="text-sm text-muted-foreground">{tool.description}</p>
-                    </CardContent>
-                    <CardFooter>
-                      <Button asChild variant="outline" className="w-full bg-transparent group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent">
-                        <Link href={`/tools/${tool.slug}`}>
-                          Use Tool
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                ))}
+          filteredCategories.map((category, index) => (
+            <section
+              key={category.name}
+              className={cn('py-16', index % 2 === 0 ? 'bg-background' : 'bg-card')}
+            >
+              <div className="container mx-auto px-4">
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold font-headline">{category.name}</h2>
+                  <p className="text-muted-foreground mt-2">{category.description}</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                  {category.tools.map(tool => (
+                    <Card key={tool.slug} className={cn("flex flex-col group transition-all duration-300 hover:shadow-lg hover:-translate-y-1", index % 2 === 0 ? 'bg-card' : 'bg-background')}>
+                      <CardHeader className="flex-row items-center gap-4">
+                          <div className="p-3 bg-primary/10 rounded-lg">
+                            <tool.icon className="w-6 h-6 text-primary" />
+                          </div>
+                          <CardTitle className="text-lg">{tool.name}</CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex-grow">
+                        <p className="text-sm text-muted-foreground">{tool.description}</p>
+                      </CardContent>
+                      <CardFooter>
+                        <Button asChild variant="outline" className="w-full bg-transparent group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary">
+                          <Link href={`/tools/${tool.slug}`}>
+                            Use Tool
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </Link>
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
               </div>
             </section>
           ))
         ) : (
-          <div className="text-center py-16">
+          <div className="text-center py-16 container mx-auto px-4">
             <p className="text-xl font-medium">No tools found for "{searchQuery}"</p>
             <p className="text-muted-foreground mt-2">Try searching for something else.</p>
           </div>

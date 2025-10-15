@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Loader2, Wand2, Copy } from 'lucide-react';
+import { Label } from '@/components/ui/label';
 
 const formSchema = z.object({
   url: z.string().url({ message: 'Please enter a valid URL (e.g., https://example.com).' }),
@@ -57,7 +58,7 @@ export default function MetaTagGenerator() {
   };
 
   return (
-    <Card className="shadow-lg">
+    <Card className="shadow-lg bg-background">
       <CardHeader>
         <CardTitle>AI Meta Tag Generator</CardTitle>
         <CardDescription>Enter a website URL and our AI will generate optimized meta tags for you.</CardDescription>
@@ -75,7 +76,7 @@ export default function MetaTagGenerator() {
                     <FormControl>
                       <Input placeholder="https://your-website.com" {...field} />
                     </FormControl>
-                    <Button type="submit" disabled={isLoading} className="min-w-[120px] bg-accent hover:bg-accent/90">
+                    <Button type="submit" disabled={isLoading} className="min-w-[120px]">
                       {isLoading ? (
                         <Loader2 className="h-5 w-5 animate-spin" />
                       ) : (
@@ -120,13 +121,13 @@ function ResultField({ label, text, isTextarea = false, onCopy }: { label: strin
     <div>
       <Label className="font-semibold">{label}</Label>
       <div className="relative mt-1">
-        <div className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background min-h-[40px] flex items-center">
+        <div className="w-full rounded-md border border-input bg-card/50 px-3 py-2 text-sm ring-offset-background min-h-[40px] flex items-center text-card-foreground">
             {text}
         </div>
         <Button
           variant="ghost"
           size="icon"
-          className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 text-muted-foreground hover:bg-accent/20"
+          className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 text-muted-foreground hover:bg-accent hover:text-accent-foreground"
           onClick={() => onCopy(text, label)}
         >
           <Copy className="h-4 w-4" />
