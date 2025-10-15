@@ -25,3 +25,4 @@ import '@/ai/flows/website-seo-score-checker.ts';
 import '@/ai/flows/google-pagerank-checker.ts';
 import '@/ai/flows/online-ping-website-tool.ts';
 import '@/ai/flows/website-link-analyzer-tool.ts';
+import '@/ai/flows/broken-backlink-checker.ts';
