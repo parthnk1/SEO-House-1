@@ -2,6 +2,7 @@
 
 import { generateMetaTags, type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { checkKeywordPosition, type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
+import { checkKeywordDensity, type CheckKeywordDensityInput, type CheckKeywordDensityOutput } from '@/ai/flows/check-keyword-density';
 
 export async function generateMetaTagsAction(
   input: GenerateMetaTagsInput
@@ -27,5 +28,17 @@ export async function checkKeywordPositionAction(
   } catch (error) {
     console.error('Error checking keyword position:', error);
     return { success: false, error: 'Failed to check keyword position. Please try again later.' };
+  }
+}
+
+export async function checkKeywordDensityAction(
+  input: CheckKeywordDensityInput
+): Promise<{ success: true; data: CheckKeywordDensityOutput } | { success: false; error: string }> {
+  try {
+    const result = await checkKeywordDensity(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking keyword density:', error);
+    return { success: false, error: 'Failed to check keyword density. Please try again later.' };
   }
 }
