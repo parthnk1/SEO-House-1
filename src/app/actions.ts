@@ -45,6 +45,7 @@ import { alexaRankComparison, type AlexaRankComparisonInput, type AlexaRankCompa
 import { pageComparison, type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/page-comparison';
 import { spiderSimulator, type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/spider-simulator';
 import { whoisLookup, type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/whois-lookup';
+import { googleCacheChecker, type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
 
 
 export async function generateMetaTagsAction(
@@ -586,5 +587,17 @@ export async function whoisLookupAction(
   } catch (error) {
     console.error('Error performing WHOIS lookup:', error);
     return { success: false, error: 'Failed to perform WHOIS lookup. Please try again later.' };
+  }
+}
+
+export async function googleCacheCheckerAction(
+  input: GoogleCacheCheckerInput
+): Promise<{ success: true, data: GoogleCacheCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await googleCacheChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking Google cache:', error);
+    return { success: false, error: 'Failed to check Google cache. Please try again later.' };
   }
 }

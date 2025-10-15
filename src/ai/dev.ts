@@ -45,3 +45,4 @@ import '@/ai/flows/alexa-rank-comparison.ts';
 import '@/ai/flows/page-comparison.ts';
 import '@/ai/flows/spider-simulator.ts';
 import '@/ai/flows/whois-lookup.ts';
+import '@/ai/flows/google-cache-checker.ts';
