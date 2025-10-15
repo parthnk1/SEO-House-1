@@ -6,16 +6,16 @@ export default function ToolLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-muted/40">
-        <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-12">
-            <div className="lg:col-span-2 xl:col-span-3">{children}</div>
-            <div className="space-y-8">
+    <div className="bg-gradient-to-br from-background via-background to-muted/30">
+      <div className="container mx-auto px-4 py-12 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-12">
+          <div className="lg:col-span-2 xl:col-span-3">{children}</div>
+          <div className="space-y-8">
             <AdsensePlaceholder />
             <AdsensePlaceholder />
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
   );
 }
