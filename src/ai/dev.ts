@@ -18,3 +18,4 @@ import '@/ai/flows/keyword-overview.ts';
 import '@/ai/flows/keyword-difficulty-checker.ts';
 import '@/ai/flows/paid-keyword-finder.ts';
 import '@/ai/flows/website-link-count-checker.ts';
+import '@/ai/flows/website-broken-link-checker.ts';

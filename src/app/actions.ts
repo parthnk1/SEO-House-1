@@ -17,6 +17,7 @@ import { keywordOverview, type KeywordOverviewInput, type KeywordOverviewOutput 
 import { keywordDifficultyChecker, type KeywordDifficultyCheckerInput, type KeywordDifficultyCheckerOutput } from '@/ai/flows/keyword-difficulty-checker';
 import { paidKeywordFinder, type PaidKeywordFinderInput, type PaidKeywordFinderOutput } from '@/ai/flows/paid-keyword-finder';
 import { websiteLinkCountChecker, type WebsiteLinkCountCheckerInput, type WebsiteLinkCountCheckerOutput } from '@/ai/flows/website-link-count-checker';
+import { websiteBrokenLinkChecker, type WebsiteBrokenLinkCheckerInput, type WebsiteBrokenLinkCheckerOutput } from '@/ai/flows/website-broken-link-checker';
 
 
 export async function generateMetaTagsAction(
@@ -222,4 +223,16 @@ export async function websiteLinkCountCheckerAction(
     console.error('Error checking link count:', error);
     return { success: false, error: 'Failed to check link count. Please try again later.' };
   }
+}
+
+export async function websiteBrokenLinkCheckerAction(
+    input: WebsiteBrokenLinkCheckerInput
+): Promise<{ success: true, data: WebsiteBrokenLinkCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await websiteBrokenLinkChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking broken links:', error);
+        return { success: false, error: 'Failed to check broken links. Please try again later.' };
+    }
 }
