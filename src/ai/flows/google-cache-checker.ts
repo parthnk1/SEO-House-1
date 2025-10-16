@@ -5,24 +5,11 @@
  *
  * @exports `googleCacheChecker` - An async function that takes a URL and returns a promise
  * resolving to a `GoogleCacheCheckerOutput` object.
- * @exports `GoogleCacheCheckerInput` - The input type for the `googleCacheChecker` function.
- * @exports `GoogleCacheCheckerOutput` - The output type for the `googleCacheChecker` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { GoogleCacheCheckerInputSchema, GoogleCacheCheckerOutputSchema, type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from './schemas/google-cache-checker';
 
-export const GoogleCacheCheckerInputSchema = z.object({
-  url: z.string().url().describe('The URL to check the Google cache for.'),
-});
-export type GoogleCacheCheckerInput = z.infer<typeof GoogleCacheCheckerInputSchema>;
-
-export const GoogleCacheCheckerOutputSchema = z.object({
-  isCached: z.boolean().describe('Whether the page is in Google\'s cache.'),
-  cacheDate: z.string().datetime().optional().describe('The date the cache was taken.'),
-  cacheUrl: z.string().url().optional().describe('The URL to the cached version of the page.'),
-});
-export type GoogleCacheCheckerOutput = z.infer<typeof GoogleCacheCheckerOutputSchema>;
 
 export async function googleCacheChecker(input: GoogleCacheCheckerInput): Promise<GoogleCacheCheckerOutput> {
   return googleCacheCheckerFlow(input);

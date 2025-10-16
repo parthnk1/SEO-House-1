@@ -98,7 +98,7 @@ import { type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@
 import { type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/schemas/page-comparison';
 import { type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/schemas/spider-simulator';
 import { type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/schemas/whois-lookup';
-import { type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
+import { type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from './ai/flows/schemas/google-cache-checker';
 import { type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from './schemas/domain-age-checker';
 import { type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from './schemas/domain-authority-checker';
 import { type DomainIpLookupInput, type DomainIpLookupOutput } from './schemas/domain-ip-lookup';
