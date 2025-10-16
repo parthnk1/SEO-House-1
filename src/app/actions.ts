@@ -1,3 +1,4 @@
+
 'use server';
 
 import { generateMetaTags, type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
@@ -24,8 +25,8 @@ import { websiteSeoScoreChecker, type WebsiteSeoScoreCheckerInput, type WebsiteS
 import { googlePagerankChecker, type GooglePagerankCheckerInput, type GooglePagerankCheckerOutput } from '@/ai/flows/google-pagerank-checker';
 import { onlinePingWebsiteTool, type OnlinePingWebsiteToolInput, type OnlinePingWebsiteToolOutput } from '@/ai/flows/online-ping-website-tool';
 import { websiteLinkAnalyzerTool, type WebsiteLinkAnalyzerToolInput, type WebsiteLinkAnalyzerToolOutput } from '@/ai/flows/website-link-analyzer-tool';
-import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } from '@/ai-flows/broken-backlink-checker';
-import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai-flows/valuable-backlink-checker';
+import { brokenBacklinkChecker, type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } from '@/ai/flows/broken-backlink-checker';
+import { valuableBacklinkChecker, type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai/flows/valuable-backlink-checker';
 import { backlinksCompetitors, type BacklinksCompetitorsInput, type BacklinksCompetitorsOutput } from '@/ai/flows/backlinks-competitors';
 import { anchorTextDistribution, type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
 import { pageSpeedTest, type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/page-speed-test';
@@ -37,7 +38,7 @@ import { adsenseCalculator, type AdsenseCalculatorInput, type AdsenseCalculatorO
 import { openGraphGenerator, type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/open-graph-generator';
 import { metaTagsAnalyzer, type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
 import { openGraphChecker, type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
-import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai-flows/get-http-headers';
+import { getHttpHeaders, type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
 import { reverseIpLookup, type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
 import { checkServerStatus, type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker, type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';

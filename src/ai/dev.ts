@@ -1,3 +1,4 @@
+
 'use server';
 
 import '@/ai/flows/generate-meta-tags.ts';
@@ -11,7 +12,7 @@ import '@/ai/flows/get-long-tail-keyword-suggestions.ts';
 import '@/ai/flows/get-keyword-rich-domains.ts';
 import '@/ai/flows/backlink-checker.ts';
 import '@/ai/flows/backlink-maker.ts';
-import '@/aiflows/seo-keyword-competition-analysis.ts';
+import '@/ai/flows/seo-keyword-competition-analysis.ts';
 import '@/ai/flows/live-keyword-analyzer.ts';
 import '@/ai/flows/keyword-overview.ts';
 import '@/ai/flows/keyword-difficulty-checker.ts';
@@ -24,8 +25,8 @@ import '@/ai/flows/website-seo-score-checker.ts';
 import '@/ai/flows/google-pagerank-checker.ts';
 import '@/ai/flows/online-ping-website-tool.ts';
 import '@/ai/flows/website-link-analyzer-tool.ts';
-import '@/ai-flows/broken-backlink-checker.ts';
-import '@/ai-flows/valuable-backlink-checker.ts';
+import '@/ai/flows/broken-backlink-checker.ts';
+import '@/ai/flows/valuable-backlink-checker.ts';
 import '@/ai/flows/backlinks-competitors.ts';
 import '@/ai/flows/anchor-text-distribution.ts';
 import '@/ai/flows/page-speed-test.ts';
@@ -37,7 +38,7 @@ import '@/ai/flows/adsense-calculator.ts';
 import '@/ai/flows/open-graph-generator.ts';
 import '@/ai/flows/meta-tags-analyzer.ts';
 import '@/ai/flows/open-graph-checker.ts';
-import '@/ai-flows/get-http-headers.ts';
+import '@/ai/flows/get-http-headers.ts';
 import '@/ai/flows/reverse-ip-lookup.ts';
 import '@/ai/flows/check-server-status.ts';
 import '@/ai/flows/code-to-text-ratio-checker.ts';
