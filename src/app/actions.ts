@@ -66,6 +66,7 @@ import { comparisonSearch } from '@/ai/flows/comparison-search';
 import { pageAuthorityChecker } from '@/ai/flows/page-authority-checker';
 import { mozrankChecker } from '@/ai/flows/mozrank-checker';
 import { googleIndexChecker } from '@/ai/flows/google-index-checker';
+import { alexaRankChecker } from '@/ai/flows/alexa-rank-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -132,6 +133,7 @@ import { type ComparisonSearchInput, type ComparisonSearchOutput } from './ai/fl
 import { type PageAuthorityCheckerInput, type PageAuthorityCheckerOutput } from './ai/flows/schemas/page-authority-checker';
 import { type MozrankCheckerInput, type MozrankCheckerOutput } from './ai/flows/schemas/mozrank-checker';
 import { type GoogleIndexCheckerInput, type GoogleIndexCheckerOutput } from './ai/flows/schemas/google-index-checker';
+import { type AlexaRankCheckerInput, type AlexaRankCheckerOutput } from './ai/flows/schemas/alexa-rank-checker';
 
 
 export async function generateMetaTagsAction(
@@ -915,4 +917,16 @@ export async function googleIndexCheckerAction(
         console.error('Error checking Google index:', error);
         return { success: false, error: 'Failed to check Google index. Please try again later.' };
     }
+}
+
+export async function alexaRankCheckerAction(
+  input: AlexaRankCheckerInput
+): Promise<{ success: true, data: AlexaRankCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await alexaRankChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking Alexa rank:', error);
+    return { success: false, error: 'Failed to check Alexa rank. Please try again later.' };
+  }
 }

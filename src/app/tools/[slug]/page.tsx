@@ -72,6 +72,7 @@ import ComparisonSearch from '@/components/ComparisonSearch';
 import PageAuthorityChecker from '@/components/PageAuthorityChecker';
 import MozrankChecker from '@/components/MozrankChecker';
 import GoogleIndexChecker from '@/components/GoogleIndexChecker';
+import AlexaRankChecker from '@/components/AlexaRankChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -242,6 +243,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <MozrankChecker />;
       case 'google-index-checker':
         return <GoogleIndexChecker />;
+      case 'alexa-rank-checker':
+        return <AlexaRankChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

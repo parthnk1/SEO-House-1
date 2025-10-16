@@ -11,7 +11,7 @@ import '@/ai/flows/find-related-keywords.ts';
 import '@/ai/flows/get-long-tail-keyword-suggestions.ts';
 import '@/ai/flows/get-keyword-rich-domains.ts';
 import '@/ai/flows/backlink-checker.ts';
-import '@/ai/flows/backlink-maker.ts';
+import '@/aiflows/backlink-maker.ts';
 import '@/ai/flows/seo-keyword-competition-analysis.ts';
 import '@/ai/flows/live-keyword-analyzer.ts';
 import '@/ai/flows/keyword-overview.ts';
@@ -66,6 +66,8 @@ import '@/ai/flows/comparison-search.ts';
 import '@/ai/flows/page-authority-checker.ts';
 import '@/ai/flows/mozrank-checker.ts';
 import '@/ai/flows/google-index-checker.ts';
+import '@/ai/flows/alexa-rank-checker.ts';
+
 
 
 
