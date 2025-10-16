@@ -61,6 +61,7 @@ import { checkBlacklistIp } from '@/ai/flows/check-blacklist-ip';
 import { findExpiredDomains } from '@/ai/flows/find-expired-domains';
 import { bulkDomainRatingChecker } from '@/ai/flows/bulk-domain-rating-checker';
 import { indexPagesChecker } from '@/ai/flows/index-pages-checker';
+import { spamScoreChecker } from '@/ai/flows/spam-score-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -122,6 +123,7 @@ import { type CheckBlacklistIpInput, type CheckBlacklistIpOutput } from './ai/fl
 import { type FindExpiredDomainsInput, type FindExpiredDomainsOutput } from './ai/flows/schemas/find-expired-domains';
 import { type BulkDomainRatingCheckerInput, type BulkDomainRatingCheckerOutput } from './ai/flows/schemas/bulk-domain-rating-checker';
 import { type IndexPagesCheckerInput, type IndexPagesCheckerOutput } from './ai/flows/schemas/index-pages-checker';
+import { type SpamScoreCheckerInput, type SpamScoreCheckerOutput } from './ai/flows/schemas/spam-score-checker';
 
 
 export async function generateMetaTagsAction(
@@ -844,5 +846,17 @@ export async function indexPagesCheckerAction(
     } catch (error) {
         console.error('Error checking indexed pages:', error);
         return { success: false, error: 'Failed to check indexed pages. Please try again later.' };
+    }
+}
+
+export async function spamScoreCheckerAction(
+    input: SpamScoreCheckerInput
+    ): Promise<{ success: true, data: SpamScoreCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await spamScoreChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking spam score:', error);
+        return { success: false, error: 'Failed to check spam score. Please try again later.' };
     }
 }

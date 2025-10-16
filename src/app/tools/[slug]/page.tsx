@@ -67,6 +67,7 @@ import CheckBlacklistIp from '@/components/CheckBlacklistIp';
 import FindExpiredDomains from '@/components/FindExpiredDomains';
 import BulkDomainRatingChecker from '@/components/BulkDomainRatingChecker';
 import IndexPagesChecker from '@/components/IndexPagesChecker';
+import SpamScoreChecker from '@/components/SpamScoreChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -227,6 +228,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <BulkDomainRatingChecker />;
       case 'index-pages-checker':
         return <IndexPagesChecker />;
+      case 'spam-score-checker':
+        return <SpamScoreChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
