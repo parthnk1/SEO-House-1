@@ -62,6 +62,7 @@ import PasswordGenerator from '@/components/PasswordGenerator';
 import SimilarSiteChecker from '@/components/SimilarSiteChecker';
 import DomainHostingChecker from '@/components/DomainHostingChecker';
 import FindDnsRecords from '@/components/FindDnsRecords';
+import DomainToIp from '@/components/DomainToIp';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -212,6 +213,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <DomainHostingChecker />;
       case 'find-dns-records':
         return <FindDnsRecords />;
+      case 'domain-to-ip':
+        return <DomainToIp />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

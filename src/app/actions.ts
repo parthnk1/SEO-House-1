@@ -56,6 +56,8 @@ import { classCIpChecker } from '@/ai/flows/class-c-ip-checker';
 import { similarSiteChecker } from '@/ai/flows/similar-site-checker';
 import { domainHostingChecker } from '@/ai/flows/domain-hosting-checker';
 import { findDnsRecords } from '@/ai/flows/find-dns-records';
+import { domainToIp } from '@/ai/flows/domain-to-ip';
+
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
 import { type CheckKeywordDensityInput, type CheckKeywordDensityOutput } from '@/ai/flows/check-keyword-density';
@@ -111,6 +113,7 @@ import { type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from './ai/flow
 import { type SimilarSiteCheckerInput, type SimilarSiteCheckerOutput } from './ai/flows/schemas/similar-site-checker';
 import { type DomainHostingCheckerInput, type DomainHostingCheckerOutput } from './ai/flows/schemas/domain-hosting-checker';
 import { type FindDnsRecordsInput, type FindDnsRecordsOutput } from './ai/flows/schemas/find-dns-records';
+import { type DomainToIpInput, type DomainToIpOutput } from './ai/flows/schemas/domain-to-ip';
 
 
 export async function generateMetaTagsAction(
@@ -773,5 +776,17 @@ export async function findDnsRecordsAction(
   } catch (error) {
     console.error('Error finding DNS records:', error);
     return { success: false, error: 'Failed to find DNS records. Please try again later.' };
+  }
+}
+
+export async function domainToIpAction(
+  input: DomainToIpInput
+): Promise<{ success: true, data: DomainToIpOutput } | { success: false, error: string }> {
+  try {
+    const result = await domainToIp(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error converting domain to IP:', error);
+    return { success: false, error: 'Failed to convert domain to IP. Please try again later.' };
   }
 }
