@@ -70,6 +70,7 @@ import IndexPagesChecker from '@/components/IndexPagesChecker';
 import SpamScoreChecker from '@/components/SpamScoreChecker';
 import ComparisonSearch from '@/components/ComparisonSearch';
 import PageAuthorityChecker from '@/components/PageAuthorityChecker';
+import MozrankChecker from '@/components/MozrankChecker';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -236,6 +237,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <ComparisonSearch />;
       case 'page-authority-checker':
         return <PageAuthorityChecker />;
+      case 'mozrank-checker':
+        return <MozrankChecker />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
