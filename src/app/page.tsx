@@ -69,8 +69,8 @@ export default function Home() {
             </div>
           </section>
 
-          <div className="my-12">
-            <AdsensePlaceholder />
+          <div className="my-12 flex justify-center">
+            <AdsensePlaceholder format="leaderboard" />
           </div>
 
           {/* Search Bar */}

@@ -59,8 +59,8 @@ export default function BlogPage() {
         </p>
       </div>
 
-      <div className="mb-12">
-        <AdsensePlaceholder />
+      <div className="mb-12 flex justify-center">
+        <AdsensePlaceholder format="leaderboard" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -43,8 +43,8 @@ export default function ContactPage() {
           </Button>
         </CardContent>
       </Card>
-      <div className="mt-8">
-        <AdsensePlaceholder />
+      <div className="mt-8 flex justify-center">
+        <AdsensePlaceholder format="large-rectangle" />
       </div>
     </div>
   );
