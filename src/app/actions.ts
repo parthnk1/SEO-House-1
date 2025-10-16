@@ -44,7 +44,7 @@ import { checkServerStatus } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker } from '@/ai/flows/code-to-text-ratio-checker';
 import { alexaRankComparison } from '@/ai/flows/alexa-rank-comparison';
 import { pageComparison } from '@/ai/flows/page-comparison';
-import { spiderSimulator, type SpiderSimulatorOutput } from '@/ai/flows/spider-simulator';
+import { spiderSimulator } from '@/ai/flows/spider-simulator';
 import { whoisLookup, type WhoisLookupOutput } from '@/ai/flows/whois-lookup';
 import { googleCacheChecker, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
 import { domainAgeChecker, type DomainAgeCheckerOutput } from '@/ai/flows/domain-age-checker';
@@ -96,7 +96,7 @@ import { type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/
 import { type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/schemas/code-to-text-ratio-checker';
 import { type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/schemas/alexa-rank-comparison';
 import { type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/schemas/page-comparison';
-import { type SpiderSimulatorInput } from '@/ai/flows/spider-simulator';
+import { type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/schemas/spider-simulator';
 import { type WhoisLookupInput } from '@/ai/flows/whois-lookup';
 import { type GoogleCacheCheckerInput } from '@/ai/flows/google-cache-checker';
 import { type DomainAgeCheckerInput } from '@/ai/flows/domain-age-checker';

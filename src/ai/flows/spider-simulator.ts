@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -7,29 +8,10 @@
  *
  * @exports `spiderSimulator` - An async function that takes a URL and returns a promise
  * resolving to a `SpiderSimulatorOutput` object.
- * @exports `SpiderSimulatorInput` - The input type for the `spiderSimulator` function.
- * @exports `SpiderSimulatorOutput` - The output type for the `spiderSimulator` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-export const SpiderSimulatorInputSchema = z.object({
-  url: z.string().url().describe('The URL of the webpage to simulate.'),
-});
-export type SpiderSimulatorInput = z.infer<typeof SpiderSimulatorInputSchema>;
-
-const LinkSchema = z.object({
-    url: z.string().url(),
-    anchorText: z.string(),
-});
-
-export const SpiderSimulatorOutputSchema = z.object({
-    title: z.string(),
-    textContent: z.string(),
-    links: z.array(LinkSchema),
-});
-export type SpiderSimulatorOutput = z.infer<typeof SpiderSimulatorOutputSchema>;
+import { SpiderSimulatorInputSchema, SpiderSimulatorOutputSchema, type SpiderSimulatorInput, type SpiderSimulatorOutput } from './schemas/spider-simulator';
 
 export async function spiderSimulator(input: SpiderSimulatorInput): Promise<SpiderSimulatorOutput> {
   return spiderSimulatorFlow(input);
