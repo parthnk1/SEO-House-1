@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { metaTagsAnalyzerAction } from '@/app/actions';
-import { type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
+import { type MetaTagsAnalyzerOutput } from '@/ai/flows/schemas/meta-tags-analyzer';
 import { useToast } from "@/hooks/use-toast";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
