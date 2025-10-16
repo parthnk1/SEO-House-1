@@ -3,30 +3,11 @@
 /**
  * @fileOverview This file defines a Genkit flow for calculating AdSense earnings.
  *
- * @exports `adsenseCalculator` - An async function that takes page impressions, CTR, and CPC and returns a promise
- * resolving to a `AdsenseCalculatorOutput` object.
- * @exports `AdsenseCalculatorInput` - The input type for the `adsenseCalculator` function.
- * @exports `AdsenseCalculatorOutput` - The output type for the `adsenseCalculator` function.
+ * It exports an async function `adsenseCalculator` to perform the calculation.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-export const AdsenseCalculatorInputSchema = z.object({
-  pageImpressions: z.number().min(0),
-  clickThroughRate: z.number().min(0).max(100),
-  costPerClick: z.number().min(0),
-});
-export type AdsenseCalculatorInput = z.infer<typeof AdsenseCalculatorInputSchema>;
-
-export const AdsenseCalculatorOutputSchema = z.object({
-  clicks: z.number(),
-  totalEarnings: z.number(),
-  dailyEarnings: z.number(),
-  monthlyEarnings: z.number(),
-  yearlyEarnings: z.number(),
-});
-export type AdsenseCalculatorOutput = z.infer<typeof AdsenseCalculatorOutputSchema>;
+import { AdsenseCalculatorInputSchema, AdsenseCalculatorOutputSchema, type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from './schemas/adsense-calculator';
 
 export async function adsenseCalculator(input: AdsenseCalculatorInput): Promise<AdsenseCalculatorOutput> {
   return adsenseCalculatorFlow(input);

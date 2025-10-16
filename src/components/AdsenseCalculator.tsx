@@ -3,9 +3,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { adsenseCalculatorAction } from '@/app/actions';
-import { type AdsenseCalculatorOutput } from '@/ai/flows/adsense-calculator';
+import { type AdsenseCalculatorOutput, AdsenseCalculatorInputSchema } from '@/ai/flows/schemas/adsense-calculator';
 import { useToast } from "@/hooks/use-toast";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,12 +12,9 @@ import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Loader2, Calculator, DollarSign, MousePointerClick, Calendar, TrendingUp } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
+import { z } from 'zod';
 
-const formSchema = z.object({
-  pageImpressions: z.coerce.number().min(1, 'Must be at least 1').max(10000000, 'Cannot exceed 10,000,000'),
-  clickThroughRate: z.coerce.number().min(0.01, 'Must be at least 0.01').max(100, 'Cannot exceed 100'),
-  costPerClick: z.coerce.number().min(0.01, 'Must be at least 0.01'),
-});
+const formSchema = AdsenseCalculatorInputSchema;
 
 type FormData = z.infer<typeof formSchema>;
 
