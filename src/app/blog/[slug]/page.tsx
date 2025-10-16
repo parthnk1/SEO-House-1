@@ -95,6 +95,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </p>
           <AdsensePlaceholder />
         </div>
+        <div className="mt-8">
+            <AdsensePlaceholder />
+        </div>
       </article>
     </div>
   );

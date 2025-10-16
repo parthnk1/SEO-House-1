@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CalendarDays } from 'lucide-react';
 import type { Metadata } from 'next';
+import AdsensePlaceholder from '@/components/AdsensePlaceholder';
 
 export const metadata: Metadata = {
   title: 'Blog | SEO Powerhouse',
@@ -56,6 +57,10 @@ export default function BlogPage() {
         <p className="mt-4 text-lg text-muted-foreground">
           Latest news, tips, and insights on SEO and digital marketing.
         </p>
+      </div>
+
+      <div className="mb-12">
+        <AdsensePlaceholder />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -9,6 +10,7 @@ import { toolCategories, ToolCategory } from '@/lib/tools';
 import { ArrowRight, Search as SearchIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase';
+import AdsensePlaceholder from '@/components/AdsensePlaceholder';
 
 function useSafeUser() {
   try {
@@ -66,6 +68,10 @@ export default function Home() {
               </Button>
             </div>
           </section>
+
+          <div className="my-12">
+            <AdsensePlaceholder />
+          </div>
 
           {/* Search Bar */}
           <section className="my-12" id="tools">

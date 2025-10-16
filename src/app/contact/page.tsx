@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Send } from 'lucide-react';
 import type { Metadata } from 'next';
+import AdsensePlaceholder from '@/components/AdsensePlaceholder';
 
 export const metadata: Metadata = {
   title: 'Contact Us | SEO Powerhouse',
@@ -42,6 +43,9 @@ export default function ContactPage() {
           </Button>
         </CardContent>
       </Card>
+      <div className="mt-8">
+        <AdsensePlaceholder />
+      </div>
     </div>
   );
 }
