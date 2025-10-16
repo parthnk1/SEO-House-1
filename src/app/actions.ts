@@ -68,6 +68,7 @@ import { mozrankChecker } from '@/ai/flows/mozrank-checker';
 import { googleIndexChecker } from '@/ai/flows/google-index-checker';
 import { alexaRankChecker } from '@/ai/flows/alexa-rank-checker';
 import { redirectChecker } from '@/ai/flows/redirect-checker';
+import { cloakingChecker } from '@/ai/flows/cloaking-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -136,6 +137,7 @@ import { type MozrankCheckerInput, type MozrankCheckerOutput } from './ai/flows/
 import { type GoogleIndexCheckerInput, type GoogleIndexCheckerOutput } from './ai/flows/schemas/google-index-checker';
 import { type AlexaRankCheckerInput, type AlexaRankCheckerOutput } from './ai/flows/schemas/alexa-rank-checker';
 import { type RedirectCheckerInput, type RedirectCheckerOutput } from './ai/flows/schemas/redirect-checker';
+import { type CloakingCheckerInput, type CloakingCheckerOutput } from './ai/flows/schemas/cloaking-checker';
 
 
 export async function generateMetaTagsAction(
@@ -942,5 +944,17 @@ export async function redirectCheckerAction(
     } catch (error) {
         console.error('Error checking redirects:', error);
         return { success: false, error: 'Failed to check redirects. Please try again later.' };
+    }
+}
+
+export async function cloakingCheckerAction(
+    input: CloakingCheckerInput
+): Promise<{ success: true, data: CloakingCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await cloakingChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking for cloaking:', error);
+        return { success: false, error: 'Failed to check for cloaking. Please try again later.' };
     }
 }
