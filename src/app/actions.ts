@@ -40,7 +40,7 @@ import { metaTagsAnalyzer } from '@/ai/flows/meta-tags-analyzer';
 import { openGraphChecker } from '@/ai/flows/open-graph-checker';
 import { getHttpHeaders } from '@/ai/flows/get-http-headers';
 import { reverseIpLookup } from '@/ai/flows/reverse-ip-lookup';
-import { checkServerStatus, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
+import { checkServerStatus } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';
 import { alexaRankComparison, type AlexaRankComparisonOutput } from '@/ai/flows/alexa-rank-comparison';
 import { pageComparison, type PageComparisonOutput } from '@/ai/flows/page-comparison';
@@ -92,7 +92,7 @@ import { type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/fl
 import { type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/schemas/open-graph-checker';
 import { type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/schemas/get-http-headers';
 import { type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/schemas/reverse-ip-lookup';
-import { type CheckServerStatusInput } from '@/ai/flows/schemas/check-server-status';
+import { type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/schemas/check-server-status';
 import { type CodeToTextRatioCheckerInput } from '@/ai/flows/schemas/code-to-text-ratio-checker';
 import { type AlexaRankComparisonInput } from '@/ai/flows/schemas/alexa-rank-comparison';
 import { type PageComparisonInput } from '@/ai/flows/schemas/page-comparison';
