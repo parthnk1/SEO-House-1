@@ -54,6 +54,7 @@ import { essayChecker } from '@/ai/flows/essay-checker';
 import { createTrackedLink } from '@/ai/flows/link-tracker';
 import { classCIpChecker } from '@/ai/flows/class-c-ip-checker';
 import { similarSiteChecker } from '@/ai/flows/similar-site-checker';
+import { domainHostingChecker } from '@/ai/flows/domain-hosting-checker';
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
 import { type CheckKeywordDensityInput, type CheckKeywordDensityOutput } from '@/ai/flows/check-keyword-density';
@@ -107,6 +108,7 @@ import { type EssayCheckerInput, type EssayCheckerOutput } from './ai/flows/sche
 import { type CreateTrackedLinkInput, type TrackedLink } from './ai/flows/schemas/link-tracker';
 import { type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from './ai/flows/schemas/class-c-ip-checker';
 import { type SimilarSiteCheckerInput, type SimilarSiteCheckerOutput } from './ai/flows/schemas/similar-site-checker';
+import { type DomainHostingCheckerInput, type DomainHostingCheckerOutput } from './ai/flows/schemas/domain-hosting-checker';
 
 
 export async function generateMetaTagsAction(
@@ -745,5 +747,17 @@ export async function similarSiteCheckerAction(
   } catch (error) {
     console.error('Error checking similar sites:', error);
     return { success: false, error: 'Failed to find similar sites. Please try again later.' };
+  }
+}
+
+export async function domainHostingCheckerAction(
+  input: DomainHostingCheckerInput
+): Promise<{ success: true, data: DomainHostingCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await domainHostingChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking domain hosting:', error);
+    return { success: false, error: 'Failed to check domain hosting. Please try again later.' };
   }
 }
