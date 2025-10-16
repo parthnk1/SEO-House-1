@@ -37,8 +37,8 @@ import { urlRewritingTool, type UrlRewritingToolOutput } from '@/ai/flows/url-re
 import { adsenseCalculator } from '@/ai/flows/adsense-calculator';
 import { openGraphGenerator } from '@/ai/flows/open-graph-generator';
 import { metaTagsAnalyzer } from '@/ai/flows/meta-tags-analyzer';
-import { openGraphChecker, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
-import { getHttpHeaders, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
+import { openGraphChecker } from '@/ai/flows/open-graph-checker';
+import { getHttpHeaders } from '@/ai/flows/get-http-headers';
 import { reverseIpLookup, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
 import { checkServerStatus, type CheckServerStatusOutput } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker, type CodeToTextRatioCheckerOutput } from '@/ai/flows/code-to-text-ratio-checker';
@@ -89,8 +89,8 @@ import { type UrlRewritingToolInput } from '@/ai/flows/schemas/url-rewriting-too
 import { type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/schemas/adsense-calculator';
 import { type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/schemas/open-graph-generator';
 import { type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/schemas/meta-tags-analyzer';
-import { type OpenGraphCheckerInput, type OpenGraphCheckerOutput as OpenGraphCheckerOutputFromSchema } from '@/ai/flows/schemas/open-graph-checker';
-import { type GetHttpHeadersInput } from '@/ai/flows/schemas/get-http-headers';
+import { type OpenGraphCheckerInput, type OpenGraphCheckerOutput } from '@/ai/flows/schemas/open-graph-checker';
+import { type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/schemas/get-http-headers';
 import { type ReverseIpLookupInput } from '@/ai/flows/schemas/reverse-ip-lookup';
 import { type CheckServerStatusInput } from '@/ai/flows/schemas/check-server-status';
 import { type CodeToTextRatioCheckerInput } from '@/ai/flows/schemas/code-to-text-ratio-checker';
@@ -543,7 +543,7 @@ export async function metaTagsAnalyzerAction(
 
 export async function openGraphCheckerAction(
   input: OpenGraphCheckerInput
-): Promise<{ success: true, data: OpenGraphCheckerOutputFromSchema } | { success: false, error: string }> {
+): Promise<{ success: true, data: OpenGraphCheckerOutput } | { success: false, error: string }> {
   try {
     const result = await openGraphChecker(input);
     return { success: true, data: result };

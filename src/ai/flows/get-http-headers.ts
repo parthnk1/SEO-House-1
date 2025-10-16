@@ -5,27 +5,11 @@
  *
  * @exports `getHttpHeaders` - An async function that takes a URL and returns a promise
  * resolving to a `GetHttpHeadersOutput` object.
- * @exports `GetHttpHeadersInput` - The input type for the `getHttpHeaders` function.
- * @exports `GetHttpHeadersOutput` - The output type for the `getHttpHeaders` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { GetHttpHeadersInputSchema, GetHttpHeadersOutputSchema, type GetHttpHeadersInput, type GetHttpHeadersOutput } from './schemas/get-http-headers';
 
-export const GetHttpHeadersInputSchema = z.object({
-  url: z.string().url().describe('The URL of the page to fetch headers from.'),
-});
-export type GetHttpHeadersInput = z.infer<typeof GetHttpHeadersInputSchema>;
-
-const HeaderSchema = z.object({
-    key: z.string(),
-    value: z.string(),
-});
-
-export const GetHttpHeadersOutputSchema = z.object({
-  headers: z.array(HeaderSchema).describe('The HTTP response headers.'),
-});
-export type GetHttpHeadersOutput = z.infer<typeof GetHttpHeadersOutputSchema>;
 
 export async function getHttpHeaders(input: GetHttpHeadersInput): Promise<GetHttpHeadersOutput> {
   return getHttpHeadersFlow(input);
