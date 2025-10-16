@@ -57,6 +57,7 @@ import { similarSiteChecker } from '@/ai/flows/similar-site-checker';
 import { domainHostingChecker } from '@/ai/flows/domain-hosting-checker';
 import { findDnsRecords } from '@/ai/flows/find-dns-records';
 import { domainToIp } from '@/ai/flows/domain-to-ip';
+import { checkBlacklistIp } from '@/ai/flows/check-blacklist-ip';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -101,8 +102,8 @@ import { type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/
 import { type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/schemas/code-to-text-ratio-checker';
 import { type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/schemas/alexa-rank-comparison';
 import { type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/schemas/page-comparison';
-import { type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/schemas/spider-simulator';
-import { type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/schemas/whois-lookup';
+import { type SpiderSimulatorInput, type SpiderSimulatorOutput } from './ai/flows/schemas/spider-simulator';
+import { type WhoisLookupInput, type WhoisLookupOutput } from './ai/flows/schemas/whois-lookup';
 import { type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from './ai/flows/schemas/google-cache-checker';
 import { type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from './ai/flows/schemas/domain-age-checker';
 import { type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from './ai/flows/schemas/domain-authority-checker';
@@ -114,6 +115,7 @@ import { type SimilarSiteCheckerInput, type SimilarSiteCheckerOutput } from './a
 import { type DomainHostingCheckerInput, type DomainHostingCheckerOutput } from './ai/flows/schemas/domain-hosting-checker';
 import { type FindDnsRecordsInput, type FindDnsRecordsOutput } from './ai/flows/schemas/find-dns-records';
 import { type DomainToIpInput, type DomainToIpOutput } from './ai/flows/schemas/domain-to-ip';
+import { type CheckBlacklistIpInput, type CheckBlacklistIpOutput } from './ai/flows/schemas/check-blacklist-ip';
 
 
 export async function generateMetaTagsAction(
@@ -788,5 +790,17 @@ export async function domainToIpAction(
   } catch (error) {
     console.error('Error converting domain to IP:', error);
     return { success: false, error: 'Failed to convert domain to IP. Please try again later.' };
+  }
+}
+
+export async function checkBlacklistIpAction(
+  input: CheckBlacklistIpInput
+): Promise<{ success: true, data: CheckBlacklistIpOutput } | { success: false, error: string }> {
+  try {
+    const result = await checkBlacklistIp(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking IP blacklist:', error);
+    return { success: false, error: 'Failed to check IP blacklist. Please try again later.' };
   }
 }

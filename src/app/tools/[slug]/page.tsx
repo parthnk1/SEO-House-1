@@ -63,6 +63,7 @@ import SimilarSiteChecker from '@/components/SimilarSiteChecker';
 import DomainHostingChecker from '@/components/DomainHostingChecker';
 import FindDnsRecords from '@/components/FindDnsRecords';
 import DomainToIp from '@/components/DomainToIp';
+import CheckBlacklistIp from '@/components/CheckBlacklistIp';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -215,6 +216,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <FindDnsRecords />;
       case 'domain-to-ip':
         return <DomainToIp />;
+      case 'check-blacklist-ip':
+        return <CheckBlacklistIp />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
