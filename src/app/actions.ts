@@ -55,6 +55,7 @@ import { createTrackedLink } from '@/ai/flows/link-tracker';
 import { classCIpChecker } from '@/ai/flows/class-c-ip-checker';
 import { similarSiteChecker } from '@/ai/flows/similar-site-checker';
 import { domainHostingChecker } from '@/ai/flows/domain-hosting-checker';
+import { findDnsRecords } from '@/ai/flows/find-dns-records';
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
 import { type CheckKeywordDensityInput, type CheckKeywordDensityOutput } from '@/ai/flows/check-keyword-density';
@@ -109,6 +110,7 @@ import { type CreateTrackedLinkInput, type TrackedLink } from './ai/flows/schema
 import { type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from './ai/flows/schemas/class-c-ip-checker';
 import { type SimilarSiteCheckerInput, type SimilarSiteCheckerOutput } from './ai/flows/schemas/similar-site-checker';
 import { type DomainHostingCheckerInput, type DomainHostingCheckerOutput } from './ai/flows/schemas/domain-hosting-checker';
+import { type FindDnsRecordsInput, type FindDnsRecordsOutput } from './ai/flows/schemas/find-dns-records';
 
 
 export async function generateMetaTagsAction(
@@ -759,5 +761,17 @@ export async function domainHostingCheckerAction(
   } catch (error) {
     console.error('Error checking domain hosting:', error);
     return { success: false, error: 'Failed to check domain hosting. Please try again later.' };
+  }
+}
+
+export async function findDnsRecordsAction(
+  input: FindDnsRecordsInput
+): Promise<{ success: true, data: FindDnsRecordsOutput } | { success: false, error: string }> {
+  try {
+    const result = await findDnsRecords(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error finding DNS records:', error);
+    return { success: false, error: 'Failed to find DNS records. Please try again later.' };
   }
 }

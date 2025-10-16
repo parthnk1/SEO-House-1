@@ -55,4 +55,5 @@ import '@/ai/flows/link-tracker.ts';
 import '@/ai/flows/class-c-ip-checker.ts';
 import '@/ai/flows/similar-site-checker.ts';
 import '@/ai/flows/domain-hosting-checker.ts';
+import '@/ai/flows/find-dns-records.ts';
 
