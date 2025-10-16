@@ -52,22 +52,6 @@ export default function Home() {
       <main className="container mx-auto px-4 py-8">
         <div className="bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
           
-          {/* Top Section */}
-          <section className="mb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div className="bg-primary/10 border-2 border-dashed border-primary rounded-xl p-8 flex flex-col items-center justify-center h-48 text-center">
-                  <h2 className="text-xl font-semibold text-primary">Drag & Drop Files Here</h2>
-                  <p className="text-muted-foreground mt-2">or</p>
-                   <Button variant="secondary" className="mt-4 bg-white text-primary hover:bg-white/90">
-                      Choose File
-                    </Button>
-              </div>
-              <div className="hidden md:block">
-                 {/* This could be a carousel or a grid of featured tools */}
-              </div>
-            </div>
-          </section>
-
           {/* Search Bar */}
           <section className="my-12" id="tools">
             <div className="relative max-w-2xl mx-auto">
