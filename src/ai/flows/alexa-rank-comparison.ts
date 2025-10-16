@@ -5,31 +5,12 @@
  *
  * @exports `alexaRankComparison` - An async function that takes a list of domains and returns a promise
  * resolving to a `AlexaRankComparisonOutput` object.
- * @exports `AlexaRankComparisonInput` - The input type for the `alexaRankComparison` function.
- * @exports `AlexaRankComparisonOutput` - The output type for the `alexaRankComparison` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { AlexaRankComparisonInputSchema, AlexaRankComparisonOutputSchema, type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from './schemas/alexa-rank-comparison';
 
-// Define the input schema
-export const AlexaRankComparisonInputSchema = z.object({
-  domains: z.array(z.string().min(1, 'Domain cannot be empty')).min(1, 'Please enter at least one domain.'),
-});
-export type AlexaRankComparisonInput = z.infer<typeof AlexaRankComparisonInputSchema>;
 
-const RankResultSchema = z.object({
-    domain: z.string(),
-    rank: z.number().describe('A simulated Alexa Rank.'),
-});
-
-// Define the output schema
-export const AlexaRankComparisonOutputSchema = z.object({
-  results: z.array(RankResultSchema),
-});
-export type AlexaRankComparisonOutput = z.infer<typeof AlexaRankComparisonOutputSchema>;
-
-// Define the wrapper function
 export async function alexaRankComparison(input: AlexaRankComparisonInput): Promise<AlexaRankComparisonOutput> {
   return alexaRankComparisonFlow(input);
 }

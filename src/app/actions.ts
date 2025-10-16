@@ -42,7 +42,7 @@ import { getHttpHeaders } from '@/ai/flows/get-http-headers';
 import { reverseIpLookup } from '@/ai/flows/reverse-ip-lookup';
 import { checkServerStatus } from '@/ai/flows/check-server-status';
 import { codeToTextRatioChecker } from '@/ai/flows/code-to-text-ratio-checker';
-import { alexaRankComparison, type AlexaRankComparisonOutput } from '@/ai/flows/alexa-rank-comparison';
+import { alexaRankComparison } from '@/ai/flows/alexa-rank-comparison';
 import { pageComparison, type PageComparisonOutput } from '@/ai/flows/page-comparison';
 import { spiderSimulator, type SpiderSimulatorOutput } from '@/ai/flows/spider-simulator';
 import { whoisLookup, type WhoisLookupOutput } from '@/ai/flows/whois-lookup';
@@ -94,7 +94,7 @@ import { type GetHttpHeadersInput, type GetHttpHeadersOutput } from '@/ai/flows/
 import { type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flows/schemas/reverse-ip-lookup';
 import { type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/schemas/check-server-status';
 import { type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/schemas/code-to-text-ratio-checker';
-import { type AlexaRankComparisonInput } from '@/ai/flows/alexa-rank-comparison';
+import { type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/schemas/alexa-rank-comparison';
 import { type PageComparisonInput } from '@/ai/flows/page-comparison';
 import { type SpiderSimulatorInput } from '@/ai/flows/spider-simulator';
 import { type WhoisLookupInput } from '@/ai/flows/whois-lookup';
