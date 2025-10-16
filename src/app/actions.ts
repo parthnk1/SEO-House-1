@@ -89,7 +89,7 @@ import { type UrlRewritingToolInput } from '@/ai/flows/schemas/url-rewriting-too
 import { type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/schemas/adsense-calculator';
 import { type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/schemas/open-graph-generator';
 import { type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/schemas/meta-tags-analyzer';
-import { type OpenGraphCheckerInput } from '@/ai/flows/schemas/open-graph-checker';
+import { type OpenGraphCheckerInput, type OpenGraphCheckerOutput as OpenGraphCheckerOutputFromSchema } from '@/ai/flows/schemas/open-graph-checker';
 import { type GetHttpHeadersInput } from '@/ai/flows/schemas/get-http-headers';
 import { type ReverseIpLookupInput } from '@/ai/flows/schemas/reverse-ip-lookup';
 import { type CheckServerStatusInput } from '@/ai/flows/schemas/check-server-status';
@@ -543,7 +543,7 @@ export async function metaTagsAnalyzerAction(
 
 export async function openGraphCheckerAction(
   input: OpenGraphCheckerInput
-): Promise<{ success: true, data: OpenGraphCheckerOutput } | { success: false, error: string }> {
+): Promise<{ success: true, data: OpenGraphCheckerOutputFromSchema } | { success: false, error: string }> {
   try {
     const result = await openGraphChecker(input);
     return { success: true, data: result };

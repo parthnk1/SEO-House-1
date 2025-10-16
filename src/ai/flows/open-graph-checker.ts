@@ -5,26 +5,10 @@
  *
  * @exports `openGraphChecker` - An async function that takes a URL and returns a promise
  * resolving to a `OpenGraphCheckerOutput` object.
- * @exports `OpenGraphCheckerInput` - The input type for the `openGraphChecker` function.
- * @exports `OpenGraphCheckerOutput` - The output type for the `openGraphChecker` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-export const OpenGraphCheckerInputSchema = z.object({
-  url: z.string().url().describe('The URL of the page to analyze.'),
-});
-export type OpenGraphCheckerInput = z.infer<typeof OpenGraphCheckerInputSchema>;
-
-export const OpenGraphCheckerOutputSchema = z.object({
-  ogTitle: z.string().optional().describe('The content of the `og:title` tag.'),
-  ogType: z.string().optional().describe('The content of the `og:type` tag.'),
-  ogUrl: z.string().url().optional().describe('The content of the `og:url` tag.'),
-  ogDescription: z.string().optional().describe('The content of the `og:description` tag.'),
-  ogImage: z.string().url().optional().describe('The content of the `og:image` tag.'),
-});
-export type OpenGraphCheckerOutput = z.infer<typeof OpenGraphCheckerOutputSchema>;
+import { OpenGraphCheckerInputSchema, type OpenGraphCheckerOutput, OpenGraphCheckerOutputSchema } from './schemas/open-graph-checker';
 
 export async function openGraphChecker(input: OpenGraphCheckerInput): Promise<OpenGraphCheckerOutput> {
   return openGraphCheckerFlow(input);
