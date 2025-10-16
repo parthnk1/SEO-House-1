@@ -35,8 +35,8 @@ import { websitePageSnooper, type WebsitePageSnooperOutput } from '@/ai/flows/we
 import { xmlSitemapGenerator, type XmlSitemapGeneratorOutput } from '@/ai/flows/xml-sitemap-generator';
 import { urlRewritingTool, type UrlRewritingToolOutput } from '@/ai/flows/url-rewriting-tool';
 import { adsenseCalculator } from '@/ai/flows/adsense-calculator';
-import { openGraphGenerator, type OpenGraphGeneratorOutput } from '@/ai/flows/open-graph-generator';
-import { metaTagsAnalyzer, type MetaTagsAnalyzerOutput } from '@/ai/flows/meta-tags-analyzer';
+import { openGraphGenerator } from '@/ai/flows/open-graph-generator';
+import { metaTagsAnalyzer } from '@/ai/flows/meta-tags-analyzer';
 import { openGraphChecker, type OpenGraphCheckerOutput } from '@/ai/flows/open-graph-checker';
 import { getHttpHeaders, type GetHttpHeadersOutput } from '@/ai/flows/get-http-headers';
 import { reverseIpLookup, type ReverseIpLookupOutput } from '@/ai/flows/reverse-ip-lookup';
@@ -87,8 +87,8 @@ import { type WebsitePageSnooperInput } from '@/ai/flows/schemas/website-page-sn
 import { type XmlSitemapGeneratorInput } from '@/ai/flows/schemas/xml-sitemap-generator';
 import { type UrlRewritingToolInput } from '@/ai/flows/schemas/url-rewriting-tool';
 import { type AdsenseCalculatorInput, type AdsenseCalculatorOutput } from '@/ai/flows/schemas/adsense-calculator';
-import { type OpenGraphGeneratorInput } from '@/ai/flows/schemas/open-graph-generator';
-import { type MetaTagsAnalyzerInput } from '@/ai/flows/schemas/meta-tags-analyzer';
+import { type OpenGraphGeneratorInput, type OpenGraphGeneratorOutput } from '@/ai/flows/schemas/open-graph-generator';
+import { type MetaTagsAnalyzerInput, type MetaTagsAnalyzerOutput } from '@/ai/flows/schemas/meta-tags-analyzer';
 import { type OpenGraphCheckerInput } from '@/ai/flows/schemas/open-graph-checker';
 import { type GetHttpHeadersInput } from '@/ai/flows/schemas/get-http-headers';
 import { type ReverseIpLookupInput } from '@/ai/flows/schemas/reverse-ip-lookup';
