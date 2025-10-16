@@ -5,32 +5,15 @@
  *
  * @exports `reverseIpLookup` - An async function that takes a domain and returns a promise
  * resolving to a `ReverseIpLookupOutput` object.
- * @exports `ReverseIpLookupInput` - The input type for the `reverseIpLookup` function.
- * @exports `ReverseIpLookupOutput` - The output type for the `reverseIpLookup` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
+import { type ReverseIpLookupInput, ReverseIpLookupInputSchema, type ReverseIpLookupOutput, ReverseIpLookupOutputSchema } from './schemas/reverse-ip-lookup';
 
-// Define the input schema
-export const ReverseIpLookupInputSchema = z.object({
-  domain: z.string().describe('The domain to perform a reverse IP lookup on.'),
-});
-export type ReverseIpLookupInput = z.infer<typeof ReverseIpLookupInputSchema>;
-
-// Define the output schema
-export const ReverseIpLookupOutputSchema = z.object({
-  ipAddress: z.string().ip().describe('The IP address of the domain.'),
-  domains: z.array(z.string()).describe('A list of other domains hosted on the same IP address.'),
-});
-export type ReverseIpLookupOutput = z.infer<typeof ReverseIpLookupOutputSchema>;
-
-// Define the wrapper function
 export async function reverseIpLookup(input: ReverseIpLookupInput): Promise<ReverseIpLookupOutput> {
   return reverseIpLookupFlow(input);
 }
 
-// Define the prompt
 const reverseIpLookupPrompt = ai.definePrompt({
   name: 'reverseIpLookupPrompt',
   input: {schema: ReverseIpLookupInputSchema},
@@ -43,7 +26,6 @@ Domain: {{{domain}}}
 `,
 });
 
-// Define the flow
 const reverseIpLookupFlow = ai.defineFlow(
   {
     name: 'reverseIpLookupFlow',
