@@ -64,6 +64,7 @@ import DomainHostingChecker from '@/components/DomainHostingChecker';
 import FindDnsRecords from '@/components/FindDnsRecords';
 import DomainToIp from '@/components/DomainToIp';
 import CheckBlacklistIp from '@/components/CheckBlacklistIp';
+import FindExpiredDomains from '@/components/FindExpiredDomains';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -218,6 +219,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <DomainToIp />;
       case 'check-blacklist-ip':
         return <CheckBlacklistIp />;
+      case 'find-expired-domains':
+        return <FindExpiredDomains />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

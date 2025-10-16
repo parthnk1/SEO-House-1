@@ -58,6 +58,7 @@ import { domainHostingChecker } from '@/ai/flows/domain-hosting-checker';
 import { findDnsRecords } from '@/ai/flows/find-dns-records';
 import { domainToIp } from '@/ai/flows/domain-to-ip';
 import { checkBlacklistIp } from '@/ai/flows/check-blacklist-ip';
+import { findExpiredDomains } from '@/ai/flows/find-expired-domains';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -116,6 +117,7 @@ import { type DomainHostingCheckerInput, type DomainHostingCheckerOutput } from 
 import { type FindDnsRecordsInput, type FindDnsRecordsOutput } from './ai/flows/schemas/find-dns-records';
 import { type DomainToIpInput, type DomainToIpOutput } from './ai/flows/schemas/domain-to-ip';
 import { type CheckBlacklistIpInput, type CheckBlacklistIpOutput } from './ai/flows/schemas/check-blacklist-ip';
+import { type FindExpiredDomainsInput, type FindExpiredDomainsOutput } from './ai/flows/schemas/find-expired-domains';
 
 
 export async function generateMetaTagsAction(
@@ -802,5 +804,17 @@ export async function checkBlacklistIpAction(
   } catch (error) {
     console.error('Error checking IP blacklist:', error);
     return { success: false, error: 'Failed to check IP blacklist. Please try again later.' };
+  }
+}
+
+export async function findExpiredDomainsAction(
+  input: FindExpiredDomainsInput
+): Promise<{ success: true, data: FindExpiredDomainsOutput } | { success: false, error: string }> {
+  try {
+    const result = await findExpiredDomains(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error finding expired domains:', error);
+    return { success: false, error: 'Failed to find expired domains. Please try again later.' };
   }
 }

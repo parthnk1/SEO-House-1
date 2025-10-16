@@ -58,3 +58,4 @@ import '@/ai/flows/domain-hosting-checker.ts';
 import '@/ai/flows/find-dns-records.ts';
 import '@/ai/flows/domain-to-ip.ts';
 import '@/ai/flows/check-blacklist-ip.ts';
+import '@/ai/flows/find-expired-domains.ts';
