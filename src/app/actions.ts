@@ -62,6 +62,7 @@ import { findExpiredDomains } from '@/ai/flows/find-expired-domains';
 import { bulkDomainRatingChecker } from '@/ai/flows/bulk-domain-rating-checker';
 import { indexPagesChecker } from '@/ai/flows/index-pages-checker';
 import { spamScoreChecker } from '@/ai/flows/spam-score-checker';
+import { comparisonSearch } from '@/ai/flows/comparison-search';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -124,6 +125,7 @@ import { type FindExpiredDomainsInput, type FindExpiredDomainsOutput } from './a
 import { type BulkDomainRatingCheckerInput, type BulkDomainRatingCheckerOutput } from './ai/flows/schemas/bulk-domain-rating-checker';
 import { type IndexPagesCheckerInput, type IndexPagesCheckerOutput } from './ai/flows/schemas/index-pages-checker';
 import { type SpamScoreCheckerInput, type SpamScoreCheckerOutput } from './ai/flows/schemas/spam-score-checker';
+import { type ComparisonSearchInput, type ComparisonSearchOutput } from './ai/flows/schemas/comparison-search';
 
 
 export async function generateMetaTagsAction(
@@ -859,4 +861,16 @@ export async function spamScoreCheckerAction(
         console.error('Error checking spam score:', error);
         return { success: false, error: 'Failed to check spam score. Please try again later.' };
     }
+}
+
+export async function comparisonSearchAction(
+  input: ComparisonSearchInput
+): Promise<{ success: true, data: ComparisonSearchOutput } | { success: false, error: string }> {
+  try {
+    const result = await comparisonSearch(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error performing comparison search:', error);
+    return { success: false, error: 'Failed to perform comparison search. Please try again later.' };
+  }
 }
