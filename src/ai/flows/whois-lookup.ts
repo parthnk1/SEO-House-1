@@ -7,27 +7,10 @@
  *
  * @exports `whoisLookup` - An async function that takes a domain and returns a promise
  * resolving to a `WhoisLookupOutput` object.
- * @exports `WhoisLookupInput` - The input type for the `whoisLookup` function.
- * @exports `WhoisLookupOutput` - The output type for the `whoisLookup` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-export const WhoisLookupInputSchema = z.object({
-  domain: z.string().describe('The domain to perform the WHOIS lookup on.'),
-});
-export type WhoisLookupInput = z.infer<typeof WhoisLookupInputSchema>;
-
-export const WhoisLookupOutputSchema = z.object({
-    registrar: z.string().describe('The registrar of the domain.'),
-    registrationDate: z.string().datetime().describe('The date the domain was registered.'),
-    expirationDate: z.string().datetime().describe('The date the domain will expire.'),
-    updatedDate: z.string().datetime().describe('The date the domain was last updated.'),
-    nameServers: z.array(z.string()).describe('A list of name servers for the domain.'),
-    rawText: z.string().describe('The raw WHOIS text output.'),
-});
-export type WhoisLookupOutput = z.infer<typeof WhoisLookupOutputSchema>;
+import { WhoisLookupInputSchema, WhoisLookupOutputSchema, type WhoisLookupInput, type WhoisLookupOutput } from './schemas/whois-lookup';
 
 
 export async function whoisLookup(input: WhoisLookupInput): Promise<WhoisLookupOutput> {
