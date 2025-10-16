@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, SearchCode } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useUser } from '@/firebase/auth/use-user';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -18,6 +19,7 @@ const navLinks = [
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { user, login } = useUser();
 
   const NavLink = ({ href, label }: { href: string; label: string }) => {
     const isActive = pathname === href;
@@ -25,7 +27,7 @@ export function Header() {
 
     const linkClasses = cn(
       "text-sm font-medium transition-colors",
-      isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-primary"
+      isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-primary-foreground"
     );
 
     if (isScrollLink) {
@@ -42,10 +44,12 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-[#1D2335] text-primary-foreground">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2">
-          <SearchCode className="h-7 w-7 text-primary" />
+          <div className='bg-primary p-2 rounded-lg'>
+            <SearchCode className="h-6 w-6 text-primary-foreground" />
+          </div>
           <span className="font-bold text-lg font-headline">SEO Powerhouse</span>
         </Link>
 
@@ -56,6 +60,20 @@ export function Header() {
 
         <div className="flex items-center gap-4">
            
+            {/* User Auth */}
+            {user ? (
+                 <Button variant="outline" size="sm" asChild>
+                    <Link href="/tools/link-tracker">Dashboard</Link>
+                 </Button>
+            ) : (
+                <>
+                <Button variant="ghost" size="sm" onClick={login}>Log In</Button>
+                <Button variant="secondary" size="sm" onClick={login} className='bg-white text-black hover:bg-white/90'>
+                    Sign Up
+                 </Button>
+                </>
+            )}
+
             {/* Mobile Navigation */}
             <div className="md:hidden">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -65,10 +83,12 @@ export function Header() {
                     <span className="sr-only">Open menu</span>
                 </Button>
                 </SheetTrigger>
-                <SheetContent side="right">
+                <SheetContent side="right" className="bg-[#1D2335] text-primary-foreground border-l-0">
                 <div className="flex flex-col gap-6 p-6">
                     <Link href="/" className="flex items-center gap-2 mb-4" onClick={() => setIsMobileMenuOpen(false)}>
-                        <SearchCode className="h-7 w-7 text-primary" />
+                         <div className='bg-primary p-2 rounded-lg'>
+                            <SearchCode className="h-6 w-6 text-primary-foreground" />
+                         </div>
                         <span className="font-bold text-lg font-headline">SEO Powerhouse</span>
                     </Link>
                     <nav className="flex flex-col gap-4">
