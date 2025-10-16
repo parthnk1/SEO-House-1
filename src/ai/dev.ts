@@ -67,6 +67,9 @@ import '@/ai/flows/page-authority-checker.ts';
 import '@/ai/flows/mozrank-checker.ts';
 import '@/ai/flows/google-index-checker.ts';
 import '@/ai/flows/alexa-rank-checker.ts';
+import '@/ai/flows/redirect-checker.ts';
+
+
 
 
 
