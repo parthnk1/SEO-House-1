@@ -106,7 +106,7 @@ export default function RelatedKeywordsFinder() {
             <div className="flex flex-wrap gap-2">
               {result.relatedKeywords.map((keyword, index) => (
                 <div key={index} className="group relative">
-                  <Badge variant="outline" className="text-base py-1 px-3 border-primary/30 bg-primary/10 text-primary-foreground hover:bg-primary/20 cursor-pointer">
+                  <Badge variant="outline" className="text-base py-1 px-3 border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer">
                     {keyword}
                   </Badge>
                   <Button
