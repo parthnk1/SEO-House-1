@@ -15,6 +15,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  // Conditionally render Firebase provider only if keys are present
+  const hasFirebaseConfig = !!process.env.NEXT_PUBLIC_API_KEY;
+
   return (
     <html lang="en" className="!scroll-smooth">
       <head>
@@ -25,10 +29,10 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased flex flex-col min-h-screen bg-background">
         <FirebaseClientProvider>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-          <Toaster />
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+            <Toaster />
         </FirebaseClientProvider>
       </body>
     </html>

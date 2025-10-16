@@ -17,14 +17,22 @@ export function FirebaseClientProvider({
   } | null>(null);
 
   useEffect(() => {
+    // This check is important to ensure Firebase only initializes on the client side.
     if (typeof window !== 'undefined') {
-      const firebaseServices = initializeFirebase();
-      setServices(firebaseServices);
+      try {
+        const firebaseServices = initializeFirebase();
+        setServices(firebaseServices);
+      } catch (error) {
+        console.error("Firebase initialization failed:", error);
+        // We can choose to not set services, letting the app gracefully degrade.
+      }
     }
   }, []);
 
   if (!services) {
-    return null; // Or a loading spinner
+    // Render children without Firebase context while services are loading or if initialization fails.
+    // This prevents a crash and allows non-Firebase parts of the app to render.
+    return <>{children}</>;
   }
 
   return (

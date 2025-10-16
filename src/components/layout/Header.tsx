@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, createContext, useContext } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, SearchCode } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase/auth/use-user';
+import { useFirebase } from '@/firebase';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -16,10 +17,38 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+function AuthButtons() {
+    // This will throw an error if Firebase is not configured, so we catch it.
+    try {
+        const { user, login } = useUser();
+
+        if (user) {
+            return (
+                <Button variant="outline" size="sm" asChild>
+                    <Link href="/tools/link-tracker">Dashboard</Link>
+                </Button>
+            );
+        }
+
+        return (
+            <>
+                <Button variant="ghost" size="sm" onClick={login}>Log In</Button>
+                <Button variant="secondary" size="sm" onClick={login} className='bg-white text-black hover:bg-white/90'>
+                    Sign Up
+                </Button>
+            </>
+        );
+    } catch (e) {
+        // If useFirebase() fails, it means the provider is not there.
+        // In this case, we don't render any auth buttons.
+        return null;
+    }
+}
+
+
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { user, login } = useUser();
 
   const NavLink = ({ href, label }: { href: string; label: string }) => {
     const isActive = pathname === href;
@@ -61,18 +90,7 @@ export function Header() {
         <div className="flex items-center gap-4">
            
             {/* User Auth */}
-            {user ? (
-                 <Button variant="outline" size="sm" asChild>
-                    <Link href="/tools/link-tracker">Dashboard</Link>
-                 </Button>
-            ) : (
-                <>
-                <Button variant="ghost" size="sm" onClick={login}>Log In</Button>
-                <Button variant="secondary" size="sm" onClick={login} className='bg-white text-black hover:bg-white/90'>
-                    Sign Up
-                 </Button>
-                </>
-            )}
+            <AuthButtons />
 
             {/* Mobile Navigation */}
             <div className="md:hidden">
