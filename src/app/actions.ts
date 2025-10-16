@@ -60,6 +60,7 @@ import { domainToIp } from '@/ai/flows/domain-to-ip';
 import { checkBlacklistIp } from '@/ai/flows/check-blacklist-ip';
 import { findExpiredDomains } from '@/ai/flows/find-expired-domains';
 import { bulkDomainRatingChecker } from '@/ai/flows/bulk-domain-rating-checker';
+import { indexPagesChecker } from '@/ai/flows/index-pages-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -120,6 +121,7 @@ import { type DomainToIpInput, type DomainToIpOutput } from './ai/flows/schemas/
 import { type CheckBlacklistIpInput, type CheckBlacklistIpOutput } from './ai/flows/schemas/check-blacklist-ip';
 import { type FindExpiredDomainsInput, type FindExpiredDomainsOutput } from './ai/flows/schemas/find-expired-domains';
 import { type BulkDomainRatingCheckerInput, type BulkDomainRatingCheckerOutput } from './ai/flows/schemas/bulk-domain-rating-checker';
+import { type IndexPagesCheckerInput, type IndexPagesCheckerOutput } from './ai/flows/schemas/index-pages-checker';
 
 
 export async function generateMetaTagsAction(
@@ -832,3 +834,15 @@ export async function bulkDomainRatingCheckerAction(
       return { success: false, error: 'Failed to check bulk domain ratings. Please try again later.' };
     }
   }
+
+export async function indexPagesCheckerAction(
+    input: IndexPagesCheckerInput
+    ): Promise<{ success: true, data: IndexPagesCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await indexPagesChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking indexed pages:', error);
+        return { success: false, error: 'Failed to check indexed pages. Please try again later.' };
+    }
+}
