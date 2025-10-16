@@ -65,6 +65,8 @@ import '@/ai/flows/spam-score-checker.ts';
 import '@/ai/flows/comparison-search.ts';
 import '@/ai/flows/page-authority-checker.ts';
 import '@/ai/flows/mozrank-checker.ts';
+import '@/ai/flows/google-index-checker.ts';
+
 
 
 

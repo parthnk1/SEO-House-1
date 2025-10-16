@@ -154,6 +154,7 @@ const websiteManagementTools: Tool[] = [
 ];
 
 const websiteTrackingTools: Tool[] = [
+    { name: 'Google Index Checker', slug: 'google-index-checker', description: 'Check if your pages are indexed by Google.', category: 'Website Tracking Tools', icon: Search },
     { name: 'Reverse IP Lookup', slug: 'reverse-ip-lookup', description: 'Find domains hosted on the same IP address.', category: 'Website Tracking Tools', icon: Locate },
     { name: 'Check Server Status', slug: 'check-server-status', description: 'Check the status of your web server.', category: 'Website Tracking Tools', icon: Server },
     { name: 'Class C IP Checker', slug: 'class-c-ip-checker', description: 'Check the Class C IP of a domain.', category: 'Website Tracking Tools', icon: Network },
@@ -166,7 +167,6 @@ const websiteTrackingTools: Tool[] = [
     { name: 'Whois Lookup', slug: 'whois-lookup', description: 'Get WHOIS information for any domain.', category: 'Website Tracking Tools', icon: Info },
     { name: 'Mozrank Checker', slug: 'mozrank-checker', description: 'Check the MozRank of any URL.', category: 'Website Tracking Tools', icon: BarChart3 },
     { name: 'Page Authority Checker', slug: 'page-authority-checker', description: 'Check the Page Authority of a web page.', category: 'Website Tracking Tools', icon: BarChart4 },
-    { name: 'Google Index Checker', slug: 'google-index-checker', description: 'Check if your pages are indexed by Google.', category: 'Website Tracking Tools', icon: Search },
     { name: 'Alexa Rank Checker', slug: 'alexa-rank-checker', description: 'Check the Alexa rank of any website.', category: 'Website Tracking Tools', icon: BarChart },
     { name: 'Redirect Checker', slug: 'redirect-checker', description: 'Check the redirects of any URL.', category: 'Website Tracking Tools', icon: ArrowRight },
     { name: 'Similar Site Checker', slug: 'similar-site-checker', description: 'Find websites similar to yours.', category: 'Website Tracking Tools', icon: Copy },

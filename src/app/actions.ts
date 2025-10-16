@@ -65,6 +65,7 @@ import { spamScoreChecker } from '@/ai/flows/spam-score-checker';
 import { comparisonSearch } from '@/ai/flows/comparison-search';
 import { pageAuthorityChecker } from '@/ai/flows/page-authority-checker';
 import { mozrankChecker } from '@/ai/flows/mozrank-checker';
+import { googleIndexChecker } from '@/ai/flows/google-index-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -130,6 +131,7 @@ import { type SpamScoreCheckerInput, type SpamScoreCheckerOutput } from './ai/fl
 import { type ComparisonSearchInput, type ComparisonSearchOutput } from './ai/flows/schemas/comparison-search';
 import { type PageAuthorityCheckerInput, type PageAuthorityCheckerOutput } from './ai/flows/schemas/page-authority-checker';
 import { type MozrankCheckerInput, type MozrankCheckerOutput } from './ai/flows/schemas/mozrank-checker';
+import { type GoogleIndexCheckerInput, type GoogleIndexCheckerOutput } from './ai/flows/schemas/google-index-checker';
 
 
 export async function generateMetaTagsAction(
@@ -901,4 +903,16 @@ export async function mozrankCheckerAction(
     console.error('Error checking MozRank:', error);
     return { success: false, error: 'Failed to check MozRank. Please try again later.' };
   }
+}
+
+export async function googleIndexCheckerAction(
+    input: GoogleIndexCheckerInput
+): Promise<{ success: true, data: GoogleIndexCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await googleIndexChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking Google index:', error);
+        return { success: false, error: 'Failed to check Google index. Please try again later.' };
+    }
 }
