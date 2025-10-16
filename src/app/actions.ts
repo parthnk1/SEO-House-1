@@ -63,6 +63,7 @@ import { bulkDomainRatingChecker } from '@/ai/flows/bulk-domain-rating-checker';
 import { indexPagesChecker } from '@/ai/flows/index-pages-checker';
 import { spamScoreChecker } from '@/ai/flows/spam-score-checker';
 import { comparisonSearch } from '@/ai/flows/comparison-search';
+import { pageAuthorityChecker } from '@/ai/flows/page-authority-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -126,6 +127,7 @@ import { type BulkDomainRatingCheckerInput, type BulkDomainRatingCheckerOutput }
 import { type IndexPagesCheckerInput, type IndexPagesCheckerOutput } from './ai/flows/schemas/index-pages-checker';
 import { type SpamScoreCheckerInput, type SpamScoreCheckerOutput } from './ai/flows/schemas/spam-score-checker';
 import { type ComparisonSearchInput, type ComparisonSearchOutput } from './ai/flows/schemas/comparison-search';
+import { type PageAuthorityCheckerInput, type PageAuthorityCheckerOutput } from './ai/flows/schemas/page-authority-checker';
 
 
 export async function generateMetaTagsAction(
@@ -872,5 +874,17 @@ export async function comparisonSearchAction(
   } catch (error) {
     console.error('Error performing comparison search:', error);
     return { success: false, error: 'Failed to perform comparison search. Please try again later.' };
+  }
+}
+
+export async function pageAuthorityCheckerAction(
+  input: PageAuthorityCheckerInput
+): Promise<{ success: true, data: PageAuthorityCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await pageAuthorityChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking page authority:', error);
+    return { success: false, error: 'Failed to check page authority. Please try again later.' };
   }
 }
