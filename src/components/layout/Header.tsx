@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, createContext, useContext } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
@@ -79,7 +79,7 @@ export function Header() {
           <div className='bg-primary p-2 rounded-lg'>
             <SearchCode className="h-6 w-6 text-primary-foreground" />
           </div>
-          <span className="font-bold text-lg font-headline">SEO Powerhouse</span>
+          <span className="font-bold text-lg font-headline">Free SEO Tools</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -107,7 +107,7 @@ export function Header() {
                          <div className='bg-primary p-2 rounded-lg'>
                             <SearchCode className="h-6 w-6 text-primary-foreground" />
                          </div>
-                        <span className="font-bold text-lg font-headline">SEO Powerhouse</span>
+                        <span className="font-bold text-lg font-headline">Free SEO Tools</span>
                     </Link>
                     <nav className="flex flex-col gap-4">
                         {navLinks.map(link => <NavLink key={link.href} {...link} />)}

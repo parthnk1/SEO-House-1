@@ -52,6 +52,21 @@ export default function Home() {
       <main className="container mx-auto px-4 py-8">
         <div className="bg-white/70 backdrop-blur-sm p-8 rounded-2xl shadow-lg">
           
+          {/* Hero Section */}
+          <section className="text-center my-16">
+            <h1 className="text-4xl md:text-6xl font-bold font-headline text-primary">Free SEO Tools, All in One Place</h1>
+            <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              Analyze, Practise, Rank — Fast And Free.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Button asChild size="lg">
+                <Link href="/#tools">
+                  Explore Tools <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+          </section>
+
           {/* Search Bar */}
           <section className="my-12" id="tools">
             <div className="relative max-w-2xl mx-auto">
