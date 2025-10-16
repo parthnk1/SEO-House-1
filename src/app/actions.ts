@@ -59,6 +59,7 @@ import { findDnsRecords } from '@/ai/flows/find-dns-records';
 import { domainToIp } from '@/ai/flows/domain-to-ip';
 import { checkBlacklistIp } from '@/ai/flows/check-blacklist-ip';
 import { findExpiredDomains } from '@/ai/flows/find-expired-domains';
+import { bulkDomainRatingChecker } from '@/ai/flows/bulk-domain-rating-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -118,6 +119,7 @@ import { type FindDnsRecordsInput, type FindDnsRecordsOutput } from './ai/flows/
 import { type DomainToIpInput, type DomainToIpOutput } from './ai/flows/schemas/domain-to-ip';
 import { type CheckBlacklistIpInput, type CheckBlacklistIpOutput } from './ai/flows/schemas/check-blacklist-ip';
 import { type FindExpiredDomainsInput, type FindExpiredDomainsOutput } from './ai/flows/schemas/find-expired-domains';
+import { type BulkDomainRatingCheckerInput, type BulkDomainRatingCheckerOutput } from './ai/flows/schemas/bulk-domain-rating-checker';
 
 
 export async function generateMetaTagsAction(
@@ -818,3 +820,15 @@ export async function findExpiredDomainsAction(
     return { success: false, error: 'Failed to find expired domains. Please try again later.' };
   }
 }
+
+export async function bulkDomainRatingCheckerAction(
+    input: BulkDomainRatingCheckerInput
+  ): Promise<{ success: true, data: BulkDomainRatingCheckerOutput } | { success: false, error: string }> {
+    try {
+      const result = await bulkDomainRatingChecker(input);
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('Error checking bulk domain ratings:', error);
+      return { success: false, error: 'Failed to check bulk domain ratings. Please try again later.' };
+    }
+  }

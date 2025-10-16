@@ -59,3 +59,5 @@ import '@/ai/flows/find-dns-records.ts';
 import '@/ai/flows/domain-to-ip.ts';
 import '@/ai/flows/check-blacklist-ip.ts';
 import '@/ai/flows/find-expired-domains.ts';
+import '@/ai/flows/bulk-domain-rating-checker.ts';
+
