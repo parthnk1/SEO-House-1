@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -5,25 +6,12 @@
  *
  * @exports `codeToTextRatioChecker` - An async function that takes a URL and returns a promise
  * resolving to a `CodeToTextRatioCheckerOutput` object.
- * @exports `CodeToTextRatioCheckerInput` - The input type for the `codeToTextRatioChecker` function.
- * @exports `CodeToTextRatioCheckerOutput` - The output type for the `codeToTextRatioChecker` function.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { CodeToTextRatioCheckerInputSchema, CodeToTextRatioCheckerOutputSchema, type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from './schemas/code-to-text-ratio-checker';
 
-export const CodeToTextRatioCheckerInputSchema = z.object({
-  url: z.string().url().describe('The URL of the webpage to analyze.'),
-});
-export type CodeToTextRatioCheckerInput = z.infer<typeof CodeToTextRatioCheckerInputSchema>;
-
-export const CodeToTextRatioCheckerOutputSchema = z.object({
-  textRatio: z.number().describe('The percentage of text on the page.'),
-  codeSize: z.number().describe('The size of the HTML code in bytes.'),
-  textSize: z.number().describe('The size of the visible text in bytes.'),
-  totalSize: z.number().describe('The total size of the page in bytes.'),
-});
-export type CodeToTextRatioCheckerOutput = z.infer<typeof CodeToTextRatioCheckerOutputSchema>;
 
 export async function codeToTextRatioChecker(input: CodeToTextRatioCheckerInput): Promise<CodeToTextRatioCheckerOutput> {
   return codeToTextRatioCheckerFlow(input);
