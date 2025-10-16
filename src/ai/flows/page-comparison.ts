@@ -5,31 +5,10 @@
  *
  * @exports `pageComparison` - An async function that takes two URLs and returns a promise
  * resolving to a `PageComparisonOutput` object.
- * @exports `PageComparisonInput` - The input type for the `pageComparison` function.
- * @exports `PageComparisonOutput` - The output type for the `pageComparison` function.
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-export const PageComparisonInputSchema = z.object({
-  url1: z.string().url(),
-  url2: z.string().url(),
-});
-export type PageComparisonInput = z.infer<typeof PageComparisonInputSchema>;
-
-const PageDataSchema = z.object({
-    title: z.string().describe('The title of the page.'),
-    description: z.string().describe('The meta description of the page.'),
-    wordCount: z.number().describe('The total word count of the page.'),
-    imageCount: z.number().describe('The number of images on the page.'),
-});
-
-export const PageComparisonOutputSchema = z.object({
-  page1: PageDataSchema.describe('The analysis of the first URL.'),
-  page2: PageDataSchema.describe('The analysis of the second URL.'),
-});
-export type PageComparisonOutput = z.infer<typeof PageComparisonOutputSchema>;
+import { PageComparisonInputSchema, PageComparisonOutputSchema, type PageComparisonInput, type PageComparisonOutput } from './schemas/page-comparison';
 
 
 export async function pageComparison(input: PageComparisonInput): Promise<PageComparisonOutput> {
