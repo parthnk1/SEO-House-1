@@ -53,6 +53,7 @@ import { domainIpLookup } from '@/ai/flows/domain-ip-lookup';
 import { essayChecker } from '@/ai/flows/essay-checker';
 import { createTrackedLink } from '@/ai/flows/link-tracker';
 import { classCIpChecker } from '@/ai/flows/class-c-ip-checker';
+import { similarSiteChecker } from '@/ai/flows/similar-site-checker';
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
 import { type CheckKeywordDensityInput, type CheckKeywordDensityOutput } from '@/ai/flows/check-keyword-density';
@@ -99,12 +100,13 @@ import { type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/
 import { type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/schemas/spider-simulator';
 import { type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/schemas/whois-lookup';
 import { type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from './ai/flows/schemas/google-cache-checker';
-import { type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from './schemas/domain-age-checker';
-import { type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from './schemas/domain-authority-checker';
-import { type DomainIpLookupInput, type DomainIpLookupOutput } from './schemas/domain-ip-lookup';
-import { type EssayCheckerInput, type EssayCheckerOutput } from './schemas/essay-checker';
-import { type CreateTrackedLinkInput, type TrackedLink } from './schemas/link-tracker';
-import { type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from './schemas/class-c-ip-checker';
+import { type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from './ai/flows/schemas/domain-age-checker';
+import { type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from './ai/flows/schemas/domain-authority-checker';
+import { type DomainIpLookupInput, type DomainIpLookupOutput } from './ai/flows/schemas/domain-ip-lookup';
+import { type EssayCheckerInput, type EssayCheckerOutput } from './ai/flows/schemas/essay-checker';
+import { type CreateTrackedLinkInput, type TrackedLink } from './ai/flows/schemas/link-tracker';
+import { type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from './ai/flows/schemas/class-c-ip-checker';
+import { type SimilarSiteCheckerInput, type SimilarSiteCheckerOutput } from './ai/flows/schemas/similar-site-checker';
 
 
 export async function generateMetaTagsAction(
@@ -731,5 +733,17 @@ export async function classCIpCheckerAction(
   } catch (error) {
     console.error('Error checking Class C IP:', error);
     return { success: false, error: 'Failed to check Class C IP. Please try again later.' };
+  }
+}
+
+export async function similarSiteCheckerAction(
+  input: SimilarSiteCheckerInput
+): Promise<{ success: true, data: SimilarSiteCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await similarSiteChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking similar sites:', error);
+    return { success: false, error: 'Failed to find similar sites. Please try again later.' };
   }
 }

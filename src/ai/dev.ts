@@ -53,3 +53,4 @@ import '@/ai/flows/domain-ip-lookup.ts';
 import '@/ai/flows/essay-checker.ts';
 import '@/ai/flows/link-tracker.ts';
 import '@/ai/flows/class-c-ip-checker.ts';
+import '@/ai/flows/similar-site-checker.ts';
