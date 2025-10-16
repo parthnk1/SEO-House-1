@@ -10,19 +10,7 @@
  */
 
 import {ai} from '@/ai/genkit';
-import {z} from 'genkit';
-
-export const DomainAuthorityCheckerInputSchema = z.object({
-  domain: z.string().describe('The domain to check the authority of.'),
-});
-export type DomainAuthorityCheckerInput = z.infer<typeof DomainAuthorityCheckerInputSchema>;
-
-export const DomainAuthorityCheckerOutputSchema = z.object({
-  domainAuthority: z.number().min(0).max(100).describe('A simulated Domain Authority score from 0 to 100.'),
-  linkingDomains: z.number().describe('The simulated number of unique domains linking to this site.'),
-  totalBacklinks: z.number().describe('The simulated total number of backlinks.'),
-});
-export type DomainAuthorityCheckerOutput = z.infer<typeof DomainAuthorityCheckerOutputSchema>;
+import { DomainAuthorityCheckerInputSchema, DomainAuthorityCheckerOutputSchema, type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from './schemas/domain-authority-checker';
 
 export async function domainAuthorityChecker(input: DomainAuthorityCheckerInput): Promise<DomainAuthorityCheckerOutput> {
   return domainAuthorityCheckerFlow(input);

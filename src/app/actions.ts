@@ -46,13 +46,13 @@ import { alexaRankComparison } from '@/ai/flows/alexa-rank-comparison';
 import { pageComparison } from '@/ai/flows/page-comparison';
 import { spiderSimulator } from '@/ai/flows/spider-simulator';
 import { whoisLookup } from '@/ai/flows/whois-lookup';
-import { googleCacheChecker, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
-import { domainAgeChecker, type DomainAgeCheckerOutput } from '@/ai/flows/domain-age-checker';
-import { domainAuthorityChecker, type DomainAuthorityCheckerOutput } from '@/ai/flows/domain-authority-checker';
-import { domainIpLookup, type DomainIpLookupOutput } from '@/ai/flows/domain-ip-lookup';
-import { essayChecker, type EssayCheckerOutput } from '@/ai/flows/essay-checker';
+import { googleCacheChecker } from '@/ai/flows/google-cache-checker';
+import { domainAgeChecker } from '@/ai/flows/domain-age-checker';
+import { domainAuthorityChecker } from '@/ai/flows/domain-authority-checker';
+import { domainIpLookup } from '@/ai/flows/domain-ip-lookup';
+import { essayChecker } from '@/ai/flows/essay-checker';
 import { createTrackedLink } from '@/ai/flows/link-tracker';
-import { classCIpChecker, type ClassCIpCheckerOutput } from '@/ai/flows/class-c-ip-checker';
+import { classCIpChecker } from '@/ai/flows/class-c-ip-checker';
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
 import { type CheckKeywordDensityInput, type CheckKeywordDensityOutput } from '@/ai/flows/check-keyword-density';
@@ -98,13 +98,13 @@ import { type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@
 import { type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/schemas/page-comparison';
 import { type SpiderSimulatorInput, type SpiderSimulatorOutput } from '@/ai/flows/schemas/spider-simulator';
 import { type WhoisLookupInput, type WhoisLookupOutput } from '@/ai/flows/schemas/whois-lookup';
-import { type GoogleCacheCheckerInput } from '@/ai/flows/google-cache-checker';
-import { type DomainAgeCheckerInput } from '@/ai/flows/domain-age-checker';
-import { type DomainAuthorityCheckerInput } from '@/ai/flows/domain-authority-checker';
-import { type DomainIpLookupInput } from '@/ai/flows/domain-ip-lookup';
-import { type EssayCheckerInput } from '@/ai/flows/essay-checker';
-import { type CreateTrackedLinkInput, type TrackedLink } from '@/ai/flows/link-tracker';
-import { type ClassCIpCheckerInput } from '@/ai/flows/class-c-ip-checker';
+import { type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from '@/ai/flows/google-cache-checker';
+import { type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from './schemas/domain-age-checker';
+import { type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from './schemas/domain-authority-checker';
+import { type DomainIpLookupInput, type DomainIpLookupOutput } from './schemas/domain-ip-lookup';
+import { type EssayCheckerInput, type EssayCheckerOutput } from './schemas/essay-checker';
+import { type CreateTrackedLinkInput, type TrackedLink } from './schemas/link-tracker';
+import { type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from './schemas/class-c-ip-checker';
 
 
 export async function generateMetaTagsAction(
