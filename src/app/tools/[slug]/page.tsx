@@ -82,6 +82,7 @@ import CheckGzipCompression from '@/components/CheckGzipCompression';
 import SslChecker from '@/components/SslChecker';
 import FindBlogSites from '@/components/FindBlogSites';
 import AppsRankTrackingTool from '@/components/AppsRankTrackingTool';
+import DomainNameSearch from '@/components/DomainNameSearch';
 
 const toolContent: Record<string, { title: string; content: string }> = {
     'meta-tag-generator': {
@@ -758,6 +759,15 @@ const toolContent: Record<string, { title: string; content: string }> = {
             <h2 class="font-headline text-primary">How to Generate Redirect Code</h2>
             <p>Our \`.htaccess\` Redirect Generator provides a simple form to create your code. First, select the type of redirect you need. Then, enter your old URL and your new URL. Click "Generate Code," and the tool will produce the exact snippet of code you need. Simply copy this code and paste it into the \`.htaccess\` file in your website's root directory. This ensures that you are properly forwarding your traffic and preserving your hard-earned link equity during any website transition.</p>
         `
+    },
+    'domain-name-search': {
+        title: 'Find Your Perfect Domain with Our Domain Name Search Tool',
+        content: `
+            <p>Your domain name is the cornerstone of your online identity. It's your address on the internet, the first thing customers see, and a critical part of your brand. Finding a name that is short, memorable, and relevant to your business can be a daunting task, especially with millions of domains already registered. A Domain Name Search tool is your creative partner in this crucial first step, helping you brainstorm ideas and instantly check for availability.</p>
+            <p>A great domain name can have a significant impact on your success. It enhances brand recall, builds credibility, and can even provide a slight SEO advantage if it contains relevant keywords. Our tool is designed to spark creativity by suggesting variations, combinations, and alternative TLDs (Top-Level Domains) like .io, .co, or .ai, which are becoming increasingly popular for tech startups and creative projects. Don't settle for a long, clunky domain; find one that resonates with your brand and is easy for customers to find.</p>
+            <h2 class="font-headline text-primary">How to Find Available Domains</h2>
+            <p>Using our Domain Name Search tool is simple. Start by entering a keyword, a phrase, or your business name. Our AI will generate a list of potential domain names based on your input. You'll see which domains are likely available and which are taken, saving you the time of checking them one by one. For each available domain, we provide a direct link to a registrar so you can secure your name immediately. Use this tool to move from idea to ownership and lay the foundation for your online presence.</p>
+        `
     }
 };
 
@@ -964,6 +974,8 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <FindBlogSites />;
       case 'apps-rank-tracking-tool':
         return <AppsRankTrackingTool />;
+      case 'domain-name-search':
+        return <DomainNameSearch />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">

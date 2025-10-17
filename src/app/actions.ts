@@ -75,6 +75,7 @@ import { checkGzipCompression } from '@/ai/flows/check-gzip-compression';
 import { sslChecker } from '@/ai/flows/ssl-checker';
 import { findBlogSites } from '@/ai/flows/find-blog-sites';
 import { appsRankTrackingTool } from '@/ai/flows/apps-rank-tracking-tool';
+import { domainNameSearch } from '@/ai/flows/domain-name-search';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -150,6 +151,7 @@ import { type CheckGzipCompressionInput, type CheckGzipCompressionOutput } from 
 import { type SslCheckerInput, type SslCheckerOutput } from './ai/flows/schemas/ssl-checker';
 import { type FindBlogSitesInput, type FindBlogSitesOutput } from './ai/flows/schemas/find-blog-sites';
 import { type AppsRankTrackingToolInput, type AppsRankTrackingToolOutput } from './ai/flows/schemas/apps-rank-tracking-tool';
+import { type DomainNameSearchInput, type DomainNameSearchOutput } from './ai/flows/schemas/domain-name-search';
 
 
 export async function generateMetaTagsAction(
@@ -1041,4 +1043,16 @@ export async function appsRankTrackingToolAction(
     console.error('Error tracking app rank:', error);
     return { success: false, error: 'Failed to track app rank. Please try again later.' };
   }
+}
+
+export async function domainNameSearchAction(
+    input: DomainNameSearchInput
+  ): Promise<{ success: true, data: DomainNameSearchOutput } | { success: false, error: string }> {
+    try {
+      const result = await domainNameSearch(input);
+      return { success: true, data: result };
+    } catch (error) {
+      console.error('Error searching for domain name:', error);
+      return { success: false, error: 'Failed to search for domain name. Please try again later.' };
+    }
 }

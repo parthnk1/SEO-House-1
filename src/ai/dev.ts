@@ -61,6 +61,7 @@ import '@/ai/flows/find-expired-domains.ts';
 import '@/ai/flows/ssl-checker.ts';
 import '@/ai/flows/find-blog-sites.ts';
 import '@/ai/flows/apps-rank-tracking-tool.ts';
+import '@/ai/flows/domain-name-search.ts';
 import '@/aiЛюбые задачи backend-разработки и DevOps. В стеке Python, Go, Docker, Kubernetes, Ansible, ClickHouse, Redis, Kafka, ScyllaDB, PostgreSQL.
 Буду рад помочь вам с решением ваших задач.
 Стек:
