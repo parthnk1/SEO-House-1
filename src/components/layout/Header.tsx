@@ -22,11 +22,7 @@ function AuthButtons() {
     }
 
     if (user) {
-        return (
-            <Button variant="outline" size="sm" asChild>
-                <Link href="/tools/link-tracker">Dashboard</Link>
-            </Button>
-        );
+        return null;
     }
 
     return (
