@@ -35,25 +35,15 @@ export function FirebaseProvider({
 }
 
 export const useFirebase = () => {
-  const context = useContext(FirebaseContext);
-  if (context === undefined) {
-    throw new Error('useFirebase must be used within a FirebaseProvider');
-  }
-  return context;
+  return useContext(FirebaseContext);
 };
 
 export const useFirebaseApp = () => {
-  const context = useFirebase();
-  if (!context) throw new Error('Firebase not initialized');
-  return context.app;
+  return useFirebase()?.app ?? null;
 }
 export const useAuth = () => {
-    const context = useFirebase();
-    if (!context) throw new Error('Firebase not initialized');
-    return context.auth;
+    return useFirebase()?.auth ?? null;
 };
 export const useFirestore = () => {
-    const context = useFirebase();
-    if (!context) throw new Error('Firebase not initialized');
-    return context.firestore;
+    return useFirebase()?.firestore ?? null;
 };

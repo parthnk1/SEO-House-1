@@ -7,11 +7,10 @@ import {
     signInWithPopup,
   } from 'firebase/auth';
   import { useEffect, useState } from 'react';
-  import { useFirebase } from '@/firebase';
+  import { useAuth } from '@/firebase';
   
   export const useUser = () => {
-    const firebase = useFirebase();
-    const auth = firebase?.auth;
+    const auth = useAuth();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
   
@@ -41,6 +40,6 @@ import {
       }
     };
   
-    return { user, loading, firebaseAvailable: !!firebase, login };
+    return { user, loading, firebaseAvailable: !!auth, login };
   };
   
