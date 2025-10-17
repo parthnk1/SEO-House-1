@@ -72,6 +72,8 @@ import { cloakingChecker } from '@/ai/flows/cloaking-checker';
 import { googleMalwareChecker } from '@/ai/flows/google-malware-checker';
 import { findFacebookId } from '@/ai/flows/find-facebook-id';
 import { checkGzipCompression } from '@/ai/flows/check-gzip-compression';
+import { sslChecker } from '@/ai/flows/ssl-checker';
+import { findBlogSites } from '@/ai/flows/find-blog-sites';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -144,6 +146,8 @@ import { type CloakingCheckerInput, type CloakingCheckerOutput } from './ai/flow
 import { type GoogleMalwareCheckerInput, type GoogleMalwareCheckerOutput } from './ai/flows/schemas/google-malware-checker';
 import { type FindFacebookIdInput, type FindFacebookIdOutput } from './ai/flows/schemas/find-facebook-id';
 import { type CheckGzipCompressionInput, type CheckGzipCompressionOutput } from './ai/flows/schemas/check-gzip-compression';
+import { type SslCheckerInput, type SslCheckerOutput } from './ai/flows/schemas/ssl-checker';
+import { type FindBlogSitesInput, type FindBlogSitesOutput } from './ai/flows/schemas/find-blog-sites';
 
 
 export async function generateMetaTagsAction(
@@ -998,5 +1002,29 @@ export async function checkGzipCompressionAction(
   } catch (error) {
     console.error('Error checking GZIP compression:', error);
     return { success: false, error: 'Failed to check GZIP compression. Please try again later.' };
+  }
+}
+
+export async function sslCheckerAction(
+  input: SslCheckerInput
+): Promise<{ success: true, data: SslCheckerOutput } | { success: false, error: string }> {
+  try {
+    const result = await sslChecker(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking SSL certificate:', error);
+    return { success: false, error: 'Failed to check SSL certificate. Please try again later.' };
+  }
+}
+
+export async function findBlogSitesAction(
+  input: FindBlogSitesInput
+): Promise<{ success: true, data: FindBlogSitesOutput } | { success: false, error: string }> {
+  try {
+    const result = await findBlogSites(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error finding blog sites:', error);
+    return { success: false, error: 'Failed to find blog sites. Please try again later.' };
   }
 }

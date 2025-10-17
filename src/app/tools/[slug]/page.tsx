@@ -78,6 +78,8 @@ import CloakingChecker from '@/components/CloakingChecker';
 import GoogleMalwareChecker from '@/components/GoogleMalwareChecker';
 import FindFacebookId from '@/components/FindFacebookId';
 import CheckGzipCompression from '@/components/CheckGzipCompression';
+import SslChecker from '@/components/SslChecker';
+import FindBlogSites from '@/components/FindBlogSites';
 
 type ToolPageProps = {
   params: { slug: string };
@@ -260,6 +262,10 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <FindFacebookId />;
       case 'check-gzip-compression':
         return <CheckGzipCompression />;
+      case 'ssl-checker':
+        return <SslChecker />;
+      case 'find-blog-sites':
+        return <FindBlogSites />;
       default:
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 border-2 border-dashed rounded-xl h-96 bg-card">
