@@ -12,6 +12,15 @@ export const metadata: Metadata = {
 
 const placeholderArticles = [
   {
+    slug: 'unlocking-digital-success-with-free-seo-tools',
+    title: 'Unlock Your Digital Success with the Power of Free SEO Tools',
+    description: 'In the competitive digital landscape, leveraging the right tools is not just an advantage; it’s a necessity. This article explores how free SEO tools can revolutionize your online strategy and drive growth.',
+    author: 'Alex Johnson',
+    date: 'November 2, 2023',
+    imageHint: 'digital strategy',
+    imageUrl: 'https://picsum.photos/seed/blog5/400/250',
+  },
+  {
     slug: 'mastering-keyword-research-in-2024',
     title: 'Mastering Keyword Research in 2024',
     description: 'A deep dive into modern keyword research techniques that will get you ahead of the competition.',
