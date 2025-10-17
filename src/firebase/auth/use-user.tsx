@@ -13,6 +13,7 @@ import {
     const auth = useAuth();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const firebaseAvailable = !!auth;
   
     useEffect(() => {
         if (!auth) {
@@ -40,6 +41,6 @@ import {
       }
     };
   
-    return { user, loading, firebaseAvailable: !!auth, login };
+    return { user, loading, firebaseAvailable, login };
   };
   

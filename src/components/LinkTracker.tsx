@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Loader2, Plus, Trash2, Copy, BarChart, ExternalLink, Calendar } from 'lucide-react';
+import { Loader2, Plus, Trash2, Copy, BarChart, ExternalLink, Calendar, AlertCircle } from 'lucide-react';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,6 +25,7 @@ import {
 import { useFirestore, useUser, useCollection } from '@/firebase';
 import { addDoc, collection, serverTimestamp, doc, deleteDoc, query, where } from 'firebase/firestore';
 import { formatDistanceToNow } from 'date-fns';
+import { Alert, AlertTitle, AlertDescription } from './ui/alert';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -36,12 +37,17 @@ type FormData = z.infer<typeof formSchema>;
 export default function LinkTracker() {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { user, login } = useUser();
+  const { user, firebaseAvailable, login } = useUser();
   const firestore = useFirestore();
 
-  const linksCollectionRef = firestore ? collection(firestore, 'trackedLinks') : null;
+  const linksCollectionRef = user && firestore ? collection(firestore, 'trackedLinks') : null;
   const userLinksQuery = user && linksCollectionRef ? query(linksCollectionRef, where("userId", "==", user.uid)) : null;
-  const { data: links, loading: linksLoading } = useCollection(userLinksQuery);
+  
+  // The useCollection hook needs to be called conditionally based on whether userLinksQuery is null.
+  // We can't call hooks conditionally at the top level, so we'll wrap it.
+  const useUserCollection = (query) => useCollection(query);
+  const { data: links, loading: linksLoading } = useUserCollection(userLinksQuery);
+
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -88,6 +94,25 @@ export default function LinkTracker() {
     const url = `${window.location.origin}/track/${linkId}`;
     navigator.clipboard.writeText(url);
     toast({ title: "Tracking URL copied to clipboard!" });
+  }
+
+  if (!firebaseAvailable) {
+    return (
+        <Card className="shadow-lg bg-background">
+             <CardHeader>
+                <CardTitle>Link Tracker</CardTitle>
+             </CardHeader>
+             <CardContent>
+                <Alert variant="destructive">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertTitle>Firebase Not Configured</AlertTitle>
+                    <AlertDescription>
+                        This feature requires Firebase to be configured. Please set up your Firebase project to use the Link Tracker.
+                    </AlertDescription>
+                </Alert>
+             </CardContent>
+        </Card>
+    );
   }
 
   if (!user) {
