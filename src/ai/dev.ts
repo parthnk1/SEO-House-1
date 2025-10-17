@@ -1,3 +1,4 @@
+
 'use server';
 
 import '@/ai/flows/generate-meta-tags.ts';
@@ -50,7 +51,6 @@ import '@/ai/flows/domain-age-checker.ts';
 import '@/ai/flows/domain-authority-checker.ts';
 import '@/ai/flows/domain-ip-lookup.ts';
 import '@/ai/flows/essay-checker.ts';
-import '@/ai/flows/link-tracker.ts';
 import '@/ai/flows/class-c-ip-checker.ts';
 import '@/ai/flows/similar-site-checker.ts';
 import '@/ai/flows/domain-hosting-checker.ts';
@@ -62,6 +62,7 @@ import '@/ai/flows/ssl-checker.ts';
 import '@/ai/flows/find-blog-sites.ts';
 import '@/ai/flows/apps-rank-tracking-tool.ts';
 import '@/ai/flows/domain-name-search.ts';
+import '@/ai/flows/website-analysis.ts';
 import '@/aiЛюбые задачи backend-разработки и DevOps. В стеке Python, Go, Docker, Kubernetes, Ansible, ClickHouse, Redis, Kafka, ScyllaDB, PostgreSQL.
 Буду рад помочь вам с решением ваших задач.
 Стек:

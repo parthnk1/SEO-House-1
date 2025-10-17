@@ -10,6 +10,7 @@ import { toolCategories, ToolCategory } from '@/lib/tools';
 import { ArrowRight, Search as SearchIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import AdsensePlaceholder from '@/components/AdsensePlaceholder';
+import WebsiteAnalyzer from '@/components/WebsiteAnalyzer';
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,6 +56,11 @@ export default function Home() {
                 </Link>
               </Button>
             </div>
+          </section>
+
+          {/* Website Analyzer */}
+          <section className="my-12">
+            <WebsiteAnalyzer />
           </section>
 
           <div className="my-12 flex justify-center">
