@@ -1,5 +1,6 @@
 
-import { toolCategories } from '@/lib/tools';
+
+import { toolCategories, Tool } from '@/lib/tools';
 import { notFound } from 'next/navigation';
 import MetaTagGenerator from '@/components/MetaTagGenerator';
 import KeywordPositionChecker from '@/components/KeywordPositionChecker';
@@ -10,7 +11,7 @@ import KeywordCompetitionTool from '@/components/KeywordCompetitionTool';
 import RelatedKeywordsFinder from '@/components/RelatedKeywordsFinder';
 import LongTailKeywordSuggestionTool from '@/components/LongTailKeywordSuggestionTool';
 import KeywordRichDomainsSuggestionsTool from '@/components/KeywordRichDomainsSuggestionsTool';
-import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import BacklinkChecker from '@/components/BacklinkChecker';
 import BacklinkMaker from '@/components/BacklinkMaker';
 import SeoKeywordCompetitionAnalysis from '@/components/SeoKeywordCompetitionAnalysis';
@@ -82,9 +83,55 @@ import SslChecker from '@/components/SslChecker';
 import FindBlogSites from '@/components/FindBlogSites';
 import AppsRankTrackingTool from '@/components/AppsRankTrackingTool';
 
+const toolContent: Record<string, { title: string; content: string }> = {
+    'meta-tag-generator': {
+        title: 'Why is a Meta Tag Generator Important for SEO?',
+        content: `
+            <p>In the world of search engine optimization (SEO), meta tags are a fundamental component of on-page optimization. They are snippets of text that describe a page's content; they don't appear on the page itself but only in the page's source code. Meta tags are essentially little content descriptors that help tell search engines what a web page is about.</p>
+            <p>The two most important meta tags for SEO are the <strong>title tag</strong> and the <strong>meta description</strong>. The title tag is the main headline that appears in search engine results pages (SERPs), and it's also shown in the browser tab. The meta description is the short paragraph of text that appears under the title in search results. While not a direct ranking factor, a well-written meta description can significantly improve your click-through rate (CTR).</p>
+            <h2 class="font-headline text-primary">How Our Meta Tag Generator Works</h2>
+            <p>Our AI-powered Meta Tag Generator takes the guesswork out of creating optimized meta tags. Simply enter the URL of the page you want to optimize, and our tool will analyze its content to generate a compelling title and description. It identifies the main keywords and themes of your page to craft tags that are not only relevant but also designed to attract clicks from your target audience. This saves you time and helps ensure you're putting your best foot forward in the SERPs.</p>
+        `
+    },
+    'keyword-position': {
+        title: 'The Importance of Tracking Your Keyword Position',
+        content: `
+            <p>Understanding where your website ranks for specific keywords is one of the most critical aspects of any successful SEO strategy. Your keyword position, or ranking, determines your visibility in search engine results pages (SERPs). The higher you rank, the more likely users are to find and click on your website. In fact, the first page of Google receives over 90% of all search traffic, so if you're not on page one, you're missing out on a significant amount of potential visitors.</p>
+            <p>Tracking your keyword positions allows you to measure the effectiveness of your SEO efforts. Are the changes you're making to your website having a positive impact? Are you ranking for the keywords that are most valuable to your business? Answering these questions is impossible without consistent rank tracking. It helps you identify which keywords are performing well, which ones need more attention, and where new opportunities lie.</p>
+            <h2 class="font-headline text-primary">Using Our Keyword Position Checker</h2>
+            <p>Our Keyword Position Checker is a simple yet powerful tool that allows you to check your website's ranking for a specific keyword. By entering your URL and the keyword you want to track, our tool will scan the search results to find your position. This provides you with a quick snapshot of your performance, allowing you to make informed decisions about your SEO strategy. Regularly checking your keyword positions is key to staying ahead of the competition and ensuring your website continues to climb the ranks.</p>
+        `
+    },
+    'backlink-checker': {
+        title: 'Why a Backlink Checker is an Essential SEO Tool',
+        content: `
+            <p>Backlinks, which are links from other websites to yours, are one of the most important ranking factors for search engines like Google. They act as a vote of confidence, indicating to search engines that your content is valuable and trustworthy. The more high-quality backlinks you have, the higher your website is likely to rank in search results. This is why a backlink checker is an indispensable tool for anyone serious about SEO.</p>
+            <p>A backlink checker allows you to see which websites are linking to you. This information is crucial for several reasons. Firstly, it helps you understand your own link profile. Are you getting links from authoritative websites in your niche? Or are you accumulating low-quality, spammy links that could potentially harm your rankings? Secondly, a backlink checker enables you to analyze your competitors' backlink profiles. By seeing who is linking to them, you can identify new link-building opportunities for your own site.</p>
+            <h2 class="font-headline text-primary">Leverage Our Free Backlink Checker</h2>
+            <p>Our free Backlink Checker tool gives you a clear view of the backlinks pointing to any URL. Simply enter a domain, and our tool will provide you with a list of backlinks, including the source URL, the anchor text used, and the domain authority of the linking site. This data empowers you to assess the quality of your backlinks, discover new link-building prospects by spying on your competitors, and build a robust backlink strategy that will propel your website to the top of the search results.</p>
+        `
+    }
+};
+
 type ToolPageProps = {
   params: { slug: string };
 };
+
+function ToolContent({ tool }: { tool: Tool }) {
+    const content = toolContent[tool.slug];
+    if (!content) return null;
+
+    return (
+        <Card className="mt-12">
+            <CardHeader>
+                <CardTitle className="text-3xl font-headline text-primary">{content.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <div className="prose lg:prose-lg max-w-none" dangerouslySetInnerHTML={{ __html: content.content }} />
+            </CardContent>
+        </Card>
+    );
+}
 
 export async function generateMetadata({ params }: ToolPageProps) {
   const tool = toolCategories.flatMap(category => category.tools).find(t => t.slug === params.slug);
@@ -293,6 +340,7 @@ export default function ToolPage({ params }: ToolPageProps) {
         </div>
       </div>
       {renderTool()}
+      <ToolContent tool={tool} />
     </div>
   );
 }
