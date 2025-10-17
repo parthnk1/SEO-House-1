@@ -9,22 +9,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { toolCategories, ToolCategory } from '@/lib/tools';
 import { ArrowRight, Search as SearchIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useUser } from '@/firebase';
 import AdsensePlaceholder from '@/components/AdsensePlaceholder';
-
-function useSafeUser() {
-  try {
-    return useUser();
-  } catch (e) {
-    // This can happen if Firebase is not configured.
-    // In that case, we can't use auth, so we return a dummy object.
-    return { user: null, login: () => {} };
-  }
-}
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
-  const { user, login } = useSafeUser();
 
   const filteredCategories = useMemo(() => {
     if (!searchQuery) {

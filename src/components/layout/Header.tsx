@@ -8,14 +8,6 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, SearchCode } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase/auth/use-user';
-import { useFirebase } from '@/firebase';
-
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/#tools', label: 'Tools' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
-];
 
 function AuthButtons() {
     // This will throw an error if Firebase is not configured, so we catch it.
@@ -44,6 +36,12 @@ function AuthButtons() {
         return null;
     }
 }
+
+const navLinks = [
+  { href: '/#tools', label: 'Tools' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
 
 
 export function Header() {
@@ -90,7 +88,9 @@ export function Header() {
         <div className="flex items-center gap-4">
            
             {/* User Auth */}
-            <AuthButtons />
+            <div className="hidden md:flex items-center gap-2">
+              <AuthButtons />
+            </div>
 
             {/* Mobile Navigation */}
             <div className="md:hidden">
@@ -112,6 +112,9 @@ export function Header() {
                     <nav className="flex flex-col gap-4">
                         {navLinks.map(link => <NavLink key={link.href} {...link} />)}
                     </nav>
+                     <div className="flex flex-col gap-2 mt-4">
+                         <AuthButtons />
+                    </div>
                 </div>
                 </SheetContent>
             </Sheet>

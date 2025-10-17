@@ -16,9 +16,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  // Conditionally render Firebase provider only if keys are present
-  const hasFirebaseConfig = !!process.env.NEXT_PUBLIC_API_KEY;
-
   return (
     <html lang="en" className="!scroll-smooth">
       <head>
