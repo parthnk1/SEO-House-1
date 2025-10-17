@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const article = placeholderArticles.find(a => a.slug === params.slug);
   if (!article) return {}
   return {
-    title: `${article.title} | SEO Powerhouse`,
+    title: `${article.title} | The SEO Power House`,
     description: article.description,
   }
 }

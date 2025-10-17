@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 import AdsensePlaceholder from '@/components/AdsensePlaceholder';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | SEO Powerhouse',
-  description: 'Get in touch with the SEO Powerhouse team.',
+  title: 'Contact Us | The SEO Power House',
+  description: 'Get in touch with the The SEO Power House team.',
 };
 
 export default function ContactPage() {

@@ -6,8 +6,8 @@ import type { Metadata } from 'next';
 import AdsensePlaceholder from '@/components/AdsensePlaceholder';
 
 export const metadata: Metadata = {
-  title: 'Blog | SEO Powerhouse',
-  description: 'Articles, tips, and updates from the SEO Powerhouse team.',
+  title: 'Blog | The SEO Power House',
+  description: 'Articles, tips, and updates from the The SEO Power House team.',
 };
 
 const placeholderArticles = [

@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
-  title: 'SEO Powerhouse',
+  title: 'The SEO Power House',
   description: 'Free SEO Tools, All in One Place',
 };
 

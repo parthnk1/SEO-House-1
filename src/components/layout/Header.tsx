@@ -75,7 +75,7 @@ export function Header() {
           <div className='bg-primary p-2 rounded-lg'>
             <SearchCode className="h-6 w-6 text-primary-foreground" />
           </div>
-          <span className="font-bold text-lg font-headline">Free SEO Tools</span>
+          <span className="font-bold text-lg font-headline">The SEO Power House</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -105,7 +105,7 @@ export function Header() {
                          <div className='bg-primary p-2 rounded-lg'>
                             <SearchCode className="h-6 w-6 text-primary-foreground" />
                          </div>
-                        <span className="font-bold text-lg font-headline">Free SEO Tools</span>
+                        <span className="font-bold text-lg font-headline">The SEO Power House</span>
                     </Link>
                     <nav className="flex flex-col gap-4">
                         {navLinks.map(link => <NavLink key={link.href} {...link} />)}

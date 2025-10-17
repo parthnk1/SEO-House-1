@@ -375,8 +375,8 @@ const toolContent: Record<string, { title: string; content: string }> = {
     'url-rewriting-tool': {
         title: 'Create Clean Links with a URL Rewriting Tool',
         content: `
-            <p>The structure of your URLs matters for SEO. A good URL is clean, easy to read, and contains keywords that describe the page's content. It should be understandable for both users and search engines. However, many content management systems generate URLs that are long, messy, and filled with ugly parameters, like \`product?id=123&cat=4\`. These are called dynamic URLs, and they are not ideal for SEO. A URL Rewriting Tool helps you transform these into clean, static-looking, SEO-friendly URLs.</p>
-            <p>Why is this important? Firstly, a clean URL (e.g., \`/products/blue-widget\`) is more trustworthy and clickable for users when they see it in search results. Secondly, keywords in the URL can be a small but helpful ranking factor. They give search engines an immediate clue about the page's topic. Rewriting your URLs is a best practice that improves user experience and on-page SEO simultaneously.</p>
+            <p>The structure of your URLs matters for SEO. A good URL is clean, easy to read, and contains keywords that describe the page\'s content. It should be understandable for both users and search engines. However, many content management systems generate URLs that are long, messy, and filled with ugly parameters, like \`product?id=123&cat=4\`. These are called dynamic URLs, and they are not ideal for SEO. A URL Rewriting Tool helps you transform these into clean, static-looking, SEO-friendly URLs.</p>
+            <p>Why is this important? Firstly, a clean URL (e.g., \`/products/blue-widget\`) is more trustworthy and clickable for users when they see it in search results. Secondly, keywords in the URL can be a small but helpful ranking factor. They give search engines an immediate clue about the page\'s topic. Rewriting your URLs is a best practice that improves user experience and on-page SEO simultaneously.</p>
             <h2 class="font-headline text-primary">How to Rewrite Your URLs</h2>
             <p>Our URL Rewriting Tool provides an example of how this process works. Enter your messy, dynamic URL. The tool will then generate a rewritten, SEO-friendly alternative. For developers, this often involves configuring URL rewrite rules on the web server (e.g., in an \`.htaccess\` file for Apache). The goal is to show the clean URL to the user and search engines, while the server internally understands how to translate it back to the dynamic version to fetch the correct content. Our tool demonstrates the "before" and "after" and explains why the rewritten URL is better, helping you understand the principle of creating clean, descriptive web addresses.</p>
         `
@@ -594,7 +594,7 @@ const toolContent: Record<string, { title: string; content: string }> = {
             <p>In the complex world of SEO, not all links are good links. Acquiring backlinks from low-quality, "spammy" websites can harm your own site's reputation and even lead to penalties from Google. A Spam Score is a metric, originally developed by Moz, that estimates the "spamminess" of a website on a scale from 0% to 100%. A high score indicates that a website has characteristics similar to sites that have been penalized or banned by Google. A Spam Score Checker helps you evaluate the risk associated with a particular domain.</p>
             <p>This tool is essential for link builders and anyone conducting a backlink audit. When you're considering getting a link from a website, you should check its Spam Score first. If the score is high, you should probably avoid that site, as a link from it could do more harm than good. Similarly, if you're analyzing your own backlink profile, this tool can help you identify toxic backlinks that you should consider disavowing through Google's Disavow Tool.</p>
             <h2 class="font-headline text-primary">How to Check a Domain's Spam Score</h2>
-            <p>Enter any domain into our Spam Score Checker. The tool will provide a simulated Spam Score percentage, along with a brief analysis of the factors that might be contributing to it, such as a low number of high-authority links or a link profile with very little branded anchor text. A low score (e.g., 1-30%) is generally considered good, a medium score (31-60%) warrants caution, and a high score (61-100%) is a major red flag. Use this tool to make smarter, safer decisions in your link-building efforts and to keep your own backlink profile clean.</p>
+            <p>Enter any domain into our Spam Score Checker. The tool will provide a simulated Spam Score percentage, along with a brief analysis of the factors that might be contributing to it, such as a low-quality backlinks, thin content, or keyword stuffing. A low score (e.g., 1-30%) is generally considered good, a medium score (31-60%) warrants caution, and a high score (61-100%) is a major red flag. Use this tool to make smarter, safer decisions in your link-building efforts and to keep your own backlink profile clean.</p>
         `
     },
     'comparison-search': {
@@ -791,7 +791,7 @@ export async function generateMetadata({ params }: ToolPageProps) {
   }
 
   return {
-    title: `${tool.name} | SEO Powerhouse`,
+    title: `${tool.name} | The SEO Power House`,
     description: tool.description,
   }
 }
