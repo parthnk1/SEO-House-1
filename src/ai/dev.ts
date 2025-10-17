@@ -59,29 +59,8 @@ import '@/ai/flows/find-dns-records.ts';
 import '@/ai/flows/domain-to-ip.ts';
 import '@/ai/flows/check-blacklist-ip.ts';
 import '@/ai/flows/find-expired-domains.ts';
-import '@/ai/flows/bulk-domain-rating-checker.ts';
-import '@/ai/flows/index-pages-checker.ts';
-import '@/ai/flows/spam-score-checker.ts';
-import '@/ai/flows/comparison-search.ts';
-import '@/ai/flows/page-authority-checker.ts';
-import '@/ai/flows/mozrank-checker.ts';
-import '@/ai/flows/google-index-checker.ts';
-import '@/ai/flows/alexa-rank-checker.ts';
-import '@/ai/flows/redirect-checker.ts';
-import '@/ai/flows/cloaking-checker.ts';
-import '@/ai/flows/google-malware-checker.ts';
-import '@/ai/flows/find-facebook-id.ts';
-import '@/ai/flows/check-gzip-compression.ts';
-
-
-
-
-
-
-
-
-
-
-
-
-
+import '@/aiЛюбые задачи backend-разработки и DevOps. В стеке Python, Go, Docker, Kubernetes, Ansible, ClickHouse, Redis, Kafka, ScyllaDB, PostgreSQL.
+Буду рад помочь вам с решением ваших задач.
+Стек:
+Python, Go, Django, DRF, FastAPI, aiohttp, Docker, K8s, Ansible, ClickHouse, Redis, Kafka, ScyllaDB, PostgreSQL, MongoDB, ELK, Prometheus, Grafana, VictoriaMetrics.
+Напишите мне, и мы обсудим детали.
