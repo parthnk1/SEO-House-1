@@ -57,7 +57,6 @@ import DomainAuthorityChecker from '@/components/DomainAuthorityChecker';
 import DomainIpLookup from '@/components/DomainIpLookup';
 import EssayChecker from '@/components/EssayChecker';
 import HtaccessRedirectGenerator from '@/components/HtaccessRedirectGenerator';
-import LinkTracker from '@/components/LinkTracker';
 import ClassCIpChecker from '@/components/ClassCIpChecker';
 import PasswordGenerator from '@/components/PasswordGenerator';
 import SimilarSiteChecker from '@/components/SimilarSiteChecker';
@@ -508,15 +507,6 @@ const toolContent: Record<string, { title: string; content: string }> = {
             <p>Paste your essay or any piece of text into our AI Essay Checker. The tool will analyze it and provide a comprehensive report. You'll receive an overall score from 0 to 100, giving you a quick sense of its quality. More importantly, you'll get detailed, constructive feedback, often broken down into categories like "Grammar & Spelling" and "Style & Clarity." It will highlight specific areas for improvement and explain the reasoning behind its suggestions. Use this feedback to revise your work, polish your writing, and communicate your ideas with confidence and precision.</p>
         `
     },
-    'link-tracker': {
-        title: 'Measure Your Campaign Success with a Link Tracker',
-        content: `
-            <p>When you share a link online, whether it's in a social media post, an email newsletter, or an ad campaign, how do you know if it's actually working? A Link Tracker is an essential tool for digital marketing that allows you to measure the performance of your links. It works by creating a special, short URL that redirects to your final destination URL. Every time someone clicks on this short URL, the click is recorded before they are sent to the final page.</p>
-            <p>This allows you to gather valuable data. You can see exactly how many clicks a specific link has received, which is a direct measure of your campaign's reach and engagement. By creating unique tracking links for different channels (e.g., one for Twitter, one for Facebook), you can compare their performance and see which channels are driving the most traffic. This data is crucial for calculating your return on investment (ROI) and optimizing your marketing spend.</p>
-            <h2 class="font-headline text-primary">How to Create and Track Your Links</h2>
-            <p>Our Link Tracker makes this process simple. Once you're logged in, you can create a new tracked link. Give it a memorable name (e.g., "Summer Sale Email") and enter the destination URL. The tool will generate a unique tracking URL for you to use in your campaign. As people click your link, you'll see the click count update in real-time on your dashboard. Use this tool to get clear, actionable data on every link you share and make smarter, data-driven marketing decisions.</p>
-        `
-    },
     'class-c-ip-checker': {
         title: 'Uncover Link Networks with a Class C IP Checker',
         content: `
@@ -924,8 +914,6 @@ export default function ToolPage({ params }: ToolPageProps) {
         return <EssayChecker />;
       case 'htaccess-redirect-generator':
         return <HtaccessRedirectGenerator />;
-      case 'link-tracker':
-        return <LinkTracker />;
       case 'class-c-ip-checker':
         return <ClassCIpChecker />;
       case 'password-generator':

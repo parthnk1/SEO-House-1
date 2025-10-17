@@ -51,7 +51,6 @@ import { domainAgeChecker } from '@/ai/flows/domain-age-checker';
 import { domainAuthorityChecker } from '@/ai/flows/domain-authority-checker';
 import { domainIpLookup } from '@/ai/flows/domain-ip-lookup';
 import { essayChecker } from '@/ai/flows/essay-checker';
-import { createTrackedLink } from '@/ai/flows/link-tracker';
 import { classCIpChecker } from '@/ai/flows/class-c-ip-checker';
 import { similarSiteChecker } from '@/ai/flows/similar-site-checker';
 import { domainHostingChecker } from '@/ai/flows/domain-hosting-checker';
@@ -127,7 +126,6 @@ import { type DomainAgeCheckerInput, type DomainAgeCheckerOutput } from './ai/fl
 import { type DomainAuthorityCheckerInput, type DomainAuthorityCheckerOutput } from './ai/flows/schemas/domain-authority-checker';
 import { type DomainIpLookupInput, type DomainIpLookupOutput } from './ai/flows/schemas/domain-ip-lookup';
 import { type EssayCheckerInput, type EssayCheckerOutput } from './ai/flows/schemas/essay-checker';
-import { type CreateTrackedLinkInput, type TrackedLink } from './ai/flows/schemas/link-tracker';
 import { type ClassCIpCheckerInput, type ClassCIpCheckerOutput } from './ai/flows/schemas/class-c-ip-checker';
 import { type SimilarSiteCheckerInput, type SimilarSiteCheckerOutput } from './ai/flows/schemas/similar-site-checker';
 import { type DomainHostingCheckerInput, type DomainHostingCheckerOutput } from './ai/flows/schemas/domain-hosting-checker';
@@ -756,18 +754,6 @@ export async function essayCheckerAction(
   }
 }
 
-
-export async function createTrackedLinkAction(
-    input: CreateTrackedLinkInput
-  ): Promise<{ success: true, data: TrackedLink } | { success: false, error: string }> {
-    try {
-      const result = await createTrackedLink(input);
-      return { success: true, data: result };
-    } catch (error) {
-      console.error('Error creating tracked link:', error);
-      return { success: false, error: 'Failed to create tracked link. Please try again later.' };
-    }
-}
 
 export async function classCIpCheckerAction(
   input: ClassCIpCheckerInput
