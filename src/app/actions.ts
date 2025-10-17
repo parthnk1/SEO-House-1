@@ -71,6 +71,7 @@ import { redirectChecker } from '@/ai/flows/redirect-checker';
 import { cloakingChecker } from '@/ai/flows/cloaking-checker';
 import { googleMalwareChecker } from '@/ai/flows/google-malware-checker';
 import { findFacebookId } from '@/ai/flows/find-facebook-id';
+import { checkGzipCompression } from '@/ai/flows/check-gzip-compression';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -142,6 +143,7 @@ import { type RedirectCheckerInput, type RedirectCheckerOutput } from './ai/flow
 import { type CloakingCheckerInput, type CloakingCheckerOutput } from './ai/flows/schemas/cloaking-checker';
 import { type GoogleMalwareCheckerInput, type GoogleMalwareCheckerOutput } from './ai/flows/schemas/google-malware-checker';
 import { type FindFacebookIdInput, type FindFacebookIdOutput } from './ai/flows/schemas/find-facebook-id';
+import { type CheckGzipCompressionInput, type CheckGzipCompressionOutput } from './ai/flows/schemas/check-gzip-compression';
 
 
 export async function generateMetaTagsAction(
@@ -984,5 +986,17 @@ export async function findFacebookIdAction(
   } catch (error) {
     console.error('Error finding Facebook ID:', error);
     return { success: false, error: 'Failed to find Facebook ID. Please try again later.' };
+  }
+}
+
+export async function checkGzipCompressionAction(
+  input: CheckGzipCompressionInput
+): Promise<{ success: true, data: CheckGzipCompressionOutput } | { success: false, error: string }> {
+  try {
+    const result = await checkGzipCompression(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error checking GZIP compression:', error);
+    return { success: false, error: 'Failed to check GZIP compression. Please try again later.' };
   }
 }

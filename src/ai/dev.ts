@@ -71,6 +71,8 @@ import '@/ai/flows/redirect-checker.ts';
 import '@/ai/flows/cloaking-checker.ts';
 import '@/ai/flows/google-malware-checker.ts';
 import '@/ai/flows/find-facebook-id.ts';
+import '@/ai/flows/check-gzip-compression.ts';
+
 
 
 
