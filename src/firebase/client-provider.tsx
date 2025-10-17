@@ -16,6 +16,8 @@ export function FirebaseClientProvider({
     firestore: Firestore;
   } | null>(null);
 
+  const [initialized, setInitialized] = useState(false);
+
   useEffect(() => {
     // Only initialize Firebase if the API key is present.
     if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_API_KEY) {
@@ -26,12 +28,21 @@ export function FirebaseClientProvider({
         console.error("Firebase initialization failed:", error);
       }
     }
+    setInitialized(true);
   }, []);
+
+  if (!initialized) {
+    return null; // Or a loading spinner
+  }
 
   if (!services) {
     // Render children without Firebase context if services are not available.
     // This allows the rest of the app to function without crashing.
-    return <>{children}</>;
+    return (
+        <FirebaseProvider app={null} auth={null} firestore={null}>
+            {children}
+        </FirebaseProvider>
+    );
   }
 
   return (

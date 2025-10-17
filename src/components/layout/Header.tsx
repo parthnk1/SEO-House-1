@@ -8,33 +8,35 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, SearchCode } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useUser } from '@/firebase/auth/use-user';
+import { Skeleton } from '../ui/skeleton';
 
 function AuthButtons() {
-    // This will throw an error if Firebase is not configured, so we catch it.
-    try {
-        const { user, login } = useUser();
+    const { user, loading, firebaseAvailable, login } = useUser();
 
-        if (user) {
-            return (
-                <Button variant="outline" size="sm" asChild>
-                    <Link href="/tools/link-tracker">Dashboard</Link>
-                </Button>
-            );
-        }
-
-        return (
-            <>
-                <Button variant="ghost" size="sm" onClick={login}>Log In</Button>
-                <Button variant="secondary" size="sm" onClick={login} className='bg-white text-black hover:bg-white/90'>
-                    Sign Up
-                </Button>
-            </>
-        );
-    } catch (e) {
-        // If useFirebase() fails, it means the provider is not there.
-        // In this case, we don't render any auth buttons.
+    if (!firebaseAvailable) {
         return null;
     }
+
+    if (loading) {
+        return <Skeleton className="h-9 w-24" />;
+    }
+
+    if (user) {
+        return (
+            <Button variant="outline" size="sm" asChild>
+                <Link href="/tools/link-tracker">Dashboard</Link>
+            </Button>
+        );
+    }
+
+    return (
+        <>
+            <Button variant="ghost" size="sm" onClick={login}>Log In</Button>
+            <Button variant="secondary" size="sm" onClick={login} className='bg-white text-black hover:bg-white/90'>
+                Sign Up
+            </Button>
+        </>
+    );
 }
 
 const navLinks = [

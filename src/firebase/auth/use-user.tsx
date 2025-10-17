@@ -7,20 +7,32 @@ import {
     signInWithPopup,
   } from 'firebase/auth';
   import { useEffect, useState } from 'react';
-  import { useAuth } from '@/firebase';
+  import { useFirebase } from '@/firebase';
   
   export const useUser = () => {
-    const auth = useAuth();
+    const firebase = useFirebase();
+    const auth = firebase?.auth;
     const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
   
     useEffect(() => {
+        if (!auth) {
+            setLoading(false);
+            return;
+        }
+
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         setUser(user);
+        setLoading(false);
       });
       return () => unsubscribe();
     }, [auth]);
   
     const login = async () => {
+        if (!auth) {
+            console.error('Firebase Auth is not available.');
+            return;
+        }
       const provider = new GoogleAuthProvider();
       try {
         await signInWithPopup(auth, provider);
@@ -29,6 +41,6 @@ import {
       }
     };
   
-    return { user, login };
+    return { user, loading, firebaseAvailable: !!firebase, login };
   };
   

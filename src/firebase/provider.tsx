@@ -4,11 +4,13 @@ import type { Auth } from 'firebase/auth';
 import type { Firestore } from 'firebase/firestore';
 import { createContext, useContext } from 'react';
 
-const FirebaseContext = createContext<{
+type FirebaseContextValue = {
   app: FirebaseApp;
   auth: Auth;
   firestore: Firestore;
-} | null>(null);
+} | null;
+
+const FirebaseContext = createContext<FirebaseContextValue>(null);
 
 export function FirebaseProvider({
   children,
@@ -18,9 +20,15 @@ export function FirebaseProvider({
   app: FirebaseApp;
   auth: Auth;
   firestore: Firestore;
+} | {
+  children: React.ReactNode;
+  app: null;
+  auth: null;
+  firestore: null;
 }) {
+  const value = services.app ? services : null;
   return (
-    <FirebaseContext.Provider value={services}>
+    <FirebaseContext.Provider value={value}>
       {children}
     </FirebaseContext.Provider>
   );
@@ -28,12 +36,24 @@ export function FirebaseProvider({
 
 export const useFirebase = () => {
   const context = useContext(FirebaseContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error('useFirebase must be used within a FirebaseProvider');
   }
   return context;
 };
 
-export const useFirebaseApp = () => useFirebase().app;
-export const useAuth = () => useFirebase().auth;
-export const useFirestore = () => useFirebase().firestore;
+export const useFirebaseApp = () => {
+  const context = useFirebase();
+  if (!context) throw new Error('Firebase not initialized');
+  return context.app;
+}
+export const useAuth = () => {
+    const context = useFirebase();
+    if (!context) throw new Error('Firebase not initialized');
+    return context.auth;
+};
+export const useFirestore = () => {
+    const context = useFirebase();
+    if (!context) throw new Error('Firebase not initialized');
+    return context.firestore;
+};
