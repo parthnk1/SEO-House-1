@@ -69,6 +69,7 @@ import { googleIndexChecker } from '@/ai/flows/google-index-checker';
 import { alexaRankChecker } from '@/ai/flows/alexa-rank-checker';
 import { redirectChecker } from '@/ai/flows/redirect-checker';
 import { cloakingChecker } from '@/ai/flows/cloaking-checker';
+import { googleMalwareChecker } from '@/ai/flows/google-malware-checker';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -138,6 +139,7 @@ import { type GoogleIndexCheckerInput, type GoogleIndexCheckerOutput } from './a
 import { type AlexaRankCheckerInput, type AlexaRankCheckerOutput } from './ai/flows/schemas/alexa-rank-checker';
 import { type RedirectCheckerInput, type RedirectCheckerOutput } from './ai/flows/schemas/redirect-checker';
 import { type CloakingCheckerInput, type CloakingCheckerOutput } from './ai/flows/schemas/cloaking-checker';
+import { type GoogleMalwareCheckerInput, type GoogleMalwareCheckerOutput } from './ai/flows/schemas/google-malware-checker';
 
 
 export async function generateMetaTagsAction(
@@ -956,5 +958,17 @@ export async function cloakingCheckerAction(
     } catch (error) {
         console.error('Error checking for cloaking:', error);
         return { success: false, error: 'Failed to check for cloaking. Please try again later.' };
+    }
+}
+
+export async function googleMalwareCheckerAction(
+    input: GoogleMalwareCheckerInput
+): Promise<{ success: true, data: GoogleMalwareCheckerOutput } | { success: false, error: string }> {
+    try {
+        const result = await googleMalwareChecker(input);
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error checking for malware:', error);
+        return { success: false, error: 'Failed to check for malware. Please try again later.' };
     }
 }

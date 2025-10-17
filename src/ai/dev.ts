@@ -69,6 +69,8 @@ import '@/ai/flows/google-index-checker.ts';
 import '@/ai/flows/alexa-rank-checker.ts';
 import '@/ai/flows/redirect-checker.ts';
 import '@/ai/flows/cloaking-checker.ts';
+import '@/ai/flows/google-malware-checker.ts';
+
 
 
 
