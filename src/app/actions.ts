@@ -70,6 +70,7 @@ import { alexaRankChecker } from '@/ai/flows/alexa-rank-checker';
 import { redirectChecker } from '@/ai/flows/redirect-checker';
 import { cloakingChecker } from '@/ai/flows/cloaking-checker';
 import { googleMalwareChecker } from '@/ai/flows/google-malware-checker';
+import { findFacebookId } from '@/ai/flows/find-facebook-id';
 
 import { type GenerateMetaTagsInput, type GenerateMetaTagsOutput } from '@/ai/flows/generate-meta-tags';
 import { type CheckKeywordPositionInput, type CheckKeywordPositionOutput } from '@/ai/flows/check-keyword-position';
@@ -140,6 +141,7 @@ import { type AlexaRankCheckerInput, type AlexaRankCheckerOutput } from './ai/fl
 import { type RedirectCheckerInput, type RedirectCheckerOutput } from './ai/flows/schemas/redirect-checker';
 import { type CloakingCheckerInput, type CloakingCheckerOutput } from './ai/flows/schemas/cloaking-checker';
 import { type GoogleMalwareCheckerInput, type GoogleMalwareCheckerOutput } from './ai/flows/schemas/google-malware-checker';
+import { type FindFacebookIdInput, type FindFacebookIdOutput } from './ai/flows/schemas/find-facebook-id';
 
 
 export async function generateMetaTagsAction(
@@ -971,4 +973,16 @@ export async function googleMalwareCheckerAction(
         console.error('Error checking for malware:', error);
         return { success: false, error: 'Failed to check for malware. Please try again later.' };
     }
+}
+
+export async function findFacebookIdAction(
+  input: FindFacebookIdInput
+): Promise<{ success: true, data: FindFacebookIdOutput } | { success: false, error: string }> {
+  try {
+    const result = await findFacebookId(input);
+    return { success: true, data: result };
+  } catch (error) {
+    console.error('Error finding Facebook ID:', error);
+    return { success: false, error: 'Failed to find Facebook ID. Please try again later.' };
+  }
 }
