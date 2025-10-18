@@ -2,57 +2,49 @@
 'use server';
 
 import { ai } from '@/ai/genkit';
-import { z } from 'zod';
-import { websiteSeoScoreChecker } from './website-seo-score-checker';
-import { metaTagsAnalyzer } from './meta-tags-analyzer';
-import { backlinkChecker } from './backlink-checker';
-import { domainAuthorityChecker } from './domain-authority-checker';
-import { pageSpeedTest } from './page-speed-test';
 import { 
   WebsiteAnalysisInputSchema, 
   WebsiteAnalysisOutputSchema,
   type WebsiteAnalysisInput, 
   type WebsiteAnalysisOutput,
 } from './schemas/website-analysis';
-import { type WebsiteSeoScoreCheckerOutput } from './schemas/website-seo-score-checker';
-import { type MetaTagsAnalyzerOutput } from './schemas/meta-tags-analyzer';
-import { type BacklinkCheckerOutput } from './schemas/backlink-checker';
-import { type DomainAuthorityCheckerOutput } from './schemas/domain-authority-checker';
-import { type PageSpeedTestOutput } from './schemas/page-speed-test';
-
 
 export async function websiteAnalysis(input: WebsiteAnalysisInput): Promise<WebsiteAnalysisOutput> {
   return websiteAnalysisFlow(input);
 }
 
 const analysisPrompt = ai.definePrompt({
-    name: 'websiteAnalysisPrompt',
-    input: { schema: z.object({
-        overallSeoScore: z.number(),
-        seoFactors: z.string(),
-        metaTags: z.string(),
-        pageSpeedScore: z.number(),
-        pageSpeedMetrics: z.string(),
-        domainAuthority: z.number(),
-        totalBacklinks: z.number(),
-    }) },
-    output: { schema: WebsiteAnalysisOutputSchema.pick({ improvements: true }) },
-    prompt: `You are an expert SEO analyst. Based on the following comprehensive website analysis data, generate a list of prioritized, actionable improvement suggestions.
+    name: 'comprehensiveWebsiteAnalysisPrompt',
+    input: { schema: WebsiteAnalysisInputSchema },
+    output: { schema: WebsiteAnalysisOutputSchema },
+    prompt: `You are an expert SEO analysis tool. For the given URL, perform a comprehensive analysis and generate a detailed report.
 
-Focus on the most impactful changes the user can make. Provide 3-5 high-priority suggestions.
+URL: {{{url}}}
 
-Analysis Data:
-- SEO Score: {{overallSeoScore}}/100
-- SEO Factors: {{seoFactors}}
-- Meta Tags: {{metaTags}}
-- Page Speed Score: {{pageSpeedScore}}/100
-- Page Speed Metrics: {{pageSpeedMetrics}}
-- Domain Authority: {{domainAuthority}}
-- Backlinks: {{totalBacklinks}}
+Based on a simulated analysis of the URL, provide the following information:
 
-Generate a list of improvement suggestions.`,
+1.  **SEO Score**:
+    -   Generate an overall SEO score from 0-100.
+    -   Provide a breakdown for at least 5 key factors (e.g., 'Meta Title', 'Mobile-Friendliness', 'Page Speed', 'Backlink Quality', 'Content Quality'), each with a score and a status ('Good', 'Needs Improvement', or 'Poor').
+
+2.  **Meta Tags**:
+    -   Provide the content for the title, meta description, keywords, viewport, and robots tags. If a tag is not found, indicate that.
+
+3.  **Backlinks**:
+    -   Generate a list of 10-15 realistic backlinks. For each, provide a source URL, anchor text, and a domain authority score (1-100).
+    -   Provide a realistic total number of backlinks and referring domains.
+
+4.  **Domain Authority**:
+    -   Provide a simulated Domain Authority score (1-100).
+    -   Provide a plausible number for linking domains and total backlinks that is consistent with the DA score.
+
+5.  **Page Speed**:
+    -   Provide an overall performance score (0-100).
+    -   Generate a list of 5-6 key performance metrics (e.g., 'First Contentful Paint (FCP)', 'Largest Contentful Paint (LCP)') with realistic values and a rating ('Good', 'Needs Improvement', or 'Poor').
+
+6.  **SEO Improvement Suggestions**:
+    -   Based on all the above analysis, generate a list of 3-5 prioritized, specific, and actionable improvement suggestions. For each suggestion, provide a category (e.g., "On-Page", "Performance") and a priority ('High', 'Medium', 'Low').`,
 });
-
 
 const websiteAnalysisFlow = ai.defineFlow(
   {
@@ -61,36 +53,10 @@ const websiteAnalysisFlow = ai.defineFlow(
     outputSchema: WebsiteAnalysisOutputSchema,
   },
   async ({ url }) => {
-    
-    const [seoScore, metaTags, backlinks, domainAuthority, pageSpeed] = await Promise.all([
-        websiteSeoScoreChecker({ url }),
-        metaTagsAnalyzer({ url }),
-        backlinkChecker({ url }),
-        domainAuthorityChecker({ domain: new URL(url).hostname }),
-        pageSpeedTest({ url })
-    ]);
-
-    const analysisData = {
-        seoScore,
-        metaTags,
-        backlinks,
-        domainAuthority,
-        pageSpeed,
-    };
-    
-    const { output } = await analysisPrompt({ 
-      overallSeoScore: seoScore.overallScore,
-      seoFactors: JSON.stringify(seoScore.analysis),
-      metaTags: JSON.stringify(metaTags),
-      pageSpeedScore: pageSpeed.performanceScore,
-      pageSpeedMetrics: JSON.stringify(pageSpeed.metrics),
-      domainAuthority: domainAuthority.domainAuthority,
-      totalBacklinks: backlinks.totalBacklinks,
-    });
-
-    return {
-        ...analysisData,
-        improvements: output?.improvements || [],
-    };
+    const { output } = await analysisPrompt({ url });
+    if (!output) {
+      throw new Error("Failed to generate a complete website analysis.");
+    }
+    return output;
   }
 );
