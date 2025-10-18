@@ -2,7 +2,7 @@
 
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
-import { websiteSeoScoreChecker, WebsiteSeoScoreCheckerOutputSchema } from './website-seo-score-checker';
+import { websiteSeoScoreChecker } from './website-seo-score-checker';
 import { metaTagsAnalyzer } from './meta-tags-analyzer';
 import { backlinkChecker } from './backlink-checker';
 import { type BacklinkCheckerOutput, BacklinkCheckerOutputSchema } from './schemas/backlink-checker';
@@ -11,6 +11,7 @@ import { type DomainAuthorityCheckerOutput, DomainAuthorityCheckerOutputSchema }
 import { pageSpeedTest } from './page-speed-test';
 import { type PageSpeedTestOutput, PageSpeedTestOutputSchema } from './schemas/page-speed-test';
 import { type MetaTagsAnalyzerOutput, MetaTagsAnalyzerOutputSchema } from './schemas/meta-tags-analyzer';
+import { type WebsiteSeoScoreCheckerOutput, WebsiteSeoScoreCheckerOutputSchema } from './schemas/website-seo-score-checker';
 
 export const WebsiteAnalysisInputSchema = z.object({
   url: z.string().url(),
