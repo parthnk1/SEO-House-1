@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -13,26 +14,12 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-
-// Define the input schema
-const BacklinkCheckerInputSchema = z.object({
-  url: z.string().url().describe('The URL of the website to check for backlinks.'),
-});
-export type BacklinkCheckerInput = z.infer<typeof BacklinkCheckerInputSchema>;
-
-// Define the output schema for a single backlink
-const BacklinkSchema = z.object({
-    sourceUrl: z.string().url().describe('The URL of the page containing the backlink.'),
-    anchorText: z.string().describe('The anchor text of the backlink.'),
-    domainAuthority: z.number().describe('A score (1-100) representing the linking domain\'s authority.'),
-});
-
-// Define the output schema
-const BacklinkCheckerOutputSchema = z.object({
-  backlinks: z.array(BacklinkSchema).describe('A list of backlinks found for the given URL.'),
-  totalBacklinks: z.number().describe('The total number of backlinks found.'),
-});
-export type BacklinkCheckerOutput = z.infer<typeof BacklinkCheckerOutputSchema>;
+import {
+  BacklinkCheckerInputSchema,
+  BacklinkCheckerOutputSchema,
+  type BacklinkCheckerInput,
+  type BacklinkCheckerOutput,
+} from './schemas/backlink-checker';
 
 // Define the wrapper function
 export async function backlinkChecker(input: BacklinkCheckerInput): Promise<BacklinkCheckerOutput> {
@@ -51,7 +38,7 @@ For each backlink, provide:
 - The anchor text used for the link.
 - A domain authority score (1-100) for the linking domain.
 
-The total number of backlinks should also be provided. Make it a large, realistic number.
+Also provide a realistic total number of backlinks and referring domains.
 
 URL: {{{url}}}
 `,

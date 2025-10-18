@@ -86,7 +86,6 @@ import { type CheckKeywordCompetitionInput, type CheckKeywordCompetitionOutput }
 import { type FindRelatedKeywordsInput, type FindRelatedKeywordsOutput } from '@/ai/flows/find-related-keywords';
 import { type GetLongTailKeywordSuggestionsInput, type GetLongTailKeywordSuggestionsOutput } from '@/ai/flows/get-long-tail-keyword-suggestions';
 import { type GetKeywordRichDomainsInput, type GetKeywordRichDomainsOutput } from '@/ai/flows/get-keyword-rich-domains';
-import { type BacklinkCheckerInput, type BacklinkCheckerOutput } from '@/ai/flows/backlink-checker';
 import { type BacklinkMakerInput, type BacklinkMakerOutput } from '@/ai/flows/backlink-maker';
 import { type SeoKeywordCompetitionAnalysisInput, type SeoKeywordCompetitionAnalysisOutput } from '@/ai/flows/seo-keyword-competition-analysis';
 import { type LiveKeywordAnalyzerInput, type LiveKeywordAnalyzerOutput } from '@/ai/flows/live-keyword-analyzer';
@@ -119,7 +118,7 @@ import { type ReverseIpLookupInput, type ReverseIpLookupOutput } from '@/ai/flow
 import { type CheckServerStatusInput, type CheckServerStatusOutput } from '@/ai/flows/schemas/check-server-status';
 import { type CodeToTextRatioCheckerInput, type CodeToTextRatioCheckerOutput } from '@/ai/flows/schemas/code-to-text-ratio-checker';
 import { type AlexaRankComparisonInput, type AlexaRankComparisonOutput } from '@/ai/flows/schemas/alexa-rank-comparison';
-import { type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/schemas/page-comparison';
+import { type PageComparisonInput, type PageComparisonOutput } from '@/ai/flows/page-comparison';
 import { type SpiderSimulatorInput, type SpiderSimulatorOutput } from './ai/flows/schemas/spider-simulator';
 import { type WhoisLookupInput, type WhoisLookupOutput } from './ai/flows/schemas/whois-lookup';
 import { type GoogleCacheCheckerInput, type GoogleCacheCheckerOutput } from './ai/flows/schemas/google-cache-checker';
@@ -152,6 +151,7 @@ import { type FindBlogSitesInput, type FindBlogSitesOutput } from './ai/flows/sc
 import { type AppsRankTrackingToolInput, type AppsRankTrackingToolOutput } from './ai/flows/schemas/apps-rank-tracking-tool';
 import { type DomainNameSearchInput, type DomainNameSearchOutput } from './ai/flows/schemas/domain-name-search';
 import { type WebsiteAnalysisInput, type WebsiteAnalysisOutput } from '@/ai/flows/website-analysis';
+import { type BacklinkCheckerInput, type BacklinkCheckerOutput } from '@/ai/flows/schemas/backlink-checker';
 
 
 export async function generateMetaTagsAction(

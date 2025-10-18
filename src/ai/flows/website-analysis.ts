@@ -5,8 +5,10 @@ import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 import { websiteSeoScoreChecker, WebsiteSeoScoreCheckerOutputSchema } from './website-seo-score-checker';
 import { metaTagsAnalyzer, MetaTagsAnalyzerOutputSchema } from './meta-tags-analyzer';
-import { backlinkChecker, BacklinkCheckerOutputSchema } from './backlink-checker';
-import { domainAuthorityChecker, DomainAuthorityCheckerOutputSchema } from './domain-authority-checker';
+import { backlinkChecker } from './backlink-checker';
+import { type BacklinkCheckerOutput, BacklinkCheckerOutputSchema } from './schemas/backlink-checker';
+import { domainAuthorityChecker } from './domain-authority-checker';
+import { type DomainAuthorityCheckerOutput, DomainAuthorityCheckerOutputSchema } from './schemas/domain-authority-checker';
 import { pageSpeedTest, PageSpeedTestOutputSchema } from './page-speed-test';
 
 export const WebsiteAnalysisInputSchema = z.object({
