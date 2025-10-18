@@ -1,3 +1,4 @@
+
 'use server';
 
 import { ai } from '@/ai/genkit';
@@ -7,12 +8,18 @@ import { metaTagsAnalyzer } from './meta-tags-analyzer';
 import { backlinkChecker } from './backlink-checker';
 import { domainAuthorityChecker } from './domain-authority-checker';
 import { pageSpeedTest } from './page-speed-test';
-import {
-  WebsiteAnalysisInputSchema,
+import { 
+  WebsiteAnalysisInputSchema, 
   WebsiteAnalysisOutputSchema,
-  type WebsiteAnalysisInput,
+  type WebsiteAnalysisInput, 
   type WebsiteAnalysisOutput,
 } from './schemas/website-analysis';
+import { type WebsiteSeoScoreCheckerOutput } from './schemas/website-seo-score-checker';
+import { type MetaTagsAnalyzerOutput } from './schemas/meta-tags-analyzer';
+import { type BacklinkCheckerOutput } from './schemas/backlink-checker';
+import { type DomainAuthorityCheckerOutput } from './schemas/domain-authority-checker';
+import { type PageSpeedTestOutput } from './schemas/page-speed-test';
+
 
 export async function websiteAnalysis(input: WebsiteAnalysisInput): Promise<WebsiteAnalysisOutput> {
   return websiteAnalysisFlow(input);
@@ -20,20 +27,28 @@ export async function websiteAnalysis(input: WebsiteAnalysisInput): Promise<Webs
 
 const analysisPrompt = ai.definePrompt({
     name: 'websiteAnalysisPrompt',
-    input: { schema: z.object({ analysisData: WebsiteAnalysisOutputSchema.omit({ improvements: true }) }) },
+    input: { schema: z.object({
+        overallSeoScore: z.number(),
+        seoFactors: z.string(),
+        metaTags: z.string(),
+        pageSpeedScore: z.number(),
+        pageSpeedMetrics: z.string(),
+        domainAuthority: z.number(),
+        totalBacklinks: z.number(),
+    }) },
     output: { schema: WebsiteAnalysisOutputSchema.pick({ improvements: true }) },
     prompt: `You are an expert SEO analyst. Based on the following comprehensive website analysis data, generate a list of prioritized, actionable improvement suggestions.
 
 Focus on the most impactful changes the user can make. Provide 3-5 high-priority suggestions.
 
 Analysis Data:
-- SEO Score: {{analysisData.seoScore.overallScore}}/100
-- SEO Factors: {{JSON.stringify(analysisData.seoScore.analysis)}}
-- Meta Tags: {{JSON.stringify(analysisData.metaTags)}}
-- Page Speed Score: {{analysisData.pageSpeed.performanceScore}}/100
-- Page Speed Metrics: {{JSON.stringify(analysisData.pageSpeed.metrics)}}
-- Domain Authority: {{analysisData.domainAuthority.domainAuthority}}
-- Backlinks: {{analysisData.backlinks.totalBacklinks}}
+- SEO Score: {{overallSeoScore}}/100
+- SEO Factors: {{seoFactors}}
+- Meta Tags: {{metaTags}}
+- Page Speed Score: {{pageSpeedScore}}/100
+- Page Speed Metrics: {{pageSpeedMetrics}}
+- Domain Authority: {{domainAuthority}}
+- Backlinks: {{totalBacklinks}}
 
 Generate a list of improvement suggestions.`,
 });
@@ -63,7 +78,15 @@ const websiteAnalysisFlow = ai.defineFlow(
         pageSpeed,
     };
     
-    const { output } = await analysisPrompt({ analysisData });
+    const { output } = await analysisPrompt({ 
+      overallSeoScore: seoScore.overallScore,
+      seoFactors: JSON.stringify(seoScore.analysis),
+      metaTags: JSON.stringify(metaTags),
+      pageSpeedScore: pageSpeed.performanceScore,
+      pageSpeedMetrics: JSON.stringify(pageSpeed.metrics),
+      domainAuthority: domainAuthority.domainAuthority,
+      totalBacklinks: backlinks.totalBacklinks,
+    });
 
     return {
         ...analysisData,
