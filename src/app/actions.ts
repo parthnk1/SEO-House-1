@@ -1,4 +1,3 @@
-
 'use server';
 
 import { generateMetaTags } from '@/ai/flows/generate-meta-tags';
@@ -104,7 +103,7 @@ import { type BrokenBacklinkCheckerInput, type BrokenBacklinkCheckerOutput } fro
 import { type ValuableBacklinkCheckerInput, type ValuableBacklinkCheckerOutput } from '@/ai/flows/valuable-backlink-checker';
 import { type BacklinksCompetitorsInput, type BacklinksCompetitorsOutput } from '@/ai/flows/backlinks-competitors';
 import { type AnchorTextDistributionInput, type AnchorTextDistributionOutput } from '@/ai/flows/anchor-text-distribution';
-import { type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/page-speed-test';
+import { type PageSpeedTestInput, type PageSpeedTestOutput } from '@/ai/flows/schemas/page-speed-test';
 import { type WebsitePageSizeCheckerInput, type WebsitePageSizeCheckerOutput } from '@/ai/flows/website-page-size-checker';
 import { type WebsitePageSnooperInput, type WebsitePageSnooperOutput } from '@/ai/flows/website-page-snooper';
 import { type XmlSitemapGeneratorInput, type XmlSitemapGeneratorOutput } from '@/ai/flows/xml-sitemap-generator';

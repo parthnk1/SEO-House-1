@@ -1,15 +1,16 @@
-
 'use server';
 
 import { ai } from '@/ai/genkit';
 import { z } from 'zod';
 import { websiteSeoScoreChecker, WebsiteSeoScoreCheckerOutputSchema } from './website-seo-score-checker';
-import { metaTagsAnalyzer, MetaTagsAnalyzerOutputSchema } from './meta-tags-analyzer';
+import { metaTagsAnalyzer } from './meta-tags-analyzer';
 import { backlinkChecker } from './backlink-checker';
 import { type BacklinkCheckerOutput, BacklinkCheckerOutputSchema } from './schemas/backlink-checker';
 import { domainAuthorityChecker } from './domain-authority-checker';
 import { type DomainAuthorityCheckerOutput, DomainAuthorityCheckerOutputSchema } from './schemas/domain-authority-checker';
-import { pageSpeedTest, PageSpeedTestOutputSchema } from './page-speed-test';
+import { pageSpeedTest } from './page-speed-test';
+import { type PageSpeedTestOutput, PageSpeedTestOutputSchema } from './schemas/page-speed-test';
+import { type MetaTagsAnalyzerOutput, MetaTagsAnalyzerOutputSchema } from './schemas/meta-tags-analyzer';
 
 export const WebsiteAnalysisInputSchema = z.object({
   url: z.string().url(),
