@@ -149,7 +149,7 @@ import { type SslCheckerInput, type SslCheckerOutput } from './ai/flows/schemas/
 import { type FindBlogSitesInput, type FindBlogSitesOutput } from './ai/flows/schemas/find-blog-sites';
 import { type AppsRankTrackingToolInput, type AppsRankTrackingToolOutput } from './ai/flows/schemas/apps-rank-tracking-tool';
 import { type DomainNameSearchInput, type DomainNameSearchOutput } from './ai/flows/schemas/domain-name-search';
-import { type WebsiteAnalysisInput, type WebsiteAnalysisOutput } from '@/ai/flows/website-analysis';
+import { type WebsiteAnalysisInput, type WebsiteAnalysisOutput } from '@/ai/flows/schemas/website-analysis';
 import { type BacklinkCheckerInput, type BacklinkCheckerOutput } from '@/ai/flows/schemas/backlink-checker';
 
 
