@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import { WebsiteSeoScoreCheckerOutputSchema } from './website-seo-score-checker';
 import { MetaTagsAnalyzerOutputSchema } from './meta-tags-analyzer';
-import { BacklinkCheckerOutputSchema } from './schemas/backlink-checker';
-import { DomainAuthorityCheckerOutputSchema } from './schemas/domain-authority-checker';
-import { PageSpeedTestOutputSchema } from './schemas/page-speed-test';
+import { BacklinkCheckerOutputSchema } from './backlink-checker';
+import { DomainAuthorityCheckerOutputSchema } from './domain-authority-checker';
+import { PageSpeedTestOutputSchema } from './page-speed-test';
 
 export const WebsiteAnalysisInputSchema = z.object({
   url: z.string().url(),
