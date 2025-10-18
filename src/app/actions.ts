@@ -1050,8 +1050,8 @@ export async function websiteAnalysisAction(
   try {
     const result = await websiteAnalysis(input);
     return { success: true, data: result };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error performing website analysis:', error);
-    return { success: false, error: 'Failed to perform analysis. Please try again later.' };
+    return { success: false, error: error.message || 'Failed to perform analysis. Please try again later.' };
   }
 }
