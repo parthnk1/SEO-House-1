@@ -5,14 +5,15 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { websiteAnalysisAction } from '@/app/actions';
-import { type WebsiteAnalysisOutput } from '@/ai/flows/website-analysis';
+import { type WebsiteAnalysisOutput } from '@/ai/flows/schemas/website-analysis';
 import { type SpeedMetric } from '@/ai/flows/schemas/page-speed-test';
 import { type SeoFactor } from '@/ai/flows/schemas/website-seo-score-checker';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Loader2, ShieldCheck, BarChart, Link as LinkIcon, FileText, Smartphone, Clock, CheckCircle, AlertCircle, XCircle, ExternalLink, Shield, TrendingUp } from 'lucide-react';
+import { Loader2, ShieldCheck, BarChart, Link as LinkIcon, FileText, Smartphone, Clock, CheckCircle, AlertCircle, XCircle, ExternalLink, Shield, TrendingUp, Lightbulb, Zap, Wrench } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 
 const getStatusIcon = (status: 'Good' | 'Needs Improvement' | 'Poor') => {
   switch (status) {
@@ -23,6 +24,17 @@ const getStatusIcon = (status: 'Good' | 'Needs Improvement' | 'Poor') => {
     case 'Poor':
       return <XCircle className="w-5 h-5 text-red-500" />;
   }
+};
+
+const getPriorityBadge = (priority: 'High' | 'Medium' | 'Low') => {
+    switch (priority) {
+        case 'High':
+            return <Badge variant="destructive" className="bg-red-500/10 text-red-500 border-red-500/50">High Priority</Badge>;
+        case 'Medium':
+            return <Badge variant="outline" className="bg-yellow-500/10 text-yellow-500 border-yellow-500/50">Medium Priority</Badge>;
+        case 'Low':
+            return <Badge variant="secondary">Low Priority</Badge>;
+    }
 };
 
 export default function AnalyzePage() {
@@ -74,7 +86,7 @@ export default function AnalyzePage() {
     return null;
   }
 
-  const { seoScore, metaTags, backlinks, domainAuthority, pageSpeed } = result;
+  const { seoScore, metaTags, backlinks, domainAuthority, pageSpeed, improvements } = result;
 
   return (
     <div className="container mx-auto px-4 py-12 md:py-20">
@@ -120,6 +132,26 @@ export default function AnalyzePage() {
         </div>
 
         <div className="lg:col-span-2 space-y-8">
+          <Card>
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Wrench className="w-5 h-5" /> SEO Improvement Suggestions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {improvements.map((item, index) => (
+                    <div key={index} className="flex items-start gap-3">
+                        <Lightbulb className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
+                        <div className='flex-grow'>
+                            <p className="font-semibold">{item.suggestion}</p>
+                            <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                                {getPriorityBadge(item.priority)}
+                                <Badge variant="secondary">{item.category}</Badge>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </CardContent>
+           </Card>
+
           <Card>
             <CardHeader>
                 <CardTitle>SEO Factors Breakdown</CardTitle>
